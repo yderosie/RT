@@ -6,7 +6,7 @@
 #    By: rlambert <rlambert@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/03 11:25:08 by rlambert          #+#    #+#              #
-#    Updated: 2015/10/27 21:30:17 by roblabla         ###   ########.fr        #
+#    Updated: 2015/10/28 14:51:05 by roblabla         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ PRINTF_PATH ?= ft_printf/
 LIBFT_PATH ?= ft_printf/libft/
 
 ifeq ($(shell uname), Linux)
-MLX_PATH ?= mlx_linux/
+MLX_PATH ?= mlx_x11/
 else
 MLX_PATH ?= mlx_mac/
 endif
@@ -36,13 +36,13 @@ CP = cp
 
 RM = rm -f
 
+LDFLAGS += -L$(PRINTF_PATH) -lftprintf -L$(MLX_PATH) -lmlx
+
 ifeq ($(shell uname), Linux)
-LDFLAGS += $(pkg-config xext x11 --libs)
+LDFLAGS += $(shell pkg-config xext x11 --libs)
 else
 LDFLAGS += -framework OpenGL -framework AppKit
 endif
-
-LDFLAGS += -L$(PRINTF_PATH) -lftprintf -L$(MLX_PATH) -lmlx
 
 all: $(NAME)
 
