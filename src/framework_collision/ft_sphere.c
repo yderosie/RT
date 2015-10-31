@@ -10,8 +10,33 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fk_objects.h>
-#include <fk_collision.h>
+#include <ft_sphere.h>
+
+int			dist_sphere_crossroad(t_ray ray, t_sphere sphere)
+{
+	int				angle;
+	t_vector3		eyetocenter;
+	unsigned int	adjacent;
+
+	eyetocenter = (t_vector3) { ray.pos.x - sphere.pos.x,
+								ray.pos.y - sphere.pos.y,
+								ray.pos.z - sphere.pos.z };
+	angle = vector_dotproduct(ray.dir, eyetocenter);
+	angle = acos(angle);
+	adjacent = vector_magnitude(spheretocenter * sin(angle));
+	return (sqrt(-(SQUARE(sphere.radius) + SQUARE(adjacent))));
+}
+
+
+t_bool		intersect_sphere(t_ray ray, void* obj, t_intersect *inter)
+{
+	int	dist_crossroad;
+
+	if ((dist_crossroad = dist_crossroad(ray, (t_sphere)&obj)) > obj->radius)
+		return (FALSE);
+	inter->position = vertex_sum(obj->position, dist_crossroad);
+	return (TRUE);
+}
 
 t_sphere		*new_sphere(t_vector pos, unsigned int radius)
 {
