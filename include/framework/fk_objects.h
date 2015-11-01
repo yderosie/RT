@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/29 12:32:17 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/10/29 19:04:15 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/11/01 20:46:49 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,43 +23,38 @@ typedef enum		e_type
 	SPHERE,
 	PLANE,
 	CYLINDER,
-	CONE
+	CONE,
+	DEFAULT
 };
 
-struct				s_objects
+struct				s_material
+{
+	char			*tile;
+}
+
+struct				t_object
 {
 	e_type			type;
-	void			*object;
-	t_material		material;
-	t_objects		*nextobj;
+	char			stuff[128];
 };
 
 struct				s_sphere
 {
+	e_type			type;
 	t_vertex3		position;
 	float			radius;
-	t_fctinter		fctinter;
-};
-
-struct				s_plane
-{
-	t_vertex3		position;
-	float			radius;
-	t_fctinter		fctinter;
-};
-
-struct				s_cylinder
-{
-	t_vertex3		position;
-	float			radius;
-	t_fctinter		fctinter;
 };
 
 struct				s_cone
 {
+	e_type			type;
+	t_material		material;
 	t_vertex3		position;
+	t_vector3		height;
 	float			radius;
-	t_fctinter		fctinter;
 };
+
+t_bool			intersect_sphere(t_ray ray, void* obj, t_intersect *inter);
+t_sphere		*new_sphere(t_vector pos, unsigned int radius);
 
 #endif
