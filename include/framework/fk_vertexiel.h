@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/29 21:18:55 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/10/29 22:53:53 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/11/01 21:08:17 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ struct			s_vertex3
 	float z;
 };
 
-t_vertex3		new_vertex(float x1, float y1, float z1);
+t_vertex3		vertex_new(float x1, float y1, float z1);
 t_vertex3		vertex_sum(t_vertex3 u, unsigned int magnitude);
+unsigned int	lenght_segment(t_vertex3 u, t_vertex3 v);
 
 #endif
