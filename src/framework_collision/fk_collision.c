@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_collision.c                                     :+:      :+:    :+:   */
+/*   fk_collision.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/10/31 22:28:10 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/11/01 20:24:19 by mbarbari         ###   ########.fr       */
+/*   Created: 2015/11/01 20:34:17 by mbarbari          #+#    #+#             */
+/*   Updated: 2015/11/01 21:12:03 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_bool		ft_throwing_ray(t_env env, t_ray ray, t_intersect *inter)
 	i = 0;
 	while (arr[i] && arr[i].type != DEFAULT)
 	{
-		fctinter[arr[i].type](ray, arr + i, &tmp);
+		env.fctinter[arr[i].type](ray, arr + i, &tmp);
 		*inter = nearest_vertex(ray, inter, tmp);
 		i++;
 	}
