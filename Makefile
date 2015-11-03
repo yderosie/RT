@@ -6,7 +6,7 @@
 #    By: rlambert <rlambert@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/03 11:25:08 by rlambert          #+#    #+#              #
-#    Updated: 2015/11/03 20:54:56 by roblabla         ###   ########.fr        #
+#    Updated: 2015/11/03 21:00:00 by roblabla         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,7 @@ CP = cp
 RM = rm -f
 
 ifeq ($(shell uname), Linux)
-LDFLAGS += $(pkg-config xext x11 --libs)
+LDFLAGS += $(shell pkg-config xext x11 --libs)
 else
 LDFLAGS += -framework OpenGL -framework AppKit
 endif
