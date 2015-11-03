@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fk_ray.c                                           :+:      :+:    :+:   */
+/*   fk_rgb.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roblabla <robinlambertz+dev@gmail.c>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/01 15:50:53 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/11/03 16:39:39 by roblabla         ###   ########.fr       */
+/*   Created: 2015/11/03 00:30:13 by roblabla          #+#    #+#             */
+/*   Updated: 2015/11/03 00:32:49 by roblabla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "framework/fk_collision.h"
+#ifndef FK_RGB_H
+# define FK_RGB_H
 
-t_ray		ray_new(t_vertex3 v, t_vector3 dir)
+/*
+** Alpha blending is up to us !
+*/
+typedef struct	s_rgb
 {
-	return ((t_ray) {.pos = v, .dir = dir});
-}
+	int			r;
+	int			g;
+	int			b;
+	int			a;
+}				t_rgb;
 
-t_ray		ray_modif_pos(t_ray ray, t_vertex3 pos)
-{
-	return ((t_ray) {.pos = pos, .dir = ray.dir});
-}
+#endif

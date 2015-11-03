@@ -6,11 +6,13 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/31 22:36:16 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/10/31 23:17:49 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/11/03 18:01:59 by roblabla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fk_vectoriel.h>
+#include "framework/fk_vectoriel.h"
+#include "framework/fk_math.h"
+#include <math.h>
 
 t_vector3		vector_reverse(t_vector3 u)
 {
@@ -24,5 +26,5 @@ int				vector_dotproduct(t_vector3 u, t_vector3 v)
 
 unsigned int	vector_magnitude(t_vector3 u)
 {
-	return (sqrt(square(u.x) + square(u.y) + square(u.z)));
+	return (sqrt(SQUARE(u.x) + SQUARE(u.y) + SQUARE(u.z)));
 }

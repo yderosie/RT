@@ -6,12 +6,14 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/28 12:48:34 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/11/01 20:57:32 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/11/03 18:02:56 by roblabla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FK_VECTORIEL_H
 # define FK_VECTORIEL_H
+
+#include "framework/fk_vertexiel.h"
 
 typedef struct	s_vector3 t_vector3;
 
@@ -30,7 +32,7 @@ struct			s_vector3
 t_vector3		vector_new(float x1, float y1, float z1);
 t_vector3		vector_cpy(t_vector3 u);
 t_vector3		vector_unit(t_vector3 u);
-t_vector3		vector_translation(t_vector3 u, t_vertex3 v);
+//t_vector3		vector_translation(t_vector3 u, t_vertex3 v);
 
 /*
 ** ****************************************************************************
@@ -40,6 +42,7 @@ t_vector3		vector_translation(t_vector3 u, t_vertex3 v);
 t_vector3		vector_substract(t_vector3 u, t_vector3 v);
 t_vector3		vector_sum(t_vector3 u, t_vector3 v);
 t_vector3		vector_product(t_vector3 u, t_vector3 v);
+t_vector3		vector_scale(t_vector3 u, float f);
 
 /*
 ** ****************************************************************************

@@ -6,20 +6,33 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/01 16:09:24 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/11/01 18:33:39 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/11/03 18:44:44 by roblabla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	FT_ENV_H
+#ifndef FT_ENV_H
 # define FT_ENV_H
-# include <fk_objects.h>
 
 typedef struct		s_env t_env;
+typedef struct		s_resolution
+{
+	int				height;
+	int				width;
+}					t_resolution;
+
+# include "framework/fk_vectoriel.h"
+# include "framework/fk_vertexiel.h"
+# include "framework/fk_objects.h"
+# include "framework/fk_collision.h"
+
+typedef t_bool (*t_fct_inter)(t_ray ray, t_object *obj, t_intersect *inter);
 
 struct				s_env
 {
 	t_resolution	resolution;
+	int				fov;
 	t_vertex3		pos_absolute_camera;
+	t_vector3		dir_camera;
 	t_fct_inter		fctinter[DEFAULT];
 };
 #endif

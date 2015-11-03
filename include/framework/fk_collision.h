@@ -6,38 +6,36 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/28 12:45:47 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/11/01 20:34:07 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/11/03 19:56:45 by roblabla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FK_COLLISION_H
 # define FK_COLLISION_H
 
-# include <fk_objects.h>
+#include "libft.h"
+#include "framework/fk_rgb.h"
+#include "framework/fk_vectoriel.h"
+#include "framework/fk_vertexiel.h"
+#include "framework/fk_ray.h"
 
 typedef struct		s_intersect t_intersect;
-typedef struct		s_ray t_ray;
-
-struct				s_ray
-{
-	t_vertex3		pos;
-	t_vector3		dir;
-};
 
 struct				s_intersect
 {
 	t_vertex3		pos;
-	unsigned int	radius;
+	long			radius;
 };
 
+#include "ft_env.h"
 /*
 ** ****************************************************************************
 ** fk_collision.c
 ** ****************************************************************************
 */
 t_intersect	nearest_vertex(t_ray ray, t_intersect new, t_intersect old);
-t_bool		ft_throwing_ray(t_env env, t_ray ray, t_intersect *inter);
-void		ft_render(t_env env, t_object objs);
+t_rgb		ft_trace_ray(t_env env, t_ray ray);
+void		ft_render(t_env env);
 
 /*
 ** ****************************************************************************

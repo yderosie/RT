@@ -6,12 +6,12 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/01 19:21:55 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/11/01 21:08:10 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/11/02 14:15:11 by roblabla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fk_vertexiel.h>
-#include <fk_math.h>
+#include "framework/fk_vertexiel.h"
+#include "framework/fk_math.h"
 
 unsigned int		lenght_segment(t_vertex3 u, t_vertex3 v)
 {

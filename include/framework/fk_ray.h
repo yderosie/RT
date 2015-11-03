@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fk_ray.c                                           :+:      :+:    :+:   */
+/*   fk_ray.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roblabla <robinlambertz+dev@gmail.c>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/01 15:50:53 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/11/03 16:39:39 by roblabla         ###   ########.fr       */
+/*   Created: 2015/11/03 13:20:23 by roblabla          #+#    #+#             */
+/*   Updated: 2015/11/03 13:21:15 by roblabla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "framework/fk_collision.h"
+#ifndef FK_RAY_H
+# define FK_RAY_H
 
-t_ray		ray_new(t_vertex3 v, t_vector3 dir)
-{
-	return ((t_ray) {.pos = v, .dir = dir});
-}
+#include "framework/fk_vertexiel.h"
+#include "framework/fk_vectoriel.h"
 
-t_ray		ray_modif_pos(t_ray ray, t_vertex3 pos)
+typedef struct		s_ray t_ray;
+
+struct				s_ray
 {
-	return ((t_ray) {.pos = pos, .dir = ray.dir});
-}
+	t_vertex3		pos;
+	t_vector3		dir;
+};
+
+#endif

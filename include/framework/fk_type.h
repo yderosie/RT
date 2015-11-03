@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fk_ray.c                                           :+:      :+:    :+:   */
+/*   fk_type.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roblabla <robinlambertz+dev@gmail.c>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/01 15:50:53 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/11/03 16:39:39 by roblabla         ###   ########.fr       */
+/*   Created: 2015/11/02 22:59:59 by roblabla          #+#    #+#             */
+/*   Updated: 2015/11/02 23:00:24 by roblabla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "framework/fk_collision.h"
+#ifndef FK_TYPE_H
+# define FK_TYPE_H
 
-t_ray		ray_new(t_vertex3 v, t_vector3 dir)
+typedef enum		e_type
 {
-	return ((t_ray) {.pos = v, .dir = dir});
-}
+	SPHERE,
+	PLANE,
+	CYLINDER,
+	CONE,
+	DEFAULT
+}					t_type;
 
-t_ray		ray_modif_pos(t_ray ray, t_vertex3 pos)
-{
-	return ((t_ray) {.pos = pos, .dir = ray.dir});
-}
+#endif
