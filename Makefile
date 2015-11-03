@@ -6,7 +6,7 @@
 #    By: rlambert <rlambert@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/03 11:25:08 by rlambert          #+#    #+#              #
-#    Updated: 2015/11/03 21:00:00 by roblabla         ###   ########.fr        #
+#    Updated: 2015/11/03 21:08:25 by roblabla         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRCS = src/main.c \
        src/framework_collision/fk_ray.c \
        src/framework_collision/fk_sphere.c \
        src/framework_collision/fk_vector.c \
+       src/framework_collision/fk_rgb.c \
        src/framework_collision/fk_vectoriel.c \
        src/framework_collision/fk_vectoriel_math.c \
        src/framework_collision/fk_vectoriel_transformation.c \

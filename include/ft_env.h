@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/01 16:09:24 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/11/03 18:44:44 by roblabla         ###   ########.fr       */
+/*   Updated: 2015/11/03 21:03:48 by roblabla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ typedef t_bool (*t_fct_inter)(t_ray ray, t_object *obj, t_intersect *inter);
 
 struct				s_env
 {
+	void			*mlx;
+	void			*win;
+	void			*img;
 	t_resolution	resolution;
 	int				fov;
 	t_vertex3		pos_absolute_camera;

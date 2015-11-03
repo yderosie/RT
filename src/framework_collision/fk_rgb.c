@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fk_rgb.h                                           :+:      :+:    :+:   */
+/*   fk_rgb.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roblabla <robinlambertz+dev@gmail.c>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/03 00:30:13 by roblabla          #+#    #+#             */
-/*   Updated: 2015/11/03 21:05:59 by roblabla         ###   ########.fr       */
+/*   Created: 2015/11/03 21:06:20 by roblabla          #+#    #+#             */
+/*   Updated: 2015/11/03 21:07:47 by roblabla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FK_RGB_H
-# define FK_RGB_H
+#include "framework/fk_rgb.h"
 
-/*
-** Alpha blending is up to us !
-*/
-typedef struct	s_rgb
+int			rgb_to_color(t_rgb rgb)
 {
-	int			r;
-	int			g;
-	int			b;
-	int			a;
-}				t_rgb;
-
-int			rgb_to_color(t_rgb rgb);
-
-#endif
+	return (rgb.r << 16) | (rgb.g << 8) | (rgb.b);
+}
