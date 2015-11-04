@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/31 22:45:36 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/11/03 18:02:41 by roblabla         ###   ########.fr       */
+/*   Updated: 2015/11/04 11:54:31 by barbare          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,7 @@ t_vector3		vector_scale(t_vector3 v, float f)
 	return (t_vector3) { .x = v.x * f, .y = v.y * f, .z = v.z * f };
 }
 
-/*t_ray			vector_translation(t_vector3 u, t_vertex3 v)
+t_ray			vector_translation(t_vector3 u, t_vertex3 v)
 {
-	t_vector3		translate;
-
-	translate = vector_cpy(u);
-	translate.pos = v;
-	return (translate);
-}*/
+	return ((t_vector3) {.x = u.x + v.x, .y = u.y + v.y, .z = u.z + v.z});
+}
