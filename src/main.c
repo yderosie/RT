@@ -6,7 +6,7 @@
 /*   By: rlambert <rlambert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/27 21:03:28 by roblabla          #+#    #+#             */
-/*   Updated: 2015/11/03 21:23:30 by roblabla         ###   ########.fr       */
+/*   Updated: 2015/11/06 21:27:01 by roblabla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ int		rt_expose_hook(t_env *env)
 	return (0);
 }
 
+/*
+** TODO : Check segfault
+*/
 int		main(int argc, char **argv)
 {
 	t_env	env;

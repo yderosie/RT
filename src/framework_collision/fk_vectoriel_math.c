@@ -6,11 +6,16 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/31 22:37:32 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/11/04 11:52:08 by barbare          ###   ########.fr       */
+/*   Updated: 2015/11/06 21:25:53 by roblabla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "framework/fk_vectoriel.h"
+
+t_vector3		vector_sum(t_vector3 u, t_vector3 v)
+{
+	return ((t_vector3) { .x = u.x + v.x, .y = u.y + v.y, .z = u.z + v.z });
+}
 
 t_vector3		vector_substract(t_vector3 u, t_vector3 v)
 {
