@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/28 12:48:34 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/11/03 18:02:56 by roblabla         ###   ########.fr       */
+/*   Updated: 2015/11/06 21:21:13 by roblabla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ struct			s_vector3
 t_vector3		vector_new(float x1, float y1, float z1);
 t_vector3		vector_cpy(t_vector3 u);
 t_vector3		vector_unit(t_vector3 u);
-//t_vector3		vector_translation(t_vector3 u, t_vertex3 v);
+t_vertex3		vector_translation(t_vector3 u, t_vertex3 v);
 
 /*
 ** ****************************************************************************

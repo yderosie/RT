@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/29 21:18:55 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/10/29 22:53:53 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/11/06 21:16:46 by roblabla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define FT_MATH_H
 
 # include <math.h>
+
+# ifndef PI
+#  define PI M_PI
+# endif
 
 #define SQUARE(x) ((x) * (x))
 
