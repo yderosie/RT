@@ -6,17 +6,19 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/01 20:34:17 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/11/03 22:13:54 by roblabla         ###   ########.fr       */
+/*   Updated: 2015/11/26 17:41:08 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
 #include <math.h>
+#include <stdlib.h>
 #include "ft_printf.h"
 #include "framework/fk_collision.h"
 #include "framework/fk_objects.h"
 
 #define VECTOR_UP ((t_vector3) { .x = 0, .y = 1, .z = 0 })
+
 
 inline t_vertex3	vector_to_vertex(t_vector3 vec)
 {
@@ -58,17 +60,17 @@ t_rgb		ft_trace_ray(t_env env, t_ray ray)
 	t_bool		already_has_radius;
 	int			i;
 
-	ft_memcpy(arr + 0, &(t_sphere){ SPHERE, (t_vertex3) { 0, 0, 100 }, 5 }, sizeof(t_sphere));
+	ft_memcpy(arr + 0, &(t_sphere){ SPHERE, (t_vertex3) { 3.49, -1.51, 0 }, 1.66 }, sizeof(t_sphere));
 	arr[1].type = DEFAULT;
 	already_has_radius = FALSE;
 	i = 0;
 	while (i < 16)
 	{
-		ft_printf("%d\n", i);
 		if (arr[i].type == DEFAULT)
 			break;
 		if (env.fctinter[arr[i].type](ray, arr + i, &tmp))
 		{
+			return (t_rgb) { 255, 255, 255, 0 };
 			if (already_has_radius)
 				inter = nearest_vertex(ray, inter, tmp);
 			else
@@ -77,13 +79,11 @@ t_rgb		ft_trace_ray(t_env env, t_ray ray)
 				already_has_radius = TRUE;
 			}
 		}
+		else
+			return (t_rgb) { 255, 0, 0, 0 };
 		i++;
 	}
-	ft_printf("inter = %d %d, %d, %d\n", inter.radius, inter.pos.x, inter.pos.y, inter.pos.z);
-	if (inter.radius > -1)
-		return (t_rgb) { 255, 255, 255, 0 };
-	else
-		return (t_rgb) { 0, 0, 0, 0 };
+	return (t_rgb) { 0, 0, 0, 0 };
 }
 
 void		ft_render(t_env env)
@@ -114,9 +114,8 @@ void		ft_render(t_env env)
 		{
 			ray.dir = env.dir_camera;
 			ray.dir = vector_sum(ray.dir, vector_scale(vpRight, (x * pixelWidth) - halfWidth));
-			ray.dir = vector_sum(ray.dir, vector_scale(vpUp, (y * pixelHeight) - halfHeight));
+			ray.dir = vector_unit(vector_sum(ray.dir, vector_scale(vpUp, (y * pixelHeight) - halfHeight)));
 			rgb = ft_trace_ray(env, ray);
-			ft_printf("%d %d : (%d, %d, %d)\n", x, y, rgb.r, rgb.g, rgb.b);
 			mlx_pixel_put(env.mlx, env.win, x, y, rgb_to_color(rgb));
 			x++;
 		}

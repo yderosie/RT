@@ -6,16 +6,15 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/28 12:48:34 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/11/06 21:21:13 by roblabla         ###   ########.fr       */
+/*   Updated: 2015/11/25 17:29:59 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FK_VECTORIEL_H
 # define FK_VECTORIEL_H
 
-#include "framework/fk_vertexiel.h"
-
 typedef struct	s_vector3 t_vector3;
+typedef			t_vector3 t_vertex3;
 
 struct			s_vector3
 {

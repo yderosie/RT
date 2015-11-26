@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/28 12:45:47 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/11/03 19:56:45 by roblabla         ###   ########.fr       */
+/*   Updated: 2015/11/25 13:43:53 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct		s_intersect t_intersect;
 struct				s_intersect
 {
 	t_vertex3		pos;
-	long			radius;
+	double			radius;
 };
 
 #include "ft_env.h"

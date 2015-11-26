@@ -6,7 +6,7 @@
 /*   By: rlambert <rlambert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/27 21:03:28 by roblabla          #+#    #+#             */
-/*   Updated: 2015/11/06 21:27:01 by roblabla         ###   ########.fr       */
+/*   Updated: 2015/11/26 17:44:55 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		main(int argc, char **argv)
 	env.img = mlx_new_image(env.mlx, 500, 500);
 	env.resolution.height = 500;
 	env.resolution.width = 500;
-	env.fov = 60;
+	env.fov = 30;
 	env.pos_absolute_camera = (t_vertex3) { 0, 0, 0 };
 	env.dir_camera = (t_vector3) { 0, 0, 1 };
 	env.fctinter[SPHERE] = (t_fct_inter)intersect_sphere;
