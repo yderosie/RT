@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vectoriel_transformation.c                      :+:      :+:    :+:   */
+/*   fk_vectoriel_transformation.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/10/31 22:45:36 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/11/06 21:22:21 by roblabla         ###   ########.fr       */
+/*   Created: 2015/11/26 20:21:42 by mbarbari          #+#    #+#             */
+/*   Updated: 2015/11/27 16:18:14 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_vector3		vector_unit(t_vector3 u)
 	return (unitvector);
 }
 
-t_vector3		vector_scale(t_vector3 v, float f)
+t_vector3		vector_scale(t_vector3 v, double f)
 {
 	return (t_vector3) { .x = v.x * f, .y = v.y * f, .z = v.z * f };
 }
@@ -40,4 +40,18 @@ t_vector3		vector_scale(t_vector3 v, float f)
 t_vertex3		vector_translation(t_vector3 u, t_vertex3 v)
 {
 	return ((t_vertex3) {.x = u.x + v.x, .y = u.y + v.y, .z = u.z + v.z});
+}
+
+t_vector3		vector_mul(t_vector3 u, double r)
+{
+	return ((t_vector3) {	.x = u.y * r,
+							.y = u.z * r,
+							.z = u.x * r});
+}
+
+t_vector3		vector_div(t_vector3 u, double r)
+{
+	return ((t_vector3) {	.x = u.y / r,
+							.y = u.z / r,
+							.z = u.x / r});
 }

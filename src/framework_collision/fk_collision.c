@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/01 20:34:17 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/11/26 17:41:08 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/11/27 16:10:57 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ t_rgb		ft_trace_ray(t_env env, t_ray ray)
 	t_bool		already_has_radius;
 	int			i;
 
-	ft_memcpy(arr + 0, &(t_sphere){ SPHERE, (t_vertex3) { 3.49, -1.51, 0 }, 1.66 }, sizeof(t_sphere));
+	ft_memcpy(arr + 0, &(t_sphere){ SPHERE, (t_vertex3) {5.07, -4.35, 6}, 1.70 }, sizeof(t_sphere));
 	arr[1].type = DEFAULT;
 	already_has_radius = FALSE;
 	i = 0;
@@ -114,7 +114,8 @@ void		ft_render(t_env env)
 		{
 			ray.dir = env.dir_camera;
 			ray.dir = vector_sum(ray.dir, vector_scale(vpRight, (x * pixelWidth) - halfWidth));
-			ray.dir = vector_unit(vector_sum(ray.dir, vector_scale(vpUp, (y * pixelHeight) - halfHeight)));
+			ray.dir = vector_sum(ray.dir, vector_scale(vpUp, (y * pixelHeight) - halfHeight));
+			ray.dir = vector_unit(ray.dir);
 			rgb = ft_trace_ray(env, ray);
 			mlx_pixel_put(env.mlx, env.win, x, y, rgb_to_color(rgb));
 			x++;

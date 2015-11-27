@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/31 22:36:16 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/11/03 18:01:59 by roblabla         ###   ########.fr       */
+/*   Updated: 2015/11/27 15:21:24 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ t_vector3		vector_reverse(t_vector3 u)
 	return ((t_vector3) {.x = -u.x, .y = -u.y, .z = -u.z});
 }
 
-int				vector_dotproduct(t_vector3 u, t_vector3 v)
+double			vector_dotproduct(t_vector3 u, t_vector3 v)
 {
 	return (u.x * v.x + u.y * v.y + u.z * v.z);
 }
 
-unsigned int	vector_magnitude(t_vector3 u)
+double			vector_magnitude(t_vector3 u)
 {
-	return (sqrt(SQUARE(u.x) + SQUARE(u.y) + SQUARE(u.z)));
+	return (sqrt(ABS(SQUARE(u.x) + SQUARE(u.y) + SQUARE(u.z))));
 }
