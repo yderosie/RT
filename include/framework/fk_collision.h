@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/28 12:45:47 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/11/25 13:43:53 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/11/27 15:53:23 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct		s_intersect t_intersect;
 struct				s_intersect
 {
 	t_vertex3		pos;
+	t_vector3		v_light;
 	double			radius;
 };
 

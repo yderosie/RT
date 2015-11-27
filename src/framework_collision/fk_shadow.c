@@ -1,26 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fk_type.h                                          :+:      :+:    :+:   */
+/*   fk_shadow.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roblabla <robinlambertz+dev@gmail.c>       +#+  +:+       +#+        */
+/*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/02 22:59:59 by roblabla          #+#    #+#             */
-/*   Updated: 2015/11/27 22:15:27 by mbarbari         ###   ########.fr       */
+/*   Created: 2015/11/27 17:46:36 by mbarbari          #+#    #+#             */
+/*   Updated: 2015/11/27 20:18:32 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FK_TYPE_H
-# define FK_TYPE_H
-
-typedef enum		e_type
-{
-	SPHERE,
-	PLANE,
-	CYLINDER,
-	CONE,
-	SPOTLIGHT,
-	DEFAULT
-}					t_type;
-
-#endif
+void	process_lambert (lightRay

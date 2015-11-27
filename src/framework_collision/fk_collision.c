@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/01 20:34:17 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/11/27 16:10:57 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/11/27 23:12:12 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "ft_printf.h"
 #include "framework/fk_collision.h"
 #include "framework/fk_objects.h"
+#include "framework/fk_light.h"
 
 #define VECTOR_UP ((t_vector3) { .x = 0, .y = 1, .z = 0 })
 
@@ -55,12 +56,27 @@ t_intersect	nearest_vertex(t_ray ray, t_intersect new, t_intersect old)
 t_rgb		ft_trace_ray(t_env env, t_ray ray)
 {
 	t_object	arr[16];
+	t_object	light1[16];
 	t_intersect	inter;
 	t_intersect	tmp;
 	t_bool		already_has_radius;
 	int			i;
 
-	ft_memcpy(arr + 0, &(t_sphere){ SPHERE, (t_vertex3) {5.07, -4.35, 6}, 1.70 }, sizeof(t_sphere));
+	ft_memcpy(	arr + 0,
+				&(t_sphere){	SPHERE,
+								(t_vertex3) {4.17, -5.65, 13.5},
+								(t_rgb) {200, 0, 200, 0},
+								1.70},
+				sizeof(t_sphere));
+
+	ft_memcpy(light1 + 0,
+				&(t_spotlight){	SPOTLIGHT,
+								(t_vertex3) {9.09, -4.67, 3.39},
+								(t_rgb) {255, 255, 255, 0},
+								0.45,
+								0.2},
+				sizeof(t_spotlight));
+
 	arr[1].type = DEFAULT;
 	already_has_radius = FALSE;
 	i = 0;
@@ -70,7 +86,6 @@ t_rgb		ft_trace_ray(t_env env, t_ray ray)
 			break;
 		if (env.fctinter[arr[i].type](ray, arr + i, &tmp))
 		{
-			return (t_rgb) { 255, 255, 255, 0 };
 			if (already_has_radius)
 				inter = nearest_vertex(ray, inter, tmp);
 			else
@@ -78,9 +93,8 @@ t_rgb		ft_trace_ray(t_env env, t_ray ray)
 				inter = tmp;
 				already_has_radius = TRUE;
 			}
+			return (iter_light(tmp, light1[0], arr[i].color));
 		}
-		else
-			return (t_rgb) { 255, 0, 0, 0 };
 		i++;
 	}
 	return (t_rgb) { 0, 0, 0, 0 };
