@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/28 12:45:47 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/11/27 15:53:23 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/11/29 14:51:37 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ struct				s_intersect
 ** ****************************************************************************
 */
 t_intersect	nearest_vertex(t_ray ray, t_intersect new, t_intersect old);
-t_rgb		ft_trace_ray(t_env env, t_ray ray);
+t_rgba		ft_trace_ray(t_env env, t_ray ray);
 void		ft_render(t_env env);
 
 /*

@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/29 12:32:17 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/11/27 22:05:43 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/11/29 14:50:47 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ struct				s_object
 {
 	t_type			type;
 	char			stuff[128];
-	t_rgb			color;
+	t_rgba			color;
 };
 
 #include "framework/fk_sphere.h"

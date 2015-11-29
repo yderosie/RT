@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/27 18:32:26 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/11/27 23:20:09 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/11/29 14:54:04 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ struct				s_spotlight
 {
 	t_type			type;
 	t_vertex3		pos;
-	t_rgb			color;
+	t_rgba			color;
 	double			radius;
 	double			intensity;
 };
@@ -29,5 +29,5 @@ struct				s_spotlight
 # include "framework/fk_objects.h"
 # include "framework/fk_collision.h"
 # include "framework/fk_math.h"
-t_rgb				iter_light(t_intersect inter, t_spotlight *light, t_rgb color);
+t_rgba				iter_light(t_intersect inter, t_spotlight *light, t_rgba color);
 #endif

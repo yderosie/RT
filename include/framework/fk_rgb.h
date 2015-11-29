@@ -6,7 +6,7 @@
 /*   By: roblabla <robinlambertz+dev@gmail.c>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/03 00:30:13 by roblabla          #+#    #+#             */
-/*   Updated: 2015/11/03 21:05:59 by roblabla         ###   ########.fr       */
+/*   Updated: 2015/11/29 15:30:46 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,16 @@
 /*
 ** Alpha blending is up to us !
 */
-typedef struct	s_rgb
+typedef unsigned long t_dword;
+typedef struct	s_rgba
 {
-	int			r;
-	int			g;
-	int			b;
-	int			a;
-}				t_rgb;
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
+	unsigned char	a;
+}				t_rgba;
 
-int			rgb_to_color(t_rgb rgb);
+t_dword					rgba_to_dword(t_rgba rgba);
+t_rgba					dword_to_rgba(t_dword color);
 
 #endif

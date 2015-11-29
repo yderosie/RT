@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/01 20:34:17 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/11/27 23:12:12 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/11/29 22:28:36 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_intersect	nearest_vertex(t_ray ray, t_intersect new, t_intersect old)
 	return (old);
 }
 
-t_rgb		ft_trace_ray(t_env env, t_ray ray)
+t_rgba		ft_trace_ray(t_env env, t_ray ray)
 {
 	t_object	arr[16];
 	t_object	light1[16];
@@ -65,16 +65,16 @@ t_rgb		ft_trace_ray(t_env env, t_ray ray)
 	ft_memcpy(	arr + 0,
 				&(t_sphere){	SPHERE,
 								(t_vertex3) {4.17, -5.65, 13.5},
-								(t_rgb) {200, 0, 200, 0},
+								(t_rgba) {200, 10, 200, 0},
 								1.70},
 				sizeof(t_sphere));
 
 	ft_memcpy(light1 + 0,
 				&(t_spotlight){	SPOTLIGHT,
-								(t_vertex3) {9.09, -4.67, 3.39},
-								(t_rgb) {255, 255, 255, 0},
+								(t_vertex3) {1.36, 1.97, 4.97},
+								(t_rgba) {255, 255, 255, 0},
 								0.45,
-								0.2},
+								0.9},
 				sizeof(t_spotlight));
 
 	arr[1].type = DEFAULT;
@@ -93,16 +93,16 @@ t_rgb		ft_trace_ray(t_env env, t_ray ray)
 				inter = tmp;
 				already_has_radius = TRUE;
 			}
-			return (iter_light(tmp, light1[0], arr[i].color));
+			return (iter_light(tmp, (t_spotlight *)&light1[0], arr[i].color));
 		}
 		i++;
 	}
-	return (t_rgb) { 0, 0, 0, 0 };
+	return (t_rgba) { 0, 0, 0, 0 };
 }
 
 void		ft_render(t_env env)
 {
-	t_rgb			rgb;
+	t_rgba			rgba;
 	t_ray			ray;
 	int				y;
 	int				x;
@@ -121,17 +121,25 @@ void		ft_render(t_env env)
 	vpUp = vector_unit(vector_product(vpRight, env.dir_camera));
 	ray.pos = env.pos_absolute_camera;
 	y = 0;
-	while (y < env.resolution.height)
+	while (y <= env.resolution.height)
 	{
 		x = 0;
-		while (x < env.resolution.width)
+		while (x <= env.resolution.width)
 		{
 			ray.dir = env.dir_camera;
 			ray.dir = vector_sum(ray.dir, vector_scale(vpRight, (x * pixelWidth) - halfWidth));
 			ray.dir = vector_sum(ray.dir, vector_scale(vpUp, (y * pixelHeight) - halfHeight));
+			x == env.resolution.width && y == 0 ?
+			dprintf(2, "max rayon haut-doite : {%f , %f , %f}\n", ray.dir.x, ray.dir.y, ray.dir.z) : 0;
+			y == 0 && x == 0 ?
+			dprintf(2, "max rayon haut-gauche : {%f , %f , %f}\n", ray.dir.x, ray.dir.y, ray.dir.z) : 0;
+			x == env.resolution.width && y == env.resolution.height ?
+			dprintf(2, "max rayon bas-droite : {%f , %f , %f}\n", ray.dir.x, ray.dir.y, ray.dir.z) : 0;
+			x == 0 && y == env.resolution.height ?
+			dprintf(2, "max rayon haut-gauche : {%f , %f , %f}\n", ray.dir.x, ray.dir.y, ray.dir.z) : 0;
 			ray.dir = vector_unit(ray.dir);
-			rgb = ft_trace_ray(env, ray);
-			mlx_pixel_put(env.mlx, env.win, x, y, rgb_to_color(rgb));
+			rgba = ft_trace_ray(env, ray);
+			mlx_pixel_put(env.mlx, env.win, x, y, rgba_to_dword(rgba));
 			x++;
 		}
 		y++;
