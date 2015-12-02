@@ -6,7 +6,7 @@
 #    By: rlambert <rlambert@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/03 11:25:08 by rlambert          #+#    #+#              #
-#    Updated: 2015/11/03 21:08:25 by roblabla         ###   ########.fr        #
+#    Updated: 2015/12/02 22:13:12 by mbarbari         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,18 +23,22 @@ MLX_PATH ?= mlx_mac/
 endif
 
 CFLAGS += -Wall -Wextra -Werror
+CFLAGS = -g
 
 SRCS = src/main.c \
        src/ft_env.c \
        src/framework_collision/fk_collision.c \
        src/framework_collision/fk_ray.c \
        src/framework_collision/fk_sphere.c \
+       src/framework_collision/fk_plan.c \
+       src/framework_collision/fk_light.c \
        src/framework_collision/fk_vector.c \
        src/framework_collision/fk_rgb.c \
        src/framework_collision/fk_vectoriel.c \
        src/framework_collision/fk_vectoriel_math.c \
        src/framework_collision/fk_vectoriel_transformation.c \
-       src/framework_collision/fk_vertex_math.c
+       src/framework_collision/fk_vertex_math.c\
+       src/framework_collision/fk_vertex.c
 
 INC_FILES = include/ft_env.h \
 			include/framework/fk_collision.h \
@@ -43,6 +47,7 @@ INC_FILES = include/ft_env.h \
 			include/framework/fk_ray.h \
 			include/framework/fk_rgb.h \
 			include/framework/fk_sphere.h \
+			include/framework/fk_plan.h \
 			include/framework/fk_type.h \
 			include/framework/fk_vectoriel.h \
 			include/framework/fk_vertexiel.h

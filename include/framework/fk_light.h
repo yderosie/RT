@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/27 18:32:26 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/11/29 14:54:04 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/11/30 22:17:01 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ typedef struct		s_spotlight		t_spotlight;
 struct				s_spotlight
 {
 	t_type			type;
-	t_vertex3		pos;
 	t_rgba			color;
+	t_vertex3		pos;
 	double			radius;
 	double			intensity;
 };

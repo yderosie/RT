@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/01 20:34:17 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/01 14:11:31 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/12/03 00:04:14 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,44 +66,54 @@ t_rgba		ft_trace_ray(t_env env, t_ray ray)
 
 	ft_memcpy(	arr + 0,
 				&(t_sphere){	SPHERE,
-								(t_rgba) {200, 0, 200, 0},
-								(t_vertex3) {4.17, -3.65, 7.5},
-								1.70},
+								(t_rgba) {255, 255, 255, 0},
+								(t_vertex3) {0, 0, 9.5},
+								4.00},
 				sizeof(t_sphere));
+
+	ft_memcpy(	arr + 1,
+				&(t_plan){	PLANE,
+								(t_rgba) {255, 255, 0, 0},
+								(t_vertex3) {-1.0, 3.0, 1.0},
+								vector_unit((t_vector3) {0.0, 0.0, 0.0})},
+				sizeof(t_plan));
 
 	ft_memcpy(light1 + 0,
 				&(t_spotlight){	SPOTLIGHT,
-								(t_rgba) {255, 255, 255, 0},
-								(t_vertex3) {9.09, -4.67, 3.39},
+								(t_rgba) {0, 255, 0, 0},
+								(t_vertex3) {2.3945898028, -2.8880163869, 5.448},
 								0.45,
-								0.9},
+								0.7},
 				sizeof(t_spotlight));
 
 	ft_memcpy(light1 + 1,
 				&(t_spotlight){	SPOTLIGHT,
-								(t_rgba) {255, 255, 255, 0},
-								(t_vertex3) {-2.717, 1.4516, 13.5},
+								(t_rgba) {0, 255, 255, 0},
+								(t_vertex3) {-2.1876005426, 3.688572153, 6.4295767343},
 								0.45,
-								0.3},
+								1.0},
 				sizeof(t_spotlight));
 
 	arr[1].type = DEFAULT;
-	already_has_radius = FALSE;
 	i = 0;
+	already_has_radius = FALSE;
 	while (i < 16)
 	{
 		if (arr[i].type == DEFAULT)
 			break;
-		if (env.fctinter[arr[i].type](ray, arr + i, &inter))
+		if (env.fctinter[arr[i].type](ray, arr + i, &tmp))
 		{
-			/*if (already_has_radius)
+			if (already_has_radius)
 				inter = nearest_vertex(ray, inter, tmp);
 			else
 			{
 				inter = tmp;
 				already_has_radius = TRUE;
-			}*/
-			return (iter_light(inter, (t_spotlight *)&light1[0], arr[i].color));
+			}
+		}
+		i++;
+	}
+	if (already_has_radius == TRUE) {
 			color = iter_light(inter, (t_spotlight *)&light1[0], arr[i].color);
 			color2 = iter_light(inter, (t_spotlight *)&light1[1], arr[i].color);
 			return ((t_rgba) {
@@ -112,8 +122,7 @@ t_rgba		ft_trace_ray(t_env env, t_ray ray)
 				(color.b + color2.b) / 2
 			});
 		}
-		i++;
-	}
+	else
 	return (t_rgba) { 0, 0, 0, 0 };
 }
 

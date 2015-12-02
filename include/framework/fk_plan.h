@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sphere.h                                        :+:      :+:    :+:   */
+/*   fk_plan.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/10/29 21:18:55 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/11/30 22:16:25 by mbarbari         ###   ########.fr       */
+/*   Created: 2015/12/02 20:42:15 by mbarbari          #+#    #+#             */
+/*   Updated: 2015/12/02 21:39:40 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SPHERE_H
-# define FT_SPHERE_H
+#ifndef FT_PLAN_H
+# define FT_PLAN_H
 
 #include "framework/fk_type.h"
 #include "framework/fk_vertexiel.h"
 #include "framework/fk_rgb.h"
 
-typedef struct		s_sphere t_sphere;
-struct				s_sphere
+typedef struct		s_plan t_plan;
+struct				s_plan
 {
 	t_type			type;
 	t_rgba			color;
 	t_vertex3		pos;
-	float			radius;
+	t_vector3		normal;
 };
 
 
@@ -32,8 +32,7 @@ struct				s_sphere
 # include "framework/fk_vectoriel.h"
 # include "framework/fk_math.h"
 
-t_bool			intersect_sphere(t_ray ray, t_sphere* obj, t_intersect *inter);
-t_sphere		*new_sphere(t_vector3 pos, unsigned int radius);
-void			modif_sphere(t_sphere *obj, t_sphere modify);
+t_bool			intersect_plan(t_ray ray, t_plan* obj, t_intersect *inter);
+t_plan			*new_plan(t_vector3 pos, unsigned int radius);
 
 #endif

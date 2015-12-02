@@ -1,23 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_env.c                                           :+:      :+:    :+:   */
+/*   fk_luminance.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/01 21:12:58 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/02 22:24:09 by mbarbari         ###   ########.fr       */
+/*   Created: 2015/12/02 21:14:27 by mbarbari          #+#    #+#             */
+/*   Updated: 2015/12/02 21:23:19 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_env.h"
-#include "framework/fk_objects.h"
-
-void		ft_setup_fct_inter(t_fctinter *inter)
+t_rgba		fk_luminance(t_intersect inter, void* obj, void* light, int r)
 {
-	inter[SPHERE] = (float *(*)(t_ray, void*, t_intersect*))&intersect_sphere;
-	inter[PLANE] = (float *(*)(t_ray, void*, t_intersect*))&intersect_plan;
-	inter[CYLINDER] = NULL;
-	inter[CONE] = NULL;
-	inter[DEFAULT] = NULL;
 }

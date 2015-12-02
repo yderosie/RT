@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/29 12:32:17 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/11/29 14:50:47 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/12/02 21:58:41 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,12 @@ typedef struct		s_material t_material;
 struct				s_object
 {
 	t_type			type;
-	char			stuff[128];
 	t_rgba			color;
+	char			stuff[128];
 };
 
 #include "framework/fk_sphere.h"
+#include "framework/fk_plan.h"
 #include "framework/fk_collision.h"
 
 typedef float		*(*t_fctinter)(t_ray ray, void *obj, t_intersect *inter);

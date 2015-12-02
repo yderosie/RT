@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/27 18:30:44 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/01 14:10:26 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/12/02 20:34:42 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,8 @@ static t_rgba	lambert_low(t_intersect inter, t_spotlight light, t_rgba ptcolor)
 
 	v_light = vector_substract(inter.pos, light.pos);
 	angle = vector_dotproduct(inter.v_light, vector_unit(v_light));
-	//if (angle < 0)
-	//	return ((t_rgba){0, 0, 0, 0});
-	result.r = ABS(((light.intensity * (ptcolor.r / 255.0)) * (light.color.r / 255.0) *  angle)) * 255;
-	result.g = ABS(((light.intensity * (ptcolor.g / 255.0)) * (light.color.g / 255.0) * angle)) * 255;
-	result.b = ABS(((light.intensity * (ptcolor.b / 255.0)) * (light.color.b / 255.0) * angle)) * 255;
-	result.a = ptcolor.a;
-	return (result);
+	return (color_product(color_mul(ptcolor, light.intensity),
+				color_mul(light.color, angle)));
 }
 
 static t_rgba	test(t_intersect inter, t_spotlight light, t_rgba ptcolor)
