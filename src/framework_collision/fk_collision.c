@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/01 20:34:17 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/03 00:04:14 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/12/04 12:18:56 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ t_rgba		ft_trace_ray(t_env env, t_ray ray)
 								(t_rgba) {0, 255, 0, 0},
 								(t_vertex3) {2.3945898028, -2.8880163869, 5.448},
 								0.45,
-								0.7},
+								0.5},
 				sizeof(t_spotlight));
 
 	ft_memcpy(light1 + 1,
@@ -91,13 +91,13 @@ t_rgba		ft_trace_ray(t_env env, t_ray ray)
 								(t_rgba) {0, 255, 255, 0},
 								(t_vertex3) {-2.1876005426, 3.688572153, 6.4295767343},
 								0.45,
-								1.0},
+								0.4},
 				sizeof(t_spotlight));
 
-	arr[1].type = DEFAULT;
-	i = 0;
+	arr[2].type = DEFAULT;
+	i = 1;
 	already_has_radius = FALSE;
-	while (i < 16)
+	while (i != 1)
 	{
 		if (arr[i].type == DEFAULT)
 			break;
@@ -162,4 +162,5 @@ void		ft_render(t_env env)
 		}
 		y++;
 	}
+	dprintf(2, "THE END\n");
 }

@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 20:35:03 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/03 00:02:07 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/12/04 12:15:22 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ static t_bool	plan_crossroad2(t_ray ray, t_plan plan, t_intersect *i)
 	double		t;
 	double		d_ray;
 
-	dprintf(2, "on passe par la\n");
 	d_ray = vector_dotproduct(plan.normal, ray.dir);
 	if (d_ray > 0.0001f)
 	{
@@ -48,7 +47,7 @@ static t_bool	plan_crossroad2(t_ray ray, t_plan plan, t_intersect *i)
 				i->v_light = plan.normal;
 			else
 				i->v_light = vector_scale(plan.normal, -1);
-			return (dprintf(2, "TRUE PLAN \n"), TRUE);
+			return (TRUE);
 		}
 	}
 	return (FALSE);
