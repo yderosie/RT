@@ -6,7 +6,7 @@
 #    By: rlambert <rlambert@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/03 11:25:08 by rlambert          #+#    #+#              #
-#    Updated: 2015/10/27 21:30:17 by roblabla         ###   ########.fr        #
+#    Updated: 2015/11/12 18:22:05 by roblabla         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,10 +14,10 @@ NAME = RT
 
 PRINTF_PATH ?= ft_printf/
 
-LIBFT_PATH ?= ft_printf/libft/
+LIBFT_PATH ?= libft/
 
 ifeq ($(shell uname), Linux)
-MLX_PATH ?= mlx_linux/
+MLX_PATH ?= mlx_x11/
 else
 MLX_PATH ?= mlx_mac/
 endif
@@ -36,13 +36,13 @@ CP = cp
 
 RM = rm -f
 
+LDFLAGS += -L$(PRINTF_PATH) -lftprintf -L$(MLX_PATH) -lmlx -L$(LIBFT_PATH) -lft
+
 ifeq ($(shell uname), Linux)
-LDFLAGS += $(pkg-config xext x11 --libs)
+LDFLAGS += $(shell pkg-config xext x11 --libs)
 else
 LDFLAGS += -framework OpenGL -framework AppKit
 endif
-
-LDFLAGS += -L$(PRINTF_PATH) -lftprintf -L$(MLX_PATH) -lmlx
 
 all: $(NAME)
 
@@ -58,7 +58,10 @@ $(MLX_PATH)/libmlx.a:
 $(PRINTF_PATH)/libftprintf.a:
 	$(MAKE) -C $(PRINTF_PATH)
 
-$(NAME): $(PRINTF_PATH)/libftprintf.a $(MLX_PATH)/libmlx.a $(OBJS)
+$(LIBFT_PATH)/libft.a:
+	$(MAKE) -C $(LIBFT_PATH)
+
+$(NAME): $(PRINTF_PATH)/libftprintf.a $(MLX_PATH)/libmlx.a $(LIBFT_PATH)/libft.a $(OBJS)
 	$(CC) -o $@ $(OBJS) $(LDFLAGS)
 
 clean:
@@ -73,5 +76,4 @@ fclean: clean
 
 re: fclean all
 
-
-.PHONY: all clean fclean re $(PRINTF_PATH)/libftprintf.a $(MLX_PATH)/libmlx.a
+.PHONY: all clean fclean re $(LIBFT_PATH)/libft.a $(PRINTF_PATH)/libftprintf.a $(MLX_PATH)/libmlx.a

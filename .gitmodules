@@ -7,3 +7,6 @@
 [submodule "mlx_mac"]
 	path = mlx_mac
 	url = https://github.com/roblabla42/mlx_mac.git
+[submodule "libft"]
+	path = libft
+	url = https://github.com/roblabla42/libft.git
