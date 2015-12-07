@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/27 18:32:26 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/11/30 22:17:01 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/12/04 14:29:45 by barbare          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,5 @@ struct				s_spotlight
 # include "framework/fk_objects.h"
 # include "framework/fk_collision.h"
 # include "framework/fk_math.h"
-t_rgba				iter_light(t_intersect inter, t_spotlight *light, t_rgba color);
+t_rgba				iter_light(t_intersect inter, t_spotlight *light, t_object *obj);
 #endif
