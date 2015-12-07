@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/01 20:34:17 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/04 14:20:37 by barbare          ###   ########.fr       */
+/*   Updated: 2015/12/07 14:42:07 by barbare          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,16 +66,16 @@ t_rgba		ft_trace_ray(t_env env, t_ray ray)
 
 	ft_memcpy(	arr + 0,
 				&(t_sphere){	SPHERE,
-								(t_rgba) {255, 255, 255, 0},
+								(t_rgba) {0, 100, 255, 0},
 								(t_vertex3) {0, 0, 9.5},
 								4.00},
 				sizeof(t_sphere));
 
 	ft_memcpy(	arr + 1,
 				&(t_plan){	PLANE,
-								(t_rgba) {0, 0, 255, 0},
-								(t_vertex3) {-0.0, 0.0, 1.0},
-								vector_unit((t_vector3) {0.0, 1.0, 0.0})},
+								(t_rgba) {255, 255, 255, 0},
+								(t_vertex3) {0, 0, 1.0},
+								vector_unit((t_vector3) {4, 1.5, 0})},
 				sizeof(t_plan));
 
 	ft_memcpy(light1 + 0,
@@ -88,12 +88,11 @@ t_rgba		ft_trace_ray(t_env env, t_ray ray)
 
 	ft_memcpy(light1 + 1,
 				&(t_spotlight){	SPOTLIGHT,
-								(t_rgba) {255, 255, 255, 0},
+								(t_rgba) {0, 255, 255, 0},
 								(t_vertex3) {-2.1876005426, 3.688572153, 6.4295767343},
 								0.45,
 								1.0},
 				sizeof(t_spotlight));
-
 	arr[2].type = DEFAULT;
 	i = 0;
 	already_has_radius = FALSE;
@@ -115,8 +114,8 @@ t_rgba		ft_trace_ray(t_env env, t_ray ray)
 		i++;
 	}
 	if (already_has_radius == TRUE) {
-			color = iter_light(inter, (t_spotlight *)&light1[0], (t_object)(*inter.obj).color);
-			color2 = iter_light(inter, (t_spotlight *)&light1[1], (t_object)(*inter.obj).color);
+			color = iter_light(inter, (t_spotlight *)&light1[0], (t_object *)inter.obj);
+			color2 = iter_light(inter, (t_spotlight *)&light1[1], (t_object *)inter.obj);
 			return ((t_rgba) {
 				(color.r + color2.r) / 2,
 				(color.g + color2.g) / 2,
@@ -124,7 +123,7 @@ t_rgba		ft_trace_ray(t_env env, t_ray ray)
 			});
 		}
 	else
-	return (t_rgba) { 0, 0, 0, 0 };
+		return (t_rgba) { 0, 0, 0, 0 };
 }
 
 void		ft_render(t_env env)
