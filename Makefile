@@ -6,7 +6,7 @@
 #    By: rlambert <rlambert@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/03 11:25:08 by rlambert          #+#    #+#              #
-#    Updated: 2015/12/08 01:04:21 by mbarbari         ###   ########.fr        #
+#    Updated: 2015/12/08 14:48:39 by roblabla         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = RT
 
 PRINTF_PATH ?= ft_printf/
 
-LIBFT_PATH ?= ft_printf/libft/
+LIBFT_PATH ?= libft/
 
 ifeq ($(shell uname), Linux)
 	MLX_PATH ?= mlx_x11/
@@ -78,6 +78,8 @@ CP = cp
 
 RM = rm -f
 
+LDFLAGS += -L$(PRINTF_PATH) -lftprintf -L$(MLX_PATH) -lmlx -L$(LIBFT_PATH) -lft
+
 ifeq ($(shell uname), Linux)
 	LDFLAGS += $(shell pkg-config xext x11 --libs)
 else
@@ -85,7 +87,6 @@ else
 endif
 
 LDFLAGS += -L$(PRINTF_PATH) -lftprintf -L$(MLX_PATH) -lmlx -lm
-
 all: $(NAME)
 
 MKDIR ?= mkdir
@@ -100,8 +101,12 @@ $(MLX_PATH)/libmlx.a:
 $(PRINTF_PATH)/libftprintf.a:
 	$(MAKE) -C $(PRINTF_PATH)
 
-$(NAME): $(PRINTF_PATH)/libftprintf.a $(MLX_PATH)/libmlx.a $(OBJS)
+$(LIBFT_PATH)/libft.a:
+	$(MAKE) -C $(LIBFT_PATH)
+
+$(NAME): $(PRINTF_PATH)/libftprintf.a $(MLX_PATH)/libmlx.a $(LIBFT_PATH)/libft.a $(OBJS)
 	$(CC) -O3 -o $@ $(OBJS) $(LDFLAGS)
+
 
 clean:
 	$(RM) $(OBJS)
@@ -115,5 +120,4 @@ fclean: clean
 
 re: fclean all
 
-
-.PHONY: all clean fclean re $(PRINTF_PATH)/libftprintf.a $(MLX_PATH)/libmlx.a
+.PHONY: all clean fclean re $(LIBFT_PATH)/libft.a $(PRINTF_PATH)/libftprintf.a $(MLX_PATH)/libmlx.a
