@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/01 20:34:17 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/07 14:42:07 by barbare          ###   ########.fr       */
+/*   Updated: 2015/12/08 00:47:50 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ t_vector3	vertex_to_vector(t_vertex3 vec)
 
 t_intersect	nearest_vertex(t_ray ray, t_intersect new, t_intersect old)
 {
-	unsigned int	lengthv1;
-	unsigned int	lengthv2;
+	float	lengthv1;
+	float	lengthv2;
 
 	lengthv1 = vector_magnitude(vector_substract(new.pos, ray.pos));
 	lengthv2 = vector_magnitude(vector_substract(old.pos, new.pos));
@@ -66,7 +66,7 @@ t_rgba		ft_trace_ray(t_env env, t_ray ray)
 
 	ft_memcpy(	arr + 0,
 				&(t_sphere){	SPHERE,
-								(t_rgba) {0, 100, 255, 0},
+								(t_rgba) {255, 255, 255, 0},
 								(t_vertex3) {0, 0, 9.5},
 								4.00},
 				sizeof(t_sphere));
@@ -80,16 +80,16 @@ t_rgba		ft_trace_ray(t_env env, t_ray ray)
 
 	ft_memcpy(light1 + 0,
 				&(t_spotlight){	SPOTLIGHT,
-								(t_rgba) {255, 255, 255, 0},
-								(t_vertex3) {2.3945898028, -2.8880163869, 5.448},
+								(t_rgba) {100, 200, 90, 0},
+								(t_vertex3) {4.3945898028, -2.8880163869, 4.777},
 								0.45,
 								1.0},
 				sizeof(t_spotlight));
 
 	ft_memcpy(light1 + 1,
 				&(t_spotlight){	SPOTLIGHT,
-								(t_rgba) {0, 255, 255, 0},
-								(t_vertex3) {-2.1876005426, 3.688572153, 6.4295767343},
+								(t_rgba) {255, 100, 55, 0},
+								(t_vertex3) {-2.1876005426, 2.688572153, 6.4295767343},
 								0.45,
 								1.0},
 				sizeof(t_spotlight));
@@ -123,7 +123,7 @@ t_rgba		ft_trace_ray(t_env env, t_ray ray)
 			});
 		}
 	else
-		return (t_rgba) { 0, 0, 0, 0 };
+		return (t_rgba) { 17, 25, 37, 0 };
 }
 
 void		ft_render(t_env env)

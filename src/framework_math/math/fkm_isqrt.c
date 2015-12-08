@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vectoriel.c                                     :+:      :+:    :+:   */
+/*   fk_math.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/10/31 22:36:16 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/11/27 15:21:24 by mbarbari         ###   ########.fr       */
+/*   Created: 2015/12/07 18:07:51 by mbarbari          #+#    #+#             */
+/*   Updated: 2015/12/07 18:19:14 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "framework/fk_vectoriel.h"
 #include "framework/fk_math.h"
-#include <math.h>
 
-t_vector3		vector_reverse(t_vector3 u)
+float	fk_isqrt(float nbr)
 {
-	return ((t_vector3) {.x = -u.x, .y = -u.y, .z = -u.z});
-}
+	long				i;
+	float				x1;
+	float				y;
+	static const float	threehalfs = 1.5F;
 
-double			vector_dotproduct(t_vector3 u, t_vector3 v)
-{
-	return (u.x * v.x + u.y * v.y + u.z * v.z);
-}
+	x1 = nbr * 0.5F;
+	y  = nbr;
+	i  = * ( long * ) &y;
+	i  = 0x5f375a86 - ( i >> 1 );
+	y  = * ( float * ) &i;
+	y  = y * ( threehalfs - ( x1 * y * y ) );
 
-double			vector_magnitude(t_vector3 u)
-{
-	return (sqrt(ABS(SQUARE(u.x) + SQUARE(u.y) + SQUARE(u.z))));
+	return (y);
 }

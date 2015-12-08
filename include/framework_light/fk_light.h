@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/27 18:32:26 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/04 14:29:45 by barbare          ###   ########.fr       */
+/*   Updated: 2015/12/07 18:19:57 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ struct				s_spotlight
 	t_type			type;
 	t_rgba			color;
 	t_vertex3		pos;
-	double			radius;
-	double			intensity;
+	float			radius;
+	float			intensity;
 };
 
 # include "framework/fk_objects.h"

@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/28 12:48:34 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/11/27 16:17:54 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/12/07 18:20:49 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ t_vector3		vector_cpy(t_vector3 u);
 t_vector3		vector_unit(t_vector3 u);
 t_vertex3		vector_translation(t_vector3 u, t_vertex3 v);
 
-t_vector3		vector_mul(t_vector3 u, double r);
-t_vector3		vector_div(t_vector3 u, double r);
+t_vector3		vector_mul(t_vector3 u, float r);
+t_vector3		vector_div(t_vector3 u, float r);
 /*
 ** ****************************************************************************
 ** fk_vectoriel_math.c
@@ -43,7 +43,7 @@ t_vector3		vector_div(t_vector3 u, double r);
 t_vector3		vector_substract(t_vector3 u, t_vector3 v);
 t_vector3		vector_sum(t_vector3 u, t_vector3 v);
 t_vector3		vector_product(t_vector3 u, t_vector3 v);
-t_vector3		vector_scale(t_vector3 u, double f);
+t_vector3		vector_scale(t_vector3 u, float f);
 
 /*
 ** ****************************************************************************
@@ -51,7 +51,7 @@ t_vector3		vector_scale(t_vector3 u, double f);
 ** ****************************************************************************
 */
 t_vector3		vector_reverse(t_vector3 u);
-double			vector_dotproduct(t_vector3 u, t_vector3 v);
-double			vector_magnitude(t_vector3 u);
+float			vector_dotproduct(t_vector3 u, t_vector3 v);
+float			vector_magnitude(t_vector3 u);
 
 #endif

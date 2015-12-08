@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/27 18:30:44 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/04 15:00:44 by barbare          ###   ########.fr       */
+/*   Updated: 2015/12/07 18:19:42 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 static t_rgba	lambert_low(t_intersect inter, t_spotlight light, t_rgba ptcolor)
 {
-	double		angle;
+	float		angle;
 	t_vector3	v_light;
 	t_rgba		result;
 

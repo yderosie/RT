@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fk_vertex_math.c                                   :+:      :+:    :+:   */
+/*   ft_vectoriel.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/01 19:21:55 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/11/30 22:43:12 by mbarbari         ###   ########.fr       */
+/*   Created: 2015/10/31 22:36:16 by mbarbari          #+#    #+#             */
+/*   Updated: 2015/12/07 18:39:38 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "framework/fk_vertexiel.h"
+#include "framework/fk_vectoriel.h"
 #include "framework/fk_math.h"
+#include <math.h>
 
-unsigned int		lenght_segment(t_vertex3 u, t_vertex3 v)
+float			vector_magnitude(t_vector3 u)
 {
-	return (sqrt(SQUARE(u.x - v.x) + SQUARE(u.y - v.y)  + SQUARE(u.z - v.z) ));
-}
-
-t_vertex3			vertex_sum(t_vertex3 u, unsigned int l)
-{
-	return ((t_vertex3) {.x = u.x + l, .y = u.y + l, .z = u.z + l});
-}
-
-t_vertex3		vertex_new(float x1, float y1, float z1)
-{
-	return ((t_vertex3) {.x = x1, .y = y1, .z = z1});
+	return (sqrt(ABS(SQUARE(u.x) + SQUARE(u.y) + SQUARE(u.z))));
 }
