@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/01 20:34:17 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/08 14:10:30 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/12/08 14:41:10 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_intersect	nearest_vertex(t_ray ray, t_intersect new, t_intersect old)
 	float	lengthv2;
 
 	lengthv1 = vector_magnitude(vector_substract(new.pos, ray.pos));
-	lengthv2 = vector_magnitude(vector_substract(old.pos, new.pos));
+	lengthv2 = vector_magnitude(vector_substract(old.pos, ray.pos));
 	if (FT_MIN(lengthv1, lengthv2) == lengthv1)
 		return (new);
 	return (old);
@@ -81,7 +81,7 @@ t_rgba		ft_trace_ray(t_env env, t_ray ray)
 	ft_memcpy(	arr + 2,
 				&(t_sphere){	SPHERE,
 								(t_rgba) {255, 55, 55, 0},
-								(t_vertex3) {3.09824,5.79233,12.9},
+								(t_vertex3) {-5.09824, -4.79233, 10.9},
 								1.00},
 				sizeof(t_sphere));
 
