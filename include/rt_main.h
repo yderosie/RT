@@ -6,7 +6,7 @@
 /*   By: roblabla <rlambert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/12 18:56:29 by roblabla          #+#    #+#             */
-/*   Updated: 2015/11/12 18:56:30 by roblabla         ###   ########.fr       */
+/*   Updated: 2015/12/08 16:15:11 by roblabla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ typedef struct	s_env
 {
 	void		*mlx;
 	void		*win;
-	void		*img;
+	t_img		img;
 }				t_env;
 
 #endif

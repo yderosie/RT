@@ -6,7 +6,7 @@
 /*   By: rlambert <rlambert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/27 21:03:28 by roblabla          #+#    #+#             */
-/*   Updated: 2015/12/22 14:16:03 by mbarbari         ###   ########.fr       */
+/*   Updated: 2016/01/07 16:07:19 by roblabla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <mlx.h>
 #include "ft_printf.h"
 #include "framework_math/fk_vector.h"
+#include "framework_collision/fk_collision.h"
 #include <stdlib.h>
 
 #define WIDTH 1224
@@ -34,10 +35,11 @@ int		main(int argc, char **argv)
 	(void)argc;
 	(void)argv;
 	env.mlx = mlx_init();
-	env.win = mlx_new_window(env.mlx, WIDTH, HEIGHT, "RayTracer");
-	env.img = mlx_new_image(env.mlx, WIDTH, HEIGHT);
-	env.resolution.width = WIDTH;
-	env.resolution.height = HEIGHT;
+	env.resolution.width = 1224;
+	env.resolution.height = 780;
+	env.win = mlx_new_window(env.mlx, env.resolution.width, env.resolution.height, "RayTracer");
+	env.img.ptr = mlx_new_image(env.mlx, env.resolution.width, env.resolution.height);
+	env.img.data = mlx_get_data_addr(env.img.ptr, &env.img.bpp, &env.img.sizeline, &env.img.endianness);
 	env.fov = 45;
 	env.pos_absolute_camera = (t_vertex3) { 0, 0, 0 };
 	env.dir_camera = (t_vector3) { 0, 0, 1 };

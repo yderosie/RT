@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/01 16:09:24 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/15 18:16:57 by mbarbari         ###   ########.fr       */
+/*   Updated: 2016/01/07 16:02:44 by roblabla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,20 @@ typedef struct		s_resolution
 	int				width;
 }					t_resolution;
 
+typedef struct		s_img
+{
+	void			*ptr;
+	char			*data;
+	int				bpp;
+	int				sizeline;
+	int				endianness;
+}					t_img;
+
 struct				s_env
 {
 	void			*mlx;
 	void			*win;
-	void			*img;
+	t_img			img;
 	t_resolution	resolution;
 	int				fov;
 	t_vertex3		pos_absolute_camera;
