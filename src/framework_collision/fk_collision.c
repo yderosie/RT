@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/01 20:34:17 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/08 00:47:50 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/12/08 14:10:30 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include <math.h>
 #include <stdlib.h>
 #include "ft_printf.h"
-#include "framework/fk_collision.h"
-#include "framework/fk_objects.h"
-#include "framework/fk_light.h"
+#include "framework_collision/fk_collision.h"
+#include "framework_shape/fk_objects.h"
+#include "framework_light/fk_light.h"
 
 #define VECTOR_UP ((t_vector3) { .x = 0, .y = 1, .z = 0 })
 
@@ -78,9 +78,16 @@ t_rgba		ft_trace_ray(t_env env, t_ray ray)
 								vector_unit((t_vector3) {4, 1.5, 0})},
 				sizeof(t_plan));
 
+	ft_memcpy(	arr + 2,
+				&(t_sphere){	SPHERE,
+								(t_rgba) {255, 55, 55, 0},
+								(t_vertex3) {3.09824,5.79233,12.9},
+								1.00},
+				sizeof(t_sphere));
+
 	ft_memcpy(light1 + 0,
 				&(t_spotlight){	SPOTLIGHT,
-								(t_rgba) {100, 200, 90, 0},
+								(t_rgba) {0, 0, 255, 0},
 								(t_vertex3) {4.3945898028, -2.8880163869, 4.777},
 								0.45,
 								1.0},
@@ -88,12 +95,12 @@ t_rgba		ft_trace_ray(t_env env, t_ray ray)
 
 	ft_memcpy(light1 + 1,
 				&(t_spotlight){	SPOTLIGHT,
-								(t_rgba) {255, 100, 55, 0},
+								(t_rgba) {255, 221, 13, 0},
 								(t_vertex3) {-2.1876005426, 2.688572153, 6.4295767343},
 								0.45,
 								1.0},
 				sizeof(t_spotlight));
-	arr[2].type = DEFAULT;
+	arr[3].type = DEFAULT;
 	i = 0;
 	already_has_radius = FALSE;
 	while (i < 16)

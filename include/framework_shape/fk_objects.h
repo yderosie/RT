@@ -6,15 +6,15 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/29 12:32:17 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/02 21:58:41 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/12/08 11:41:03 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FK_OBJECTS_H
 # define FK_OBJECTS_H
 
-#include "framework/fk_type.h"
-#include "framework/fk_rgb.h"
+#include "framework_shape/fk_type.h"
+#include "framework_rgb/fk_rgb.h"
 
 typedef struct		s_object t_object;
 typedef struct		s_material t_material;
@@ -26,9 +26,9 @@ struct				s_object
 	char			stuff[128];
 };
 
-#include "framework/fk_sphere.h"
-#include "framework/fk_plan.h"
-#include "framework/fk_collision.h"
+#include "framework_shape/fk_sphere.h"
+#include "framework_shape/fk_plan.h"
+#include "framework_collision/fk_collision.h"
 
 typedef float		*(*t_fctinter)(t_ray ray, void *obj, t_intersect *inter);
 

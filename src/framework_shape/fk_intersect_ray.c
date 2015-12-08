@@ -6,11 +6,11 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/01 15:50:53 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/11/03 16:39:39 by roblabla         ###   ########.fr       */
+/*   Updated: 2015/12/08 10:59:45 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "framework/fk_collision.h"
+#include "framework_collision/fk_collision.h"
 
 t_ray		ray_new(t_vertex3 v, t_vector3 dir)
 {

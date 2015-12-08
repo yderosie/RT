@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/28 12:45:47 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/07 18:17:25 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/12/08 11:52:44 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,16 @@
 # define FK_COLLISION_H
 
 #include "libft.h"
-#include "framework/fk_rgb.h"
-#include "framework/fk_vectoriel.h"
-#include "framework/fk_vertexiel.h"
-#include "framework/fk_ray.h"
+#include "framework_rgb/fk_rgb.h"
+#include "framework_math/fk_vector.h"
+#include "framework_shape/fk_ray.h"
 
 typedef struct		s_intersect t_intersect;
 
 struct				s_intersect
 {
 	t_vertex3		pos;
-	t_vector3		v_light;
+	t_vector3		v_normal;
 	float			radius;
 	void			*obj;
 };

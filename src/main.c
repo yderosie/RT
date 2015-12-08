@@ -6,16 +6,14 @@
 /*   By: rlambert <rlambert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/27 21:03:28 by roblabla          #+#    #+#             */
-/*   Updated: 2015/12/08 00:18:05 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/12/08 11:42:59 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_env.h"
 #include <mlx.h>
 #include "ft_printf.h"
-#include "framework/fk_vectoriel.h"
-#include "framework/fk_type.h"
-#include "framework/fk_sphere.h"
+#include "framework_math/fk_vector.h"
 #include <stdlib.h>
 
 int		rt_expose_hook(t_env *env)

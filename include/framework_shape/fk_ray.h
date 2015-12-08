@@ -6,15 +6,14 @@
 /*   By: roblabla <robinlambertz+dev@gmail.c>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/03 13:20:23 by roblabla          #+#    #+#             */
-/*   Updated: 2015/11/03 13:21:15 by roblabla         ###   ########.fr       */
+/*   Updated: 2015/12/08 11:41:04 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FK_RAY_H
 # define FK_RAY_H
 
-#include "framework/fk_vertexiel.h"
-#include "framework/fk_vectoriel.h"
+#include "framework_math/fk_vector.h"
 
 typedef struct		s_ray t_ray;
 

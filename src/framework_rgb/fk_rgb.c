@@ -6,14 +6,14 @@
 /*   By: roblabla <robinlambertz+dev@gmail.c>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/03 21:06:20 by roblabla          #+#    #+#             */
-/*   Updated: 2015/12/02 20:32:50 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/12/08 13:40:27 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "framework/fk_rgb.h"
-#include "framework/fk_math.h"
+#include "framework_rgb/fk_rgb.h"
+#include "framework_math/fk_math.h"
 
-t_dword		rgba_to_dword(t_rgba rgba)
+t_dword				rgba_to_dword(t_rgba rgba)
 {
 	return ((rgba.r & 0xFF) << 16) | ((rgba.g & 0xFF) << 8) | (rgba.b & 0xFF);
 }

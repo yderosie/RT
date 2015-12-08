@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/01 16:09:24 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/08 00:53:40 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/12/08 11:16:00 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,9 @@ typedef struct		s_resolution
 	int				width;
 }					t_resolution;
 
-# include "framework/fk_vectoriel.h"
-# include "framework/fk_vertexiel.h"
-# include "framework/fk_objects.h"
-# include "framework/fk_collision.h"
+# include "framework_math/fk_vector.h"
+# include "framework_shape/fk_objects.h"
+# include "framework_collision/fk_collision.h"
 
 typedef t_bool (*t_fct_inter)(t_ray ray, t_object *obj, t_intersect *inter);
 

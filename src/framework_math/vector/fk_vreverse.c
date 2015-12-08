@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vectoriel_math.c                                :+:      :+:    :+:   */
+/*   fk_vector_reverse.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/10/31 22:37:32 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/07 18:42:18 by mbarbari         ###   ########.fr       */
+/*   Created: 2015/12/07 18:37:37 by mbarbari          #+#    #+#             */
+/*   Updated: 2015/12/08 11:48:31 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "framework/fk_vector.h"
+#include "framework_math/fk_vector.h"
 
-t_vector3		vector_product(t_vector3 u, t_vector3 v)
+t_vector3		vector_reverse(t_vector3 u)
 {
-	return ((t_vector3) {	.x = (u.y * v.z) - (u.z * v.y),
-							.y = (u.z * v.x) - (u.x * v.z),
-							.z = (u.x * v.y) - (u.y * v.x)});
+	return ((t_vector3) {.x = -u.x, .y = -u.y, .z = -u.z});
 }
