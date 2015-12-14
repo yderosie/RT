@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/01 20:34:17 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/13 22:46:45 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/12/14 17:52:56 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ static	void	create_scene(t_object *light, t_object *arr)
 								0.45,
 								1.0},
 				sizeof(t_spotlight));
-	arr[1].type = DEFAULT;
+	arr[2].type = DEFAULT;
 }
 
 static	t_rgba	getfinalcolor(t_object *light, t_intersect inter)

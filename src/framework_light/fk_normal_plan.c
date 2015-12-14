@@ -1,33 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fk_plan.h                                          :+:      :+:    :+:   */
+/*   fk_normal_plan.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/02 20:42:15 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/08 11:41:04 by mbarbari         ###   ########.fr       */
+/*   Created: 2015/12/14 17:08:36 by mbarbari          #+#    #+#             */
+/*   Updated: 2015/12/14 18:51:39 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PLAN_H
-# define FT_PLAN_H
+#include "framework_light/fk_normal_plan.h"
+#include "framework_math/fk_math.h"
 
-# include "framework_shape/fk_type.h"
-# include "framework_math/fk_vector.h"
-# include "framework_rgb/fk_rgb.h"
-
-
-typedef struct		s_plan t_plan;
-struct				s_plan
+t_vector3		normal_plan(t_vector3 inter, t_plan *obj)
 {
-	t_type			type;
-	t_rgba			color;
-	t_vertex3		pos;
-	t_vector3		normal;
-};
-
-
-t_bool			intersect_plan(t_ray ray, t_plan* obj, float *t);
-
-#endif
+	return (obj->normal);
+}
