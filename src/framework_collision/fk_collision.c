@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/01 20:34:17 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/08 14:41:10 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/12/13 22:46:45 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 #include <math.h>
 #include <stdlib.h>
 #include "ft_printf.h"
+#include "framework_shape/fk_type.h"
 #include "framework_collision/fk_collision.h"
+#include "framework_light/fk_normal_sphere.h"
 #include "framework_shape/fk_objects.h"
+#include "framework_shape/fk_listobj.h"
 #include "framework_light/fk_light.h"
 
 #define VECTOR_UP ((t_vector3) { .x = 0, .y = 1, .z = 0 })
@@ -41,7 +44,7 @@ t_vector3	vertex_to_vector(t_vertex3 vec)
 	return (tmp);
 }
 
-t_intersect	nearest_vertex(t_ray ray, t_intersect new, t_intersect old)
+static t_intersect	nearest_vertex(t_ray ray, t_intersect new, t_intersect old)
 {
 	float	lengthv1;
 	float	lengthv2;
@@ -53,17 +56,8 @@ t_intersect	nearest_vertex(t_ray ray, t_intersect new, t_intersect old)
 	return (old);
 }
 
-t_rgba		ft_trace_ray(t_env env, t_ray ray)
+static	void	create_scene(t_object *light, t_object *arr)
 {
-	t_object	arr[16];
-	t_object	light1[16];
-	t_intersect	inter;
-	t_intersect	tmp;
-	t_bool		already_has_radius;
-	int			i;
-	t_rgba color;
-	t_rgba color2;
-
 	ft_memcpy(	arr + 0,
 				&(t_sphere){	SPHERE,
 								(t_rgba) {255, 255, 255, 0},
@@ -85,7 +79,7 @@ t_rgba		ft_trace_ray(t_env env, t_ray ray)
 								1.00},
 				sizeof(t_sphere));
 
-	ft_memcpy(light1 + 0,
+	ft_memcpy(light + 0,
 				&(t_spotlight){	SPOTLIGHT,
 								(t_rgba) {0, 0, 255, 0},
 								(t_vertex3) {4.3945898028, -2.8880163869, 4.777},
@@ -93,44 +87,65 @@ t_rgba		ft_trace_ray(t_env env, t_ray ray)
 								1.0},
 				sizeof(t_spotlight));
 
-	ft_memcpy(light1 + 1,
+	ft_memcpy(light + 1,
 				&(t_spotlight){	SPOTLIGHT,
 								(t_rgba) {255, 221, 13, 0},
 								(t_vertex3) {-2.1876005426, 2.688572153, 6.4295767343},
 								0.45,
 								1.0},
 				sizeof(t_spotlight));
-	arr[3].type = DEFAULT;
+	arr[1].type = DEFAULT;
+}
+
+static	t_rgba	getfinalcolor(t_object *light, t_intersect inter)
+{
+	t_rgba			color;
+	t_rgba			color2;
+
+	if (inter.obj)
+	{
+		color = iter_light(inter, (t_spotlight *)&light[0]);
+		color2 = iter_light(inter, (t_spotlight *)&light[1]);
+		return ((t_rgba) {
+			(color.r + color2.r) / 2,
+			(color.g + color2.g) / 2,
+			(color.b + color2.b) / 2
+		});
+	}
+	return ((t_rgba) { 17, 25, 37, 0 });
+}
+
+t_rgba		ft_trace_ray(t_env env, t_ray ray)
+{
+	t_object	arr[16];
+	t_object	light[16];
+	t_intersect	inter;
+	t_intersect	tmp;
+	t_bool		already_has_radius;
+	int			i;
+	float		dist;
+	t_rgba color;
+	t_rgba color2;
+
 	i = 0;
+	create_scene(light, arr);
 	already_has_radius = FALSE;
+	inter.obj = NULL;
 	while (i < 16)
 	{
 		tmp.obj = &arr[i];
 		if (arr[i].type == DEFAULT)
 			break;
-		if (env.fctinter[arr[i].type](ray, arr + i, &tmp))
+		if (env.fctinter[arr[i].type](ray, arr + i, &dist))
 		{
-			if (already_has_radius)
-				inter = nearest_vertex(ray, inter, tmp);
-			else
-			{
-				inter = tmp;
-				already_has_radius = TRUE;
-			}
+			inter.obj = &arr[i];
+			inter.pos = create_intersect(ray, dist);
+			inter.v_normal = normal_sphere(inter.pos, &arr[i]);
+			break;
 		}
 		i++;
 	}
-	if (already_has_radius == TRUE) {
-			color = iter_light(inter, (t_spotlight *)&light1[0], (t_object *)inter.obj);
-			color2 = iter_light(inter, (t_spotlight *)&light1[1], (t_object *)inter.obj);
-			return ((t_rgba) {
-				(color.r + color2.r) / 2,
-				(color.g + color2.g) / 2,
-				(color.b + color2.b) / 2
-			});
-		}
-	else
-		return (t_rgba) { 17, 25, 37, 0 };
+	return (getfinalcolor(light, inter));
 }
 
 void		ft_render(t_env env)

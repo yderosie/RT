@@ -28,43 +28,48 @@ CFLAGS = -O3
 SRCS = src/main.c \
 	   src/ft_env.c
 
-SRCS += src/framework_collision/fk_collision.c \
+SRCS += src/framework_collision/fk_collision.c					\
+		src/framework_collision/fk_intersect.c					
 
-SRCS += src/framework_light/fk_light.c \
-		src/framework_light/fk_luminance.c \
+SRCS += src/framework_light/fk_light.c							\
+		src/framework_light/fk_normal_sphere.c						\
+		src/framework_light/fk_luminance.c						\
 		src/framework_light/fk_shadow.c
 
-SRCS += src/framework_math/math/fkm_isqrt.c
+SRCS += src/framework_math/math/fk_isqrt.c
 
-SRCS += src/framework_math/vector/fk_vcpy.c		\
-        src/framework_math/vector/fk_vdiv.c		\
-        src/framework_math/vector/fk_vdotproduct.c		\
-        src/framework_math/vector/fk_vmagnitude.c		\
-        src/framework_math/vector/fk_vmul.c		\
-        src/framework_math/vector/fk_vnew.c		\
-        src/framework_math/vector/fk_vproduct.c		\
-        src/framework_math/vector/fk_vreverse.c		\
-        src/framework_math/vector/fk_vscale.c		\
-        src/framework_math/vector/fk_vsubstract.c		\
-        src/framework_math/vector/fk_vsum.c		\
-        src/framework_math/vector/fk_vtranslation.c		\
+SRCS += src/framework_math/vector/fk_vcpy.c						\
+        src/framework_math/vector/fk_vdiv.c						\
+        src/framework_math/vector/fk_vdotproduct.c				\
+        src/framework_math/vector/fk_vmagnitude.c				\
+        src/framework_math/vector/fk_vmul.c						\
+        src/framework_math/vector/fk_vnew.c						\
+        src/framework_math/vector/fk_vproduct.c					\
+        src/framework_math/vector/fk_vreverse.c					\
+        src/framework_math/vector/fk_vscale.c					\
+        src/framework_math/vector/fk_vsubstract.c				\
+        src/framework_math/vector/fk_vsum.c						\
+        src/framework_math/vector/fk_vtranslation.c				\
         src/framework_math/vector/fk_vunit.c	
 
 SRCS += src/framework_rgb/fk_rgb.c
 
-SRCS +=	src/framework_shape/fk_intersect_sphere.c \
-		src/framework_shape/fk_intersect_ray.c \
-		src/framework_shape/fk_intersect_plan.c
+SRCS +=	src/framework_shape/fk_intersect_sphere.c				
+		#src/framework_shape/fk_intersect_ray.c					\
+		#src/framework_shape/fk_intersect_plan.c
 
-INC_FILES = include/ft_env.h \
-			include/framework_collision/fk_collision.h \
-			include/framework_shape/fk_objects.h \
-			include/framework_shape/fk_sphere.h \
-			include/framework_shape/fk_plan.h \
-			include/framework_shape/fk_ray.h \
-			include/framework_shape/fk_type.h \
-			include/framework_rgb/fk_rgb.h \
-			include/framework_math/fk_vectoriel.h \
+INC_FILES = include/ft_env.h									\
+			include/framework_light/fk_light.h					\
+			include/framework_light/fk_normal_sphere.h					\
+			include/framework_collision/fk_collision.h			\
+			include/framework_collision/fk_intersect.h			\
+			include/framework_shape/fk_objects.h				\
+			include/framework_shape/fk_sphere.h					\
+			include/framework_shape/fk_plan.h					\
+			include/framework_shape/fk_ray.h					\
+			include/framework_shape/fk_type.h					\
+			include/framework_rgb/fk_rgb.h						\
+			include/framework_math/fk_vectoriel.h				\
 			include/framework_math/fk_math.h
 
 

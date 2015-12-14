@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fk_new_sphere.c                                    :+:      :+:    :+:   */
+/*   fk_normal_sphere.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/07 19:02:54 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/07 19:04:00 by mbarbari         ###   ########.fr       */
+/*   Created: 2015/12/11 18:18:56 by mbarbari          #+#    #+#             */
+/*   Updated: 2015/12/13 22:41:12 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "framework_math/fk_vector.h"
+#include "framework_light/fk_normal_sphere.h"
+#include "framework_math/fk_math.h"
 
-t_sphere		*new_sphere(t_vector3 pos, unsigned int radius)
+t_vector3		normal_sphere(t_vector3 inter, t_sphere *obj)
 {
-	t_sphere		*newsphere;
+	t_vector3	v_normal;
+	float		mod;
 
-	newsphere = malloc(sizeof(t_sphere));
-	newsphere->type = SPHERE;
-	newsphere->pos = (t_vertex3) {.x = pos.x, .y = pos.y, .z = pos.z};
-	newsphere->radius = radius;
-	return (newsphere);
+	v_normal = vector_substract(inter, obj->pos);
+	mod = vector_dotproduct(v_normal, v_normal);
+	v_normal = vector_scale(v_normal, fk_isqrt(mod));
+	return (v_normal);
 }

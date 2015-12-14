@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fk_plan.h                                          :+:      :+:    :+:   */
+/*   fk_normal_sphere.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/02 20:42:15 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/08 11:41:04 by mbarbari         ###   ########.fr       */
+/*   Created: 2015/12/11 21:44:39 by mbarbari          #+#    #+#             */
+/*   Updated: 2015/12/13 22:41:53 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PLAN_H
-# define FT_PLAN_H
+#ifndef FK_NORMAL_SPHERE
+# define FK_NORMAL_SPHERE
 
-# include "framework_shape/fk_type.h"
-# include "framework_math/fk_vector.h"
-# include "framework_rgb/fk_rgb.h"
+#include "framework_math/fk_vector.h"
+#include "framework_shape/fk_sphere.h"
 
-
-typedef struct		s_plan t_plan;
-struct				s_plan
-{
-	t_type			type;
-	t_rgba			color;
-	t_vertex3		pos;
-	t_vector3		normal;
-};
-
-
-t_bool			intersect_plan(t_ray ray, t_plan* obj, t_intersect *inter);
+t_vector3		normal_sphere(t_vector3 inter, t_sphere *obj);
 
 #endif

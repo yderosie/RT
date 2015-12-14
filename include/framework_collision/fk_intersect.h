@@ -1,40 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_env.h                                           :+:      :+:    :+:   */
+/*   fk_intersect.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/01 16:09:24 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/13 23:49:25 by mbarbari         ###   ########.fr       */
+/*   Created: 2015/12/11 20:42:51 by mbarbari          #+#    #+#             */
+/*   Updated: 2015/12/13 23:46:06 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_ENV_H
-# define FT_ENV_H
+#ifndef FK_INTERSECT_H
+# define FK_INTERSECT_H
 
 # include "framework_math/fk_vector.h"
 # include "framework_shape/fk_objects.h"
-# include "framework_collision/fk_intersect.h"
+# include "framework_shape/fk_ray.h"
 
-typedef struct		s_env t_env;
-typedef struct		s_resolution
-{
-	int				height;
-	int				width;
-}					t_resolution;
+typedef struct		s_intersect t_intersect;
 
-struct				s_env
+struct				s_intersect
 {
-	void			*mlx;
-	void			*win;
-	void			*img;
-	t_resolution	resolution;
-	int				fov;
-	t_vertex3		pos_absolute_camera;
-	t_vector3		dir_camera;
-	t_fctinter		fctinter[DEFAULT];
+	t_vertex3		pos;
+	t_vector3		v_normal;
+	t_object		*obj;
 };
 
-void		ft_setup_inter(t_fctinter *inter);
+typedef float		*(*t_fctinter)(t_ray ray, void *obj, float *t);
+
+t_vector3			create_intersect(t_ray ray, float dist);
+
 #endif

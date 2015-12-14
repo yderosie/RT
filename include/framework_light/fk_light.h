@@ -6,15 +6,17 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/27 18:32:26 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/08 10:30:42 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/12/13 22:30:33 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FK_LIGHT
 # define FK_LIGHT
+
 # include "framework_shape/fk_type.h"
 # include "framework_rgb/fk_rgb.h"
 # include "framework_math/fk_vector.h"
+# include "framework_collision/fk_collision.h"
 
 typedef struct		s_spotlight		t_spotlight;
 struct				s_spotlight
@@ -26,8 +28,5 @@ struct				s_spotlight
 	float			intensity;
 };
 
-# include "framework_shape/fk_objects.h"
-# include "framework_collision/fk_collision.h"
-# include "framework_math/fk_math.h"
-t_rgba				iter_light(t_intersect inter, t_spotlight *light, t_object *obj);
+t_rgba				iter_light(t_intersect inter, t_spotlight *light);
 #endif

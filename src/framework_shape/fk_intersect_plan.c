@@ -12,22 +12,15 @@
 
 #include "framework_shape/fk_plan.h"
 
-static t_bool	plan_crossroad(t_ray ray, t_plan plan, t_intersect *i)
+t_bool			intersect_plan(t_ray ray, t_plan *obj, float *t)
 {
-	float	d;
-
-	d = - (plan.pos.x  + plan.pos.y + plan.pos.z);
-	d = -((vector_dotproduct(ray.pos, plan.normal) + d) / (vector_dotproduct(ray.dir, plan.normal)));
-	if (d >= 0.)
+	*t = - (plan.pos.x  + plan.pos.y + plan.pos.z);
+	*t = -((vector_dotproduct(ray.pos, plan.normal) + *t) / (vector_dotproduct(ray.dir, plan.normal)));
+	if (*t >= 0.)
 	{
-		i->pos = vector_sum(ray.pos, vector_scale(ray.dir, d));
+		i->pos = vector_sum(ray.pos, vector_scale(ray.dir, *t));
 		i->v_normal = plan.normal;
 		return (TRUE);
 	}
 	return (FALSE);
-}
-
-t_bool			intersect_plan(t_ray ray, t_plan *obj, t_intersect *inter)
-{
-	return (plan_crossroad(ray, *obj, inter));
 }

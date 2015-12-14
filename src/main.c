@@ -39,7 +39,7 @@ int		main(int argc, char **argv)
 	env.fov = 70;
 	env.pos_absolute_camera = (t_vertex3) { 0, 0, 0 };
 	env.dir_camera = (t_vector3) { 0, 0, 1 };
-	ft_setup_fct_inter(&env.fctinter);
+	ft_setup_inter(&env.fctinter);
 	rt_expose_hook(&env);
 	mlx_expose_hook(env.win, rt_expose_hook, &env);
 	mlx_loop(env.mlx);
