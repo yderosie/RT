@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fk_normal.h                                        :+:      :+:    :+:   */
+/*   fk_normal_plan.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/14 18:52:22 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/14 20:03:02 by mbarbari         ###   ########.fr       */
+/*   Created: 2015/12/14 20:02:06 by mbarbari          #+#    #+#             */
+/*   Updated: 2015/12/14 20:02:31 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FK_NORMAL_H
-# define FK_NORMAL_H
+#ifndef FK_NORMAL_PLAN
+# define FK_NORMAL_PLAN
 
-typedef t_vector3 (*t_fctnormal)(t_vector3 pos, void *obj);
+#include "framework_math/fk_vector.h"
+#include "framework_shape/fk_plan.h"
+
+t_vector3		normal_plan(t_vector3 inter, t_plan *obj);
 
 #endif

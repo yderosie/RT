@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/01 16:09:24 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/13 23:49:25 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/12/15 18:16:57 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define FT_ENV_H
 
 # include "framework_math/fk_vector.h"
-# include "framework_shape/fk_objects.h"
 # include "framework_collision/fk_intersect.h"
+# include "framework_light/fk_normal.h"
 
 typedef struct		s_env t_env;
 typedef struct		s_resolution
@@ -34,7 +34,9 @@ struct				s_env
 	t_vertex3		pos_absolute_camera;
 	t_vector3		dir_camera;
 	t_fctinter		fctinter[DEFAULT];
+	t_fctnormal		fctnormal[DEFAULT];
 };
 
 void		ft_setup_inter(t_fctinter *inter);
+void		ft_setup_normal(t_fctnormal *normal);
 #endif

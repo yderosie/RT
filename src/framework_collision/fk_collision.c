@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/01 20:34:17 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/14 17:52:56 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/12/16 17:17:34 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,33 +117,34 @@ static	t_rgba	getfinalcolor(t_object *light, t_intersect inter)
 
 t_rgba		ft_trace_ray(t_env env, t_ray ray)
 {
-	t_object	arr[16];
-	t_object	light[16];
-	t_intersect	inter;
-	t_intersect	tmp;
-	t_bool		already_has_radius;
-	int			i;
-	float		dist;
-	t_rgba color;
-	t_rgba color2;
+	t_object		arr[16];
+	t_object		light[16];
+	t_intersect		inter;
+	t_bool			already_has_radius;
+	int				i;
+	float			dist;
+	float			old_dist;
+	t_rgba			color;
+	t_rgba 			color2;
 
-	i = 0;
+	i = -1;
 	create_scene(light, arr);
-	already_has_radius = FALSE;
 	inter.obj = NULL;
-	while (i < 16)
+	while (++i < 16)
 	{
-		tmp.obj = &arr[i];
 		if (arr[i].type == DEFAULT)
-			break;
+			break ;
 		if (env.fctinter[arr[i].type](ray, arr + i, &dist))
-		{
-			inter.obj = &arr[i];
-			inter.pos = create_intersect(ray, dist);
-			inter.v_normal = normal_sphere(inter.pos, &arr[i]);
-			break;
-		}
-		i++;
+			if (!inter.obj || dist < old_dist)
+			{
+				inter.obj = &arr[i];
+				old_dist = dist;
+			}
+	}
+	if (inter.obj)
+	{
+		inter.pos = create_intersect(ray, old_dist);
+		inter.v_normal = env.fctnormal[inter.obj->type](inter.pos, inter.obj);
 	}
 	return (getfinalcolor(light, inter));
 }
