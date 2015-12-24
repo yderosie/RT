@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/28 12:45:47 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/13 23:14:38 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/12/21 11:28:52 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 ** fk_collision.c
 ** ****************************************************************************
 */
-t_rgba		ft_trace_ray(t_env env, t_ray ray);
+void		ft_trace_ray(t_env env, t_ray ray, t_rgba *color);
 void		ft_render(t_env env);
 
 /*

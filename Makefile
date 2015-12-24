@@ -6,7 +6,7 @@
 #    By: rlambert <rlambert@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/03 11:25:08 by rlambert          #+#    #+#              #
-#    Updated: 2015/12/15 18:25:20 by mbarbari         ###   ########.fr        #
+#    Updated: 2015/12/23 20:29:54 by mbarbari         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ SRCS = src/main.c \
 	   src/ft_env.c
 
 SRCS += src/framework_collision/fk_collision.c					\
-		src/framework_collision/fk_intersect.c					
+		src/framework_collision/fk_intersect.c
 
 SRCS += src/framework_light/fk_light.c							\
 		src/framework_light/fk_normal_sphere.c					\
@@ -51,12 +51,13 @@ SRCS += src/framework_math/vector/fk_vcpy.c						\
         src/framework_math/vector/fk_vsubstract.c				\
         src/framework_math/vector/fk_vsum.c						\
         src/framework_math/vector/fk_vtranslation.c				\
-        src/framework_math/vector/fk_vunit.c	
+        src/framework_math/vector/fk_vunit.c
 
 SRCS += src/framework_rgb/fk_rgb.c
 
 SRCS +=	src/framework_shape/fk_intersect_sphere.c				\
-		src/framework_shape/fk_intersect_plan.c
+		src/framework_shape/fk_intersect_plan.c					\
+		src/framework_shape/fk_intersect_cylinder.c
 
 INC_FILES = include/ft_env.h									\
 			include/framework_light/fk_light.h					\
@@ -69,6 +70,7 @@ INC_FILES = include/ft_env.h									\
 			include/framework_shape/fk_objects.h				\
 			include/framework_shape/fk_sphere.h					\
 			include/framework_shape/fk_plan.h					\
+			include/framework_shape/fk_cylinder.h					\
 			include/framework_shape/fk_ray.h					\
 			include/framework_shape/fk_type.h					\
 			include/framework_rgb/fk_rgb.h						\

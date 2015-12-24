@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/01 21:12:58 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/15 18:21:58 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/12/23 18:23:23 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 #include "framework_light/fk_normal.h"
 #include "framework_light/fk_normal_plan.h"
 #include "framework_light/fk_normal_sphere.h"
+#include "framework_light/fk_normal_cylinder.h"
 
 void		ft_setup_inter(t_fctinter *inter)
 {
 	inter[SPHERE] = (float (*)(t_ray, void*, float *))&intersect_sphere;
 	inter[PLANE] = (float (*)(t_ray, void*, float *))&intersect_plan;
-	inter[CYLINDER] = NULL;
+	inter[CYLINDER] = (float (*)(t_ray, void*, float *))&intersect_cylinder;
 	inter[CONE] = NULL;
 	inter[DEFAULT] = NULL;
 }
