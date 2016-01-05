@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/01 20:34:17 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/24 01:21:57 by mbarbari         ###   ########.fr       */
+/*   Updated: 2016/01/05 17:28:40 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,15 +92,15 @@ static	void	create_scene(t_object *light, t_object *arr)
 	ft_memcpy(	arr + 6,
 				&(t_cylinder){	CYLINDER,
 								(t_rgba) {200, 155, 85, 0},
-								(t_vertex3) {-3, 0.79233, -7.9},
+								(t_vertex3) {3, -1.79233, -7.9},
 								(t_vector3) {-2, 0.79233, -7.9},
 								1.00},
 				sizeof(t_sphere));
 
 	ft_memcpy(light + 0,
 				&(t_spotlight){	SPOTLIGHT,
-								(t_rgba) {5, 55, 255, 0},
-								(t_vertex3) {-2, 0, 0},
+								(t_rgba) {255, 55, 255, 0},
+								(t_vertex3) {3, -1.79233, -17.9},
 								(t_vector3) {1, 0, 0},
 								1.},
 				sizeof(t_spotlight));
@@ -108,10 +108,9 @@ static	void	create_scene(t_object *light, t_object *arr)
 	ft_memcpy(light + 1,
 				&(t_spotlight){	SPOTLIGHT,
 								(t_rgba) {255, 255, 255, 0},
-								(t_vertex3) {0, -0.688572153, -12},
-								(t_vector3) {-1, 0, 0},
-								0.45,
-								1.0},
+								(t_vertex3) {3, 2.688572153, -10},
+								(t_vector3) {1, 2, 0},
+								1.00},
 				sizeof(t_spotlight));
 	arr[6].type = DEFAULT;
 }

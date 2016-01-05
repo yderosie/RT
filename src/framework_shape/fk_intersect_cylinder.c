@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 16:28:56 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/23 21:04:59 by mbarbari         ###   ########.fr       */
+/*   Updated: 2016/01/05 11:45:50 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_bool			intersect_cylinder(t_ray ray, t_cylinder* obj, float *t)
 	float		dist_cross;
 	float		alpha;
 
+	ft_printf("test d'intersection du cylindre");
 	dir = vector_substract(ray.pos, obj->pos);
 	cross = vector_product(ray.dir, obj->dir);
 	dist_cross = vector_dotproduct(cross, cross);
@@ -31,7 +32,7 @@ t_bool			intersect_cylinder(t_ray ray, t_cylinder* obj, float *t)
 		raydir = vector_substract(dir, vector_scale(obj->dir, alpha));
 		if ((alpha = vector_dotproduct(raydir, raydir)) > SQUARE(obj->radius))
 			return (FALSE);
-		*t = FLT_MAX - 1;
+		*t = FLT_MAX - 1.;
 		return (dprintf(2, "test de longueur 1 du cylindre : %f\n", *t), TRUE);
 	}
 	cross = vector_div(cross, sqrt(dist_cross));
