@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/01 20:34:17 by mbarbari          #+#    #+#             */
-/*   Updated: 2016/01/05 17:28:40 by mbarbari         ###   ########.fr       */
+/*   Updated: 2016/01/05 17:43:35 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,8 +207,8 @@ static void ft_render2(t_env env)
 		{
 
 			ray.pos = (t_vertex3) {0, 0, 0};
-			ray.dir.x = (2 *((x + 0.5f) * invW) - 1) * angle * ratio;
-			ray.dir.y = (1 - 2 *((y + 0.5f) * invH)) * angle;
+			ray.dir.x = (2 *((x) * invW) - 1) * angle * ratio;
+			ray.dir.y = (1 - 2 *((y) * invH)) * angle;
 			ray.dir.z = -1;
 			ray.dir = vector_unit(ray.dir);
 			ft_trace_ray(env, ray, &rgba);
