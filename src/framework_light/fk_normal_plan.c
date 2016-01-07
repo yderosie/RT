@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vectoriel.c                                     :+:      :+:    :+:   */
+/*   fk_normal_plan.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/10/31 22:36:16 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/23 21:01:08 by mbarbari         ###   ########.fr       */
+/*   Created: 2015/12/14 17:08:36 by mbarbari          #+#    #+#             */
+/*   Updated: 2015/12/14 20:03:15 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "framework_math/fk_vector.h"
+#include "framework_light/fk_normal_plan.h"
 #include "framework_math/fk_math.h"
 
-float			vector_magnitude(t_vector3 u)
+t_vector3		normal_plan(t_vector3 inter, t_plan *obj)
 {
-	return (sqrt(ABS(SQUARE(u.x) + SQUARE(u.y) + SQUARE(u.z))));
+	return (obj->normal);
 }

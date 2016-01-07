@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fk_light.h                                         :+:      :+:    :+:   */
+/*   fk_intersect.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/27 18:32:26 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/22 16:27:15 by mbarbari         ###   ########.fr       */
+/*   Created: 2015/12/11 20:42:51 by mbarbari          #+#    #+#             */
+/*   Updated: 2015/12/13 23:46:06 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FK_LIGHT
-# define FK_LIGHT
+#ifndef FK_INTERSECT_H
+# define FK_INTERSECT_H
 
-# include "framework_shape/fk_type.h"
-# include "framework_rgb/fk_rgb.h"
 # include "framework_math/fk_vector.h"
-# include "framework_collision/fk_collision.h"
+# include "framework_shape/fk_objects.h"
+# include "framework_shape/fk_ray.h"
 
-typedef struct		s_spotlight		t_spotlight;
-struct				s_spotlight
+typedef struct		s_intersect t_intersect;
+
+struct				s_intersect
 {
-	t_type			type;
-	t_rgba			color;
 	t_vertex3		pos;
-	t_vector3		dir;
-	float			intensity;
+	t_vector3		v_normal;
+	t_object		*obj;
 };
 
-t_rgba				iter_light(t_intersect inter, t_spotlight *light);
+typedef float		*(*t_fctinter)(t_ray ray, void *obj, float *t);
+
+t_vector3			create_intersect(t_ray ray, float dist);
+
 #endif

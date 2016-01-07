@@ -6,28 +6,45 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 20:35:03 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/08 13:40:43 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/12/22 13:50:44 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "framework_shape/fk_plan.h"
+#include "framework_math/fk_math.h"
 
-static t_bool	plan_crossroad(t_ray ray, t_plan plan, t_intersect *i)
+#define EPSILON 0.00001
+
+//t_bool			intersect_plan(t_ray ray, t_plan *plan, float *t)
+//{
+//	float	m;
+//	t_vector3	pos;
+//
+//	m = vector_dotproduct(ray.dir, plan->normal);
+//	dprintf(2, "on rentre au debut de l'intersection plan : %f\n", m);
+//	if (m < EPSILON)
+//		return (FALSE);
+//	pos = vector_substract(ray.pos, plan->pos);
+//	*t = vector_dotproduct(plan->normal, pos);
+//	if ((*t = (float)(-*t / m)) > 0.)
+//		return (TRUE);
+//	dprintf(2, "test suite au calcul de intersect_plan : %f", *t);
+//	return (FALSE);
+//}
+
+t_bool			intersect_plan(t_ray ray, t_plan *plan, float *t)
 {
+	float	m;
 	float	d;
+	t_vector3	pos;
 
-	d = - (plan.pos.x  + plan.pos.y + plan.pos.z);
-	d = -((vector_dotproduct(ray.pos, plan.normal) + d) / (vector_dotproduct(ray.dir, plan.normal)));
-	if (d >= 0.)
-	{
-		i->pos = vector_sum(ray.pos, vector_scale(ray.dir, d));
-		i->v_normal = plan.normal;
-		return (TRUE);
-	}
-	return (FALSE);
+	pos = vector_substract(plan->pos, ray.pos);
+	m = vector_dotproduct(plan->normal, pos);
+	if ((d = vector_dotproduct(plan->normal, ray.dir)) == 0.00000)
+		return (FALSE);
+	*t = m / d;
+	if (*t < 0.)
+		return (FALSE);
+	return (TRUE);
 }
 
-t_bool			intersect_plan(t_ray ray, t_plan *obj, t_intersect *inter)
-{
-	return (plan_crossroad(ray, *obj, inter));
-}

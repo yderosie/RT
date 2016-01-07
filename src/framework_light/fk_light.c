@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/27 18:30:44 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/08 13:38:12 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/12/13 22:16:16 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static t_rgba	test(t_intersect inter, t_spotlight light, t_rgba ptcolor)
 	return (ptcolor);
 }
 
-t_rgba			iter_light(t_intersect inter, t_spotlight *light, t_object *obj)
+t_rgba			iter_light(t_intersect inter, t_spotlight *light)
 {
-	return (lambert_low(inter, *light, obj->color));
+	return (lambert_low(inter, *light, ((t_object *)inter.obj)->color));
 }

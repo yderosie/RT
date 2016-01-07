@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fk_new_sphere.c                                    :+:      :+:    :+:   */
+/*   fk_normal.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/07 19:02:54 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/07 19:04:00 by mbarbari         ###   ########.fr       */
+/*   Created: 2015/12/14 18:52:22 by mbarbari          #+#    #+#             */
+/*   Updated: 2015/12/14 20:03:02 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "framework_math/fk_vector.h"
+#ifndef FK_NORMAL_H
+# define FK_NORMAL_H
 
-t_sphere		*new_sphere(t_vector3 pos, unsigned int radius)
-{
-	t_sphere		*newsphere;
+typedef t_vector3 (*t_fctnormal)(t_vector3 pos, void *obj);
 
-	newsphere = malloc(sizeof(t_sphere));
-	newsphere->type = SPHERE;
-	newsphere->pos = (t_vertex3) {.x = pos.x, .y = pos.y, .z = pos.z};
-	newsphere->radius = radius;
-	return (newsphere);
-}
+#endif

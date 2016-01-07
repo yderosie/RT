@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vectoriel.c                                     :+:      :+:    :+:   */
+/*   fk_intersect.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/10/31 22:36:16 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/23 21:01:08 by mbarbari         ###   ########.fr       */
+/*   Created: 2015/12/13 22:32:53 by mbarbari          #+#    #+#             */
+/*   Updated: 2015/12/13 22:39:10 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "framework_shape/fk_ray.h"
 #include "framework_math/fk_vector.h"
 #include "framework_math/fk_math.h"
+#include "framework_collision/fk_collision.h"
 
-float			vector_magnitude(t_vector3 u)
+t_vector3		create_intersect(t_ray ray, float dist)
 {
-	return (sqrt(ABS(SQUARE(u.x) + SQUARE(u.y) + SQUARE(u.z))));
+	return (vector_sum(ray.pos, vector_scale(ray.dir, dist)));
 }

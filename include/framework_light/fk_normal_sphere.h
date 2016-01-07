@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vectoriel.c                                     :+:      :+:    :+:   */
+/*   fk_normal_sphere.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/10/31 22:36:16 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/23 21:01:08 by mbarbari         ###   ########.fr       */
+/*   Created: 2015/12/11 21:44:39 by mbarbari          #+#    #+#             */
+/*   Updated: 2015/12/13 22:41:53 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "framework_math/fk_vector.h"
-#include "framework_math/fk_math.h"
+#ifndef FK_NORMAL_SPHERE
+# define FK_NORMAL_SPHERE
 
-float			vector_magnitude(t_vector3 u)
-{
-	return (sqrt(ABS(SQUARE(u.x) + SQUARE(u.y) + SQUARE(u.z))));
-}
+#include "framework_math/fk_vector.h"
+#include "framework_shape/fk_sphere.h"
+
+t_vector3		normal_sphere(t_vector3 inter, t_sphere *obj);
+
+#endif

@@ -6,7 +6,7 @@
 /*   By: roblabla <robinlambertz+dev@gmail.c>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/03 13:20:23 by roblabla          #+#    #+#             */
-/*   Updated: 2015/12/08 11:41:04 by mbarbari         ###   ########.fr       */
+/*   Updated: 2015/12/17 17:48:41 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ struct				s_ray
 {
 	t_vertex3		pos;
 	t_vector3		dir;
+	unsigned int	refracted;
 };
 
 #endif
