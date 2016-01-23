@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/01 20:34:17 by mbarbari          #+#    #+#             */
-/*   Updated: 2016/01/05 17:43:35 by mbarbari         ###   ########.fr       */
+/*   Updated: 2016/01/07 16:06:39 by roblabla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,7 +190,17 @@ void		ft_trace_ray(t_env env, t_ray ray, t_rgba *color)
 	*color = getfinalcolor(light, inter);
 }
 
-static void ft_render2(t_env env)
+void			ft_put_pixel_to_image(t_img img, int x, int y, t_rgba color)
+{
+	int				addr;
+
+	addr = y * img.sizeline + x * (img.bpp / 8);
+	img.data[addr + 0] = color.b;
+	img.data[addr + 1] = color.g;
+	img.data[addr + 2] = color.r;
+}
+
+void		ft_render2(t_env env)
 {
 	t_rgba	rgba;
 	t_ray	ray;
@@ -201,9 +211,11 @@ static void ft_render2(t_env env)
 	float ratio = env.resolution.width / (float)env.resolution.height;
 	float angle = tanf(M_PI * 0.5f * env.fov / 180.);
 
-	y = -1;
-	while (++y < env.resolution.height && (x = -1))
-		while (++x < env.resolution.width)
+	y = 0;
+	while (y < env.resolution.height)
+	{
+		x = 0;
+		while (x < env.resolution.width)
 		{
 
 			ray.pos = (t_vertex3) {0, 0, 0};
@@ -212,8 +224,12 @@ static void ft_render2(t_env env)
 			ray.dir.z = -1;
 			ray.dir = vector_unit(ray.dir);
 			ft_trace_ray(env, ray, &rgba);
-			mlx_pixel_put(env.mlx, env.win, x, y, rgba_to_dword(rgba));
+			ft_put_pixel_to_image(env.img, x, y, rgba);
+			x++;
 		}
+		y++;
+	}
+	mlx_put_image_to_window(env.mlx, env.win, env.img.ptr, 0, 0);
 }
 
 void		ft_render(t_env env)
