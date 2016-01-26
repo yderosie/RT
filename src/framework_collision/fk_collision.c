@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/01 20:34:17 by mbarbari          #+#    #+#             */
-/*   Updated: 2016/01/07 16:06:39 by roblabla         ###   ########.fr       */
+/*   Updated: 2016/01/25 12:36:51 by yderosie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,10 @@ static	void	create_scene(t_object *light, t_object *arr)
 	ft_memcpy(	arr + 6,
 				&(t_cylinder){	CYLINDER,
 								(t_rgba) {200, 155, 85, 0},
-								(t_vertex3) {3, -1.79233, -7.9},
-								(t_vector3) {-2, 0.79233, -7.9},
+								(t_vertex3) {0, 1.79233, -7.9},
+								(t_vector3) {0, 1, 0},
 								1.00},
-				sizeof(t_sphere));
+				sizeof(t_cylinder));
 
 	ft_memcpy(light + 0,
 				&(t_spotlight){	SPOTLIGHT,
@@ -112,7 +112,7 @@ static	void	create_scene(t_object *light, t_object *arr)
 								(t_vector3) {1, 2, 0},
 								1.00},
 				sizeof(t_spotlight));
-	arr[6].type = DEFAULT;
+	arr[7].type = DEFAULT;
 }
 
 
