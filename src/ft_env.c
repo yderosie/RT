@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/01 21:12:58 by mbarbari          #+#    #+#             */
-/*   Updated: 2016/01/07 15:48:15 by roblabla         ###   ########.fr       */
+/*   Updated: 2016/01/25 12:29:07 by yderosie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void		ft_setup_normal(t_fctnormal *normal)
 {
 	normal[SPHERE] = (t_vector3 (*)(t_vector3, void *))&normal_sphere;
 	normal[PLANE] = (t_vector3 (*)(t_vector3, void *))&normal_plan;
-	normal[CYLINDER] = NULL;
+	normal[CYLINDER] = (t_vector3 (*)(t_vector3, void *))&normal_cylinder;
 	normal[CONE] = NULL;
 	normal[DEFAULT] = NULL;
 }

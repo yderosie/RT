@@ -33,6 +33,7 @@ SRCS += src/framework_collision/fk_collision.c					\
 
 SRCS += src/framework_light/fk_light.c							\
 		src/framework_light/fk_normal_sphere.c					\
+		src/framework_light/fk_normal_cylinder.c					\
 		src/framework_light/fk_normal_plan.c					\
 		src/framework_light/fk_luminance.c						\
 		src/framework_light/fk_shadow.c

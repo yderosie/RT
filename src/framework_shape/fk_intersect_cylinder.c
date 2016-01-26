@@ -13,37 +13,27 @@
 #include "framework_shape/fk_cylinder.h"
 #include "framework_math/fk_math.h"
 
+
 t_bool			intersect_cylinder(t_ray ray, t_cylinder* obj, float *t)
 {
-	t_vector3	dir;
-	t_vector3	cross;
-	t_vector3	raydir;
-	t_vector3	e;
-	float		dist_cross;
-	float		alpha;
+	float		a;
+	float		b;
+	float		c;
+	float		d;
+	t_vector3	x;
 
-	ft_printf("test d'intersection du cylindre");
-	dir = vector_substract(ray.pos, obj->pos);
-	cross = vector_product(ray.dir, obj->dir);
-	dist_cross = vector_dotproduct(cross, cross);
-	if (dist_cross == 0.)
+	a = vector_dotproduct(ray.dir, ray.dir) - SQUARE(vector_dotproduct(ray.dir, obj->dir));
+	x = vector_substract(ray.pos, obj->pos);
+	b = (vector_dotproduct(ray.dir, x) - vector_dotproduct(ray.dir, obj->dir) * vector_dotproduct(x, obj->dir))* 2;
+	c = vector_dotproduct(x, x) - SQUARE(vector_dotproduct(x, obj->dir)) - (obj->radius * obj->radius);
+	d = b * b - 4 * a * c;
+	if (d > 0.)
 	{
-		alpha = vector_dotproduct(dir, obj->dir);
-		raydir = vector_substract(dir, vector_scale(obj->dir, alpha));
-		if ((alpha = vector_dotproduct(raydir, raydir)) > SQUARE(obj->radius))
-			return (FALSE);
-		*t = FLT_MAX - 1.;
-		return (dprintf(2, "test de longueur 1 du cylindre : %f\n", *t), TRUE);
+		if (((-b - sqrt(d)) / (2 * a)) > 0)
+			*t = (-b - sqrt(d)) / (2 * a);
+		else
+			*t = (-b + sqrt(d)) / (2 * a);
+		return (TRUE);
 	}
-	cross = vector_div(cross, sqrt(dist_cross));
-	if ((alpha = vector_dotproduct(dir, cross)) > obj->radius)
-		return (FALSE);
-	e = vector_product(dir, obj->dir);
-	*t = -vector_dotproduct(e, vector_div(cross, sqrt(dist_cross)));
-	e = vector_unit(vector_product(cross, obj->dir));
-	alpha = sqrt(SQUARE(obj->radius) - SQUARE(alpha));
-	alpha /= vector_dotproduct(ray.dir, e);
-	*t = FT_MIN((*t - alpha), (*t + alpha));
-	return (dprintf(2, "test de longueur 2 du cylindre : %f\n", *t), TRUE);
+	return (FALSE);
 }
-
