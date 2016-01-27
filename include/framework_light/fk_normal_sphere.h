@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FK_NORMAL_SPHERE
-# define FK_NORMAL_SPHERE
+#ifndef FK_NORMAL_SPHERE_H
+# define FK_NORMAL_SPHERE_H
 
-#include "framework_math/fk_vector.h"
-#include "framework_shape/fk_sphere.h"
+# include "framework_math/fk_vector.h"
+# include "framework_shape/fk_sphere.h"
 
 t_vector3		normal_sphere(t_vector3 inter, t_sphere *obj);
 

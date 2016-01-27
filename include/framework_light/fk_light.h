@@ -10,15 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FK_LIGHT
-# define FK_LIGHT
+#ifndef FK_LIGHT_H
+# define FK_LIGHT_H
 
 # include "framework_shape/fk_type.h"
 # include "framework_rgb/fk_rgb.h"
 # include "framework_math/fk_vector.h"
 # include "framework_collision/fk_collision.h"
 
-typedef struct		s_spotlight		t_spotlight;
+typedef struct s_spotlight		t_spotlight;
 struct				s_spotlight
 {
 	t_type			type;

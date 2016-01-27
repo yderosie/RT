@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FK_NORMAL_PLAN
-# define FK_NORMAL_PLAN
+#ifndef FK_NORMAL_PLAN_H
+# define FK_NORMAL_PLAN_H
 
-#include "framework_math/fk_vector.h"
-#include "framework_shape/fk_plan.h"
+# include "framework_math/fk_vector.h"
+# include "framework_shape/fk_plan.h"
 
 t_vector3		normal_plan(t_vector3 inter, t_plan *obj);
 

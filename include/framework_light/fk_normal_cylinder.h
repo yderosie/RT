@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FK_NORMAL_CYLINDER
-# define FK_NORMAL_CYLINDER
+#ifndef FK_NORMAL_CYLINDER_H
+# define FK_NORMAL_CYLINDER_H
 
 # include "framework_math/fk_vector.h"
 # include "framework_shape/fk_cylinder.h"
