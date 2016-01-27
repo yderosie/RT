@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/01 20:34:17 by mbarbari          #+#    #+#             */
-/*   Updated: 2016/01/25 12:36:51 by yderosie         ###   ########.fr       */
+/*   Updated: 2016/01/27 15:58:10 by barbare          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,38 +50,45 @@ static	void	create_scene(t_object *light, t_object *arr)
 	ft_memcpy(	arr + 0,
 				&(t_sphere){	SPHERE,
 								(t_rgba) {255, 139, 24, 0},
-								(t_vertex3) {-1, 0, -13.5},
-								2.00},
+								(t_vertex3) {0, 0, 2},
+								0.20},
 				sizeof(t_sphere));
 
-	ft_memcpy(	arr + 1, //Plafont
-				&(t_plan){	PLANE,
-								(t_rgba) {255, 0, 0, 0},
-								(t_vertex3) {2, 2, 0},
-								vector_unit((t_vector3) {0, 3, 1})},
+	ft_memcpy(	arr + 1, //plafond
+			&(t_plan){	PLANE,
+								(t_rgba) {255, 100, 0, 0},
+								(t_vertex3) {0, 10, 0},
+								vector_unit((t_vector3) {0, 40, 5})},
 				sizeof(t_plan));
 
-	ft_memcpy(	arr + 2,	//Mur Gauche
+	ft_memcpy(	arr + 2,	// sol
 				&(t_plan){	PLANE,
 								(t_rgba) {200, 255, 0, 0},
-								(t_vertex3) {-1, 0, 0},
-								vector_unit((t_vector3) {-10, 0, 4})},
+								(t_vertex3) {0, -10, 0},
+								vector_unit((t_vector3) {0, 40, -5})},
 				sizeof(t_plan));
 
-	ft_memcpy(	arr + 3,	// sol
+	ft_memcpy(	arr + 3,	//Mur Gauche
 				&(t_plan){	PLANE,
-								(t_rgba) {200, 255, 0, 0},
-								(t_vertex3) {3,-3, 0},
-								vector_unit((t_vector3) {0, -5, 1.5})},
+								(t_rgba) {200, 255, 100, 0},
+								(t_vertex3) {-10, 0, 0},
+								vector_unit((t_vector3) {-100, 0, 5})},
 				sizeof(t_plan));
 
 	ft_memcpy(	arr + 4,	// mur droite
 				&(t_plan){	PLANE,
-								(t_rgba) {200, 255, 0, 0},
-								(t_vertex3) {8, 0, 0},
-								vector_unit((t_vector3) {10, 0, 5})},
+								(t_rgba) {200, 255, 100, 0},
+								(t_vertex3) {10, 0, 0},
+								vector_unit((t_vector3) {100, 0, 5})},
 				sizeof(t_plan));
 
+	ft_memcpy(	arr + 5,	// mur fond
+				&(t_plan){	PLANE,
+								(t_rgba) {200, 255, 200, 0},
+								(t_vertex3) {0, 0, 40},
+								vector_unit((t_vector3) {0, 0, -5})},
+				sizeof(t_plan));
+/*
 	ft_memcpy(	arr + 5,
 				&(t_sphere){	SPHERE,
 								(t_rgba) {255, 55, 55, 0},
@@ -96,11 +103,11 @@ static	void	create_scene(t_object *light, t_object *arr)
 								(t_vector3) {0, 1, 0},
 								1.00},
 				sizeof(t_cylinder));
-
+*/
 	ft_memcpy(light + 0,
 				&(t_spotlight){	SPOTLIGHT,
 								(t_rgba) {255, 55, 255, 0},
-								(t_vertex3) {3, -1.79233, -17.9},
+								(t_vertex3) {-3, -1.79233, 0},
 								(t_vector3) {1, 0, 0},
 								1.},
 				sizeof(t_spotlight));
@@ -108,11 +115,11 @@ static	void	create_scene(t_object *light, t_object *arr)
 	ft_memcpy(light + 1,
 				&(t_spotlight){	SPOTLIGHT,
 								(t_rgba) {255, 255, 255, 0},
-								(t_vertex3) {3, 2.688572153, -10},
+								(t_vertex3) {3, 2.688572153, 0},
 								(t_vector3) {1, 2, 0},
 								1.00},
 				sizeof(t_spotlight));
-	arr[7].type = DEFAULT;
+	arr[6].type = DEFAULT;
 }
 
 
@@ -123,6 +130,7 @@ static	t_rgba	getfinalcolor(t_object *light, t_intersect inter)
 
 	if (inter.obj)
 	{
+//		return inter.obj->color;
 		color = iter_light(inter, (t_spotlight *)&light[0]);
 		color2 = iter_light(inter, (t_spotlight *)&light[1]);
 		return ((t_rgba) {
@@ -221,7 +229,7 @@ void		ft_render2(t_env env)
 			ray.pos = (t_vertex3) {0, 0, 0};
 			ray.dir.x = (2 *((x) * invW) - 1) * angle * ratio;
 			ray.dir.y = (1 - 2 *((y) * invH)) * angle;
-			ray.dir.z = -1;
+			ray.dir.z = 1;
 			ray.dir = vector_unit(ray.dir);
 			ft_trace_ray(env, ray, &rgba);
 			ft_put_pixel_to_image(env.img, x, y, rgba);
