@@ -33,7 +33,8 @@ SRCS += src/framework_collision/fk_collision.c					\
 
 SRCS += src/framework_light/fk_light.c							\
 		src/framework_light/fk_normal_sphere.c					\
-		src/framework_light/fk_normal_cylinder.c					\
+		src/framework_light/fk_normal_cylinder.c				\
+		src/framework_light/fk_normal_cone.c					\
 		src/framework_light/fk_normal_plan.c					\
 		src/framework_light/fk_luminance.c						\
 		src/framework_light/fk_shadow.c
@@ -58,7 +59,8 @@ SRCS += src/framework_rgb/fk_rgb.c
 
 SRCS +=	src/framework_shape/fk_intersect_sphere.c				\
 		src/framework_shape/fk_intersect_plan.c					\
-		src/framework_shape/fk_intersect_cylinder.c
+		src/framework_shape/fk_intersect_cylinder.c				\
+		src/framework_shape/fk_intersect_cone.c
 
 INC_FILES = include/ft_env.h									\
 			include/framework_light/fk_light.h					\
@@ -71,7 +73,8 @@ INC_FILES = include/ft_env.h									\
 			include/framework_shape/fk_objects.h				\
 			include/framework_shape/fk_sphere.h					\
 			include/framework_shape/fk_plan.h					\
-			include/framework_shape/fk_cylinder.h					\
+			include/framework_shape/fk_cylinder.h				\
+			include/framework_shape/fk_cone.h					\
 			include/framework_shape/fk_ray.h					\
 			include/framework_shape/fk_type.h					\
 			include/framework_rgb/fk_rgb.h						\
