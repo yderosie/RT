@@ -6,13 +6,14 @@
 /*   By: roblabla <robinlambertz+dev@gmail.c>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/03 21:06:20 by roblabla          #+#    #+#             */
-/*   Updated: 2015/12/17 18:12:47 by mbarbari         ###   ########.fr       */
+/*   Updated: 2016/01/29 18:24:34 by roblabla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "framework_rgb/fk_rgb.h"
 #include "framework_math/fk_math.h"
+#include <stdio.h>
 #include <stdarg.h>
 
 t_dword				rgba_to_dword(t_rgba rgba)
@@ -30,19 +31,13 @@ t_rgba				dword_to_rgba(t_dword color)
 	return (rgba);
 }
 
-t_rgba				color_cpy(t_rgba b)
-{
-	return ((t_rgba){b.r, b.g, b.b, b.a});
-}
-
 t_rgba				color_div(t_rgba rgba, unsigned int n)
 {
-	t_rgba ret;
-
-	ret.r = (unsigned int)(rgba.r / n);
-	ret.g = (unsigned int)(rgba.g / n);
-	ret.b = (unsigned int)(rgba.b / n);
-	return (ret);
+	rgba.r = rgba.r / n;
+	rgba.g = rgba.g / n;
+	rgba.b = rgba.b / n;
+	rgba.a = rgba.a / n;
+	return (rgba);
 }
 
 t_rgba				color_mul(t_rgba rgba, double n)
@@ -65,23 +60,44 @@ t_rgba					color_product(t_rgba rgba, t_rgba rgba2)
 
 t_rgba					color_sum(t_rgba a, t_rgba b)
 {
-	return ((t_rgba){a.r + b.r, a.g + b.g, a.b + b.b, 0});
+	return ((t_rgba){	FT_MIN(a.r + b.r, 255),
+						FT_MIN(a.g + b.g, 255),
+						FT_MIN(a.b + b.b, 255),
+						FT_MIN(a.a + b.a, 255)});
 }
 
-t_rgba					color_moy(unsigned int n, ...)
+t_rgba					color_moy(unsigned int len, ...)
 {
 	va_list ap;
-	unsigned int len;
+	unsigned int n;
+	t_rgba		tmp;
 	t_rgba		newcolor;
 
-	len = n;
-	ft_bzero(&newcolor, sizeof(t_rgba));
-	if (len <= 0)
+	if (len == 0)
 		return ((t_rgba){0, 0, 0, 0});
-	va_start(ap, n);
-	newcolor = color_cpy(va_arg(ap, t_rgba));
-	while (len > 0)
-		newcolor = color_sum(newcolor, va_arg(ap, t_rgba));
+	va_start(ap, len);
+	ft_bzero(&newcolor, sizeof(t_rgba));
+	n = 0;
+	while (n < len)
+	{
+		tmp = va_arg(ap, t_rgba);
+		newcolor.r += tmp.r;
+		newcolor.g += tmp.g;
+		newcolor.b += tmp.b;
+		newcolor.a += tmp.a;
+		n++;
+	}
+	newcolor = color_div(newcolor, len);
 	va_end(ap);
-	return (color_div(newcolor, n));
+	return (newcolor);
+}
+
+t_rgba				color_canonicalize(t_rgba c)
+{
+	return ((t_rgba) {
+		FT_MIN(c.r, 255),
+		FT_MIN(c.g, 255),
+		FT_MIN(c.b, 255),
+		FT_MIN(c.a, 255)
+	});
 }

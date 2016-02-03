@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/28 12:48:34 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/07 18:20:49 by mbarbari         ###   ########.fr       */
+/*   Updated: 2016/02/02 17:08:37 by roblabla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ t_vector3		vector_cpy(t_vector3 u);
 t_vector3		vector_unit(t_vector3 u);
 t_vertex3		vector_translation(t_vector3 u, t_vertex3 v);
 
-t_vector3		vector_mul(t_vector3 u, float r);
+t_vector3		vector_add(t_vector3 u, float r);
+t_vector3		vector_sub(t_vector3 u, float r);
 t_vector3		vector_div(t_vector3 u, float r);
 /*
 ** ****************************************************************************
