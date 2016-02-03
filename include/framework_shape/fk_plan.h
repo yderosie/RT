@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 20:42:15 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/15 18:20:09 by mbarbari         ###   ########.fr       */
+/*   Updated: 2016/01/27 14:42:55 by roblabla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ struct				s_plan
 {
 	t_type			type;
 	t_rgba			color;
+	float			reflection_index;
 	t_vertex3		pos;
 	t_vector3		normal;
 };

@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 16:40:50 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/23 18:20:22 by mbarbari         ###   ########.fr       */
+/*   Updated: 2016/01/27 14:42:34 by roblabla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ struct				s_cylinder
 {
 	t_type			type;
 	t_rgba			color;
+	float			reflection_index;
 	t_vertex3		pos;
 	t_vector3		dir;
 	float			radius;

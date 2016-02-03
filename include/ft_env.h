@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/01 16:09:24 by mbarbari          #+#    #+#             */
-/*   Updated: 2016/01/07 16:02:44 by roblabla         ###   ########.fr       */
+/*   Updated: 2016/01/27 18:04:01 by roblabla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,6 @@ struct				s_env
 	t_fctnormal		fctnormal[DEFAULT];
 };
 
-void		ft_setup_inter(t_fctinter *inter);
-void		ft_setup_normal(t_fctnormal *normal);
+void		ft_setup_inter(t_fctinter inter[DEFAULT]);
+void		ft_setup_normal(t_fctnormal normal[DEFAULT]);
 #endif

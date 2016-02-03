@@ -6,7 +6,7 @@
 /*   By: roblabla <robinlambertz+dev@gmail.c>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/03 00:30:13 by roblabla          #+#    #+#             */
-/*   Updated: 2015/12/02 20:03:02 by mbarbari         ###   ########.fr       */
+/*   Updated: 2016/01/29 16:35:50 by roblabla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,17 @@
 typedef unsigned long t_dword;
 typedef struct	s_rgba
 {
-	unsigned char	r;
-	unsigned char	g;
-	unsigned char	b;
-	unsigned char	a; // TODO : reserved
+	unsigned int	r;
+	unsigned int	g;
+	unsigned int	b;
+	unsigned int	a; // TODO : reserved
 }				t_rgba;
 
 t_dword					rgba_to_dword(t_rgba rgba);
 t_rgba					dword_to_rgba(t_dword color);
+t_rgba					color_sum(t_rgba a, t_rgba b);
 t_rgba					color_mul(t_rgba rgba, double n);
+t_rgba					color_moy(unsigned int len, ...);
 t_rgba					color_product(t_rgba rgba, t_rgba rgba2);
 
 #endif
