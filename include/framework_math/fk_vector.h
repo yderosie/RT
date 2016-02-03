@@ -5,8 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: barbare <barbare@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+<<<<<<< HEAD
 /*   Created: 2016/02/01 21:06:54 by barbare           #+#    #+#             */
 /*   Updated: 2016/02/01 23:00:48 by barbare          ###   ########.fr       */
+=======
+/*   Created: 2015/10/28 12:48:34 by mbarbari          #+#    #+#             */
+/*   Updated: 2016/02/02 17:08:37 by roblabla         ###   ########.fr       */
+>>>>>>> 5e5fbe9f00c93ff26bd80cc16616ad1061f46d09
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +51,12 @@ t_vertex3	vector_translation(t_vector3 u, t_vertex3 v);
 t_vector3	vector_mul(t_vector3 u, float r);
 t_vector3	vector_div(t_vector3 u, float r);
 
+<<<<<<< HEAD
+=======
+t_vector3		vector_add(t_vector3 u, float r);
+t_vector3		vector_sub(t_vector3 u, float r);
+t_vector3		vector_div(t_vector3 u, float r);
+>>>>>>> 5e5fbe9f00c93ff26bd80cc16616ad1061f46d09
 /*
 ** ****************************************************************************
 ** fk_vectoriel_math.c

@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/29 21:18:55 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/13 23:47:54 by mbarbari         ###   ########.fr       */
+/*   Updated: 2016/01/27 14:43:02 by roblabla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ struct				s_sphere
 {
 	t_type			type;
 	t_rgba			color;
+	float			reflection_index;
 	t_vertex3		pos;
 	float			radius;
 };

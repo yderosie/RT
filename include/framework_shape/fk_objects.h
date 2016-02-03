@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/29 12:32:17 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/13 22:27:21 by mbarbari         ###   ########.fr       */
+/*   Updated: 2016/01/27 14:42:44 by roblabla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ struct				s_object
 {
 	t_type			type;
 	t_rgba			color;
+	float			reflection_index;
 	char			stuff[128];
 };
 
