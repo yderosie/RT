@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 16:28:56 by mbarbari          #+#    #+#             */
-/*   Updated: 2016/01/28 12:13:42 by yderosie         ###   ########.fr       */
+/*   Updated: 2016/02/01 14:53:11 by barbare          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ t_bool			intersect_cylinder(t_ray ray, t_cylinder* obj, float *t)
 	float		d;
 	t_vector3	etoc;
 
-	//etoc = vector_substract(obj->pos, ray.pos);
 	etoc = vector_substract(ray.pos, obj->pos);
 	a = vector_dotproduct(ray.dir, ray.dir) - SQUARE(vector_dotproduct(ray.dir, obj->dir));
 	b = (vector_dotproduct(ray.dir, etoc) - vector_dotproduct(ray.dir, obj->dir) * vector_dotproduct(etoc, obj->dir))* 2;

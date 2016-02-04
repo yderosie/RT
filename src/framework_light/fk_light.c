@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/27 18:30:44 by mbarbari          #+#    #+#             */
-/*   Updated: 2016/01/27 17:31:26 by barbare          ###   ########.fr       */
+/*   Updated: 2016/02/04 15:04:19 by barbare          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,10 @@ static t_color3	lambert_low(t_intersect inter, t_spotlight light, t_color3 ptcol
 	float		angle;
 	t_vector3	v_light;
 
-	v_light = vector_substract(inter.pos, light.pos);
-	v_light = vector_scale(v_light, 1 / vector_dotproduct(v_light, v_light));
-	angle = vector_dotproduct(inter.v_normal, vector_unit(v_light));
-	return (color_product(color_mul(ptcolor, light.intensity),
-				color_mul(light.color, angle)));
+	v_light = vector_unit(vector_substract(light.pos, inter.pos));
+	angle = vector_dotproduct(light.dir, inter.v_normal) * light.intensity;
+	return (vector_product(vector_mul(ptcolor, light.intensity),
+				vector_mul(light.color, angle)));
 }
 
 t_color3			iter_light(t_intersect inter, t_spotlight *light)
