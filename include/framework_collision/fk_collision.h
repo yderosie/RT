@@ -6,14 +6,13 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/28 12:45:47 by mbarbari          #+#    #+#             */
-/*   Updated: 2016/01/29 16:33:14 by roblabla         ###   ########.fr       */
+/*   Updated: 2016/02/03 19:27:53 by barbare          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FK_COLLISION_H
 # define FK_COLLISION_H
 
-# include "framework_rgb/fk_rgb.h"
 # include "framework_math/fk_vector.h"
 # include "framework_shape/fk_ray.h"
 
@@ -23,7 +22,7 @@
 ** fk_collision.c
 ** ****************************************************************************
 */
-t_rgba		ft_trace_ray(t_env env, t_ray ray, int depth, float *dist_out);
+t_color3		ft_trace_ray(t_env env, t_ray ray, int depth, float *dist_out);
 void		ft_render(t_env env);
 
 /*

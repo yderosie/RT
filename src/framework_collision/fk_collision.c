@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/01 20:34:17 by mbarbari          #+#    #+#             */
-/*   Updated: 2016/02/03 17:08:36 by roblabla         ###   ########.fr       */
+/*   Updated: 2016/02/04 15:03:44 by barbare          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 #include "framework_math/fk_math.h"
 
 #define VECTOR_UP ((t_vector3) { .x = 0, .y = 1, .z = 0 })
+#define COLOR_ZERO ((t_color3) { .r = 0, .g = 0, .b = 0 })
 
 
 inline t_vertex3	vector_to_vertex(t_vector3 vec)
@@ -49,90 +50,124 @@ static	void	create_scene(t_object *light, t_object *arr)
 {
 	ft_memcpy(	arr + 0,
 				&(t_sphere){	SPHERE,
-								(t_rgba) {255, 139, 24, 0},
+								(t_color3) {.r = 255, .g = 139, 24},
 								0.2f,
-								(t_vertex3) {0, 0, 20},
+								(t_vertex3) {.x = 0, .y = 0, .z = 20},
 								1.00},
 				sizeof(t_sphere));
 
 	ft_memcpy(	arr + 1, //plafond
 				&(t_plan){	PLANE,
-								(t_rgba) {255, 100, 0, 0},
+								(t_color3) {.r = 255, .g = 100, .b = 0},
 								0.0f,
-								(t_vertex3) {0, 10, 0},
-								vector_unit((t_vector3) {0, 40, 5})},
+								(t_vertex3) {.x = 0, .y = 10, .z = 0},
+								vector_unit((t_vector3) {.x = 0, .y = 40, .z = 5})},
 				sizeof(t_plan));
 
 	ft_memcpy(	arr + 2,	// sol
 				&(t_plan){	PLANE,
-								(t_rgba) {200, 255, 0, 0},
+								(t_color3) {.r = 200, .g = 255, .b = 0},
 								0.0f,
-								(t_vertex3) {0, -10, 0},
-								vector_unit((t_vector3) {0, -40, 5})},
+								(t_vertex3) {.x = 0, .y = -10, .z = 0},
+								vector_unit((t_vector3) {.x = 0, .y = -40, .z = 5})},
 				sizeof(t_plan));
 
 	ft_memcpy(	arr + 3,	//Mur Gauche
 				&(t_plan){	PLANE,
-								(t_rgba) {200, 255, 100, 0},
+								(t_color3) {.r = 200, .g = 255, .b = 10},
 								0.0f,
-								(t_vertex3) {-10, 0, 0},
-								vector_unit((t_vector3) {-100, 0, 5})},
+								(t_vertex3) {.x = -10, .y = 0, .z = 0},
+								vector_unit((t_vector3) {.x = -100, .y = 0, .z = 5})},
 				sizeof(t_plan));
 
 	ft_memcpy(	arr + 4,	// mur droite
 				&(t_plan){	PLANE,
-								(t_rgba) {200, 255, 100, 0},
+								(t_color3) {.r = 200, .g = 255, .b = 10},
 								0.0f,
-								(t_vertex3) {10, 0, 0},
-								vector_unit((t_vector3) {100, 0, 5})},
+								(t_vertex3) {.x = 10, .y = 0, .z = 0},
+								vector_unit((t_vector3) {.x = -100, .y = 0, .z = -5})},
 				sizeof(t_plan));
 
 	ft_memcpy(	arr + 5,	// Sphere 2
 				&(t_sphere){	SPHERE,
-								(t_rgba) {200, 255, 200, 0},
+								(t_color3) {.r = 200, .g = 255, .b = 20},
 								1.0f,
-								(t_vertex3) {1, 0, 2},
+								(t_vertex3) {.x = 1, .y = 0, .z = 2},
 								0.20},
 				sizeof(t_sphere));
 
 	ft_memcpy(light + 0,
 				&(t_spotlight){	SPOTLIGHT,
-								(t_rgba) {255, 255, 255, 0},
+								(t_color3) {.r = 255, .g = 255, .b = 20},
 								0.0f,
-								(t_vertex3) {-3, -1.79233, 0},
-								(t_vector3) {1, 0, 0},
+								(t_vertex3) {.x = -3, .y = -1.79233, .z = 0},
+								(t_vector3) {.x = 1, .y = 0, .z = 0},
 								1.},
+				sizeof(t_spotlight));
+
+	ft_memcpy(	arr + 5,	// mur fond
+				&(t_plan){	PLANE,
+								(t_color3) {.r = 20, .g = 55, .b = 40},
+								0.0f,
+								(t_vertex3) {.x = 0, .y = 0, .z = 30},
+								vector_unit((t_vector3) {.x = 0, .y = 0, .z = 5})},
+				sizeof(t_plan));
+
+	ft_memcpy(	arr + 0,
+				&(t_cone){	CONE,
+								(t_color3) {.r = 200, .g = 155, .b = 85},
+								0.0f,
+								(t_vertex3) {.x = 0, .y = -2.3, .z = 25},
+								vector_unit((t_vector3) {.x = -0, .y = -1, .z = 0}),
+								1., 0},
+				sizeof(t_cone));
+
+	ft_memcpy(	arr + 6,
+				&(t_cylinder){	CYLINDER,
+								(t_color3) {.r = 100,.g = 155, .b = 185},
+								0.0f,
+								(t_vertex3) {.x = 0, .y = 0, .z = 15},
+								vector_unit((t_vector3) {.x = 0, .y = 1, .z = 0}),
+								1},
+				sizeof(t_cylinder));
+
+	ft_memcpy(light + 0,
+				&(t_spotlight){	SPOTLIGHT,
+								(t_color3) {.r = 255,.g = 255, .b = 255},
+								0.0f,
+								(t_vertex3) {.x = 0, .y = 0, .z = 0},
+								vector_unit((t_vector3) {.x = 0, .y = 0, .z = 1}),
+								1.0},
 				sizeof(t_spotlight));
 
 	ft_memcpy(light + 1,
 				&(t_spotlight){	SPOTLIGHT,
-								(t_rgba) {255, 255, 255, 0},
+								(t_color3) {.r = 255,.g = 255, .b = 255},
 								0.0f,
-								(t_vertex3) {3, 2.688572153, 0},
-								(t_vector3) {1, 2, 0},
+								(t_vertex3) {.x = 3, .y = 2.7, .z = 0},
+								(t_vector3) {.x = 1, .y = 2, .z = 0},
 								0.00},
 				sizeof(t_spotlight));
-	arr[6].type = DEFAULT;
+	arr[7].type = DEFAULT;
 }
 
 
-static	t_rgba	getfinalcolor(t_object *light, t_intersect inter)
+static	t_color3	getfinalcolor(t_object *light, t_intersect inter)
 {
-	t_rgba			color;
-	t_rgba			color2;
+	t_color3			color;
+	t_color3			color2;
 
 	if (inter.obj)
 	{
-//		return inter.obj->color;
 		color = iter_light(inter, (t_spotlight *)&light[0]);
 		color2 = iter_light(inter, (t_spotlight *)&light[1]);
-		return ((t_rgba) {
-			(color.r + color2.r) / 2,
-			(color.g + color2.g) / 2,
-			(color.b + color2.b) / 2, 0
+		return ((t_color3) {
+			.r = (color.r + color2.r) / 2.,
+			.g = (color.g + color2.g) / 2.,
+			.b = (color.b + color2.b) / 2.
 		});
 	}
-	return ((t_rgba) { 17, 25, 37, 0 });
+	return ((t_color3) { .r = 17, .g = 25, .b = 37 });
 }
 
 t_ray	create_reflection(t_ray ray, t_intersect inter)
@@ -142,18 +177,18 @@ t_ray	create_reflection(t_ray ray, t_intersect inter)
 
 	norm = inter.v_normal;
 	newray.dir = vector_substract(ray.dir,
-			vector_scale(norm, 2.0f * vector_dotproduct(ray.dir, norm)));
+			vector_mul(norm, 2.0f * vector_dotproduct(ray.dir, norm)));
 	newray.pos = inter.pos;
 	return (newray);
 }
 
-t_rgba	ft_trace_ray(t_env env, t_ray ray, int depth, float *dist_out)
+t_color3	ft_trace_ray(t_env env, t_ray ray, int depth, float *dist_out)
 {
 	t_object		arr[16];
 	t_object		light[16];
 	t_intersect		inter;
-	t_rgba			outcolor;
-	t_rgba			refl_color;
+	t_color3		outcolor;
+	t_color3		refl_color;
 	int				i;
 	float			dist;
 	float			_dist_out;
@@ -161,33 +196,32 @@ t_rgba	ft_trace_ray(t_env env, t_ray ray, int depth, float *dist_out)
 	if (dist_out == NULL)
 		dist_out = &_dist_out;
 	*dist_out = INFINITY;
+	outcolor = (t_color3) { .r = 17, .g = 25, .b = 37};
 	i = -1;
 	create_scene(light, arr);
 	inter.obj = NULL;
 	while (++i < 16 && arr[i].type != DEFAULT)
-	{
 		if (env.fctinter[arr[i].type](ray, arr + i, &dist))
 			if ((!inter.obj || dist < *dist_out) && dist > 0.1)
 			{
 				inter.obj = &arr[i];
 				*dist_out = dist;
 			}
-	}
-	outcolor = (t_rgba) { 17, 25, 37, 0 };
 	if (inter.obj)
 	{
 		inter.pos = create_intersect(ray, *dist_out);
-		inter.v_normal = env.fctnormal[inter.obj->type](inter.pos, inter.obj);
+		inter.v_normal = env.fctnormal[inter.obj->type](ray, inter.pos, inter.obj);
 		outcolor = getfinalcolor(light, inter);
-		if (inter.obj->reflection_index != 0.0 && depth < 3) {
+		if (inter.obj->reflection_index != 0.0 && depth < 3)
+		{
 			refl_color = ft_trace_ray(env, create_reflection(ray, inter), depth + 1, NULL);
-			outcolor = color_sum(outcolor, color_mul(refl_color, inter.obj->reflection_index));
+			outcolor = vector_sum(outcolor, vector_mul(refl_color, inter.obj->reflection_index));
 		}
 	}
 	return outcolor;
 }
 
-void			ft_put_pixel_to_image(t_img img, int x, int y, t_rgba color)
+void			ft_put_pixel_to_image(t_img img, int x, int y, t_color3 color)
 {
 	int				addr;
 
@@ -199,7 +233,7 @@ void			ft_put_pixel_to_image(t_img img, int x, int y, t_rgba color)
 
 void		ft_render2(t_env env)
 {
-	t_rgba	rgba;
+	t_color3	rgba;
 	t_ray	ray;
 	float	y;
 	float	x;
@@ -215,13 +249,13 @@ void		ft_render2(t_env env)
 		x = 0;
 		while (x < env.resolution.width)
 		{
-			ray.pos = (t_vertex3) {0, 0, 0};
 			ray.dir.x = (2. *(x * invW) - 1.) * angle * ratio;
 			ray.dir.y = (1. - 2. * (y * invH)) * angle;
+			ray.pos = env.pos_absolute_camera;
 			ray.dir.z = 1;
 			ray.dir = vector_unit(ray.dir);
 			rgba = ft_trace_ray(env, ray, 0, NULL);
-			ft_put_pixel_to_image(env.img, x, y, color_moy(1, rgba));
+			ft_put_pixel_to_image(env.img, x, y, rgba);
 			x++;
 		}
 		y++;

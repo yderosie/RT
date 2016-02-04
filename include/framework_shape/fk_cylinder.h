@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 16:40:50 by mbarbari          #+#    #+#             */
-/*   Updated: 2016/01/27 14:42:34 by roblabla         ###   ########.fr       */
+/*   Updated: 2016/02/03 19:36:27 by barbare          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "libft.h"
 # include "framework_shape/fk_type.h"
-# include "framework_rgb/fk_rgb.h"
 # include "framework_shape/fk_ray.h"
 # include "framework_collision/fk_intersect.h"
 # include "framework_math/fk_vector.h"
@@ -25,7 +24,7 @@ typedef struct		s_cylinder t_cylinder;
 struct				s_cylinder
 {
 	t_type			type;
-	t_rgba			color;
+	t_color3			color;
 	float			reflection_index;
 	t_vertex3		pos;
 	t_vector3		dir;

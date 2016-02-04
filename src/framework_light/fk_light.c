@@ -14,7 +14,7 @@
 #include "framework_shape/fk_type.h"
 #include <stdlib.h>
 
-static t_rgba	lambert_low(t_intersect inter, t_spotlight light, t_rgba ptcolor)
+static t_color3	lambert_low(t_intersect inter, t_spotlight light, t_color3 ptcolor)
 {
 	float		angle;
 	t_vector3	v_light;
@@ -26,7 +26,7 @@ static t_rgba	lambert_low(t_intersect inter, t_spotlight light, t_rgba ptcolor)
 				color_mul(light.color, angle)));
 }
 
-t_rgba			iter_light(t_intersect inter, t_spotlight *light)
+t_color3			iter_light(t_intersect inter, t_spotlight *light)
 {
 	return (lambert_low(inter, *light, ((t_object *)inter.obj)->color));
 }

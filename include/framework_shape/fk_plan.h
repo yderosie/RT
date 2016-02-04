@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 20:42:15 by mbarbari          #+#    #+#             */
-/*   Updated: 2016/01/27 14:42:55 by roblabla         ###   ########.fr       */
+/*   Updated: 2016/02/03 19:36:19 by barbare          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "libft.h"
 # include "framework_shape/fk_type.h"
 # include "framework_math/fk_vector.h"
-# include "framework_rgb/fk_rgb.h"
 # include "framework_shape/fk_ray.h"
 
 
@@ -24,7 +23,7 @@ typedef struct		s_plan t_plan;
 struct				s_plan
 {
 	t_type			type;
-	t_rgba			color;
+	t_color3		color;
 	float			reflection_index;
 	t_vertex3		pos;
 	t_vector3		normal;
