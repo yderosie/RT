@@ -6,12 +6,12 @@
 #    By: rlambert <rlambert@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/03 11:25:08 by rlambert          #+#    #+#              #
-#    Updated: 2015/12/23 20:29:54 by mbarbari         ###   ########.fr        #
+#    Updated: 2016/02/04 15:06:23 by barbare          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = RT
-
+CC=clang
 PRINTF_PATH ?= ft_printf/
 
 LIBFT_PATH ?= libft/
@@ -23,10 +23,9 @@ else
 endif
 
 CFLAGS += -Wall -Wextra -Werror
-CFLAGS = -Wall -Wextra
-
+CFLAGS = -g -O0 -Wall -Wextra
 SRCS = src/main.c \
-	   src/ft_env.c
+		src/ft_env.c
 
 SRCS += src/framework_collision/fk_collision.c					\
 		src/framework_collision/fk_intersect.c
@@ -42,20 +41,19 @@ SRCS += src/framework_light/fk_light.c							\
 SRCS += src/framework_math/math/fk_isqrt.c
 
 SRCS += src/framework_math/vector/fk_vcpy.c						\
-        src/framework_math/vector/fk_vdiv.c						\
-        src/framework_math/vector/fk_vdotproduct.c				\
-        src/framework_math/vector/fk_vmagnitude.c				\
-        src/framework_math/vector/fk_vmul.c						\
-        src/framework_math/vector/fk_vnew.c						\
-        src/framework_math/vector/fk_vproduct.c					\
-        src/framework_math/vector/fk_vreverse.c					\
-        src/framework_math/vector/fk_vscale.c					\
-        src/framework_math/vector/fk_vsubstract.c				\
-        src/framework_math/vector/fk_vsum.c						\
-        src/framework_math/vector/fk_vtranslation.c				\
-        src/framework_math/vector/fk_vunit.c
-
-SRCS += src/framework_rgb/fk_rgb.c
+		src/framework_math/vector/fk_vdiv.c						\
+		src/framework_math/vector/fk_vmul.c						\
+		src/framework_math/vector/fk_vsum.c						\
+		src/framework_math/vector/fk_vsub.c						\
+		src/framework_math/vector/fk_vadd.c						\
+		src/framework_math/vector/fk_vproduct.c					\
+		src/framework_math/vector/fk_vdotproduct.c				\
+		src/framework_math/vector/fk_vmagnitude.c				\
+		src/framework_math/vector/fk_vnew.c						\
+		src/framework_math/vector/fk_vreverse.c					\
+		src/framework_math/vector/fk_vsubstract.c				\
+		src/framework_math/vector/fk_vtranslation.c				\
+		src/framework_math/vector/fk_vunit.c
 
 SRCS +=	src/framework_shape/fk_intersect_sphere.c				\
 		src/framework_shape/fk_intersect_plan.c					\
@@ -77,8 +75,7 @@ INC_FILES = include/ft_env.h									\
 			include/framework_shape/fk_cone.h					\
 			include/framework_shape/fk_ray.h					\
 			include/framework_shape/fk_type.h					\
-			include/framework_rgb/fk_rgb.h						\
-			include/framework_math/fk_vectoriel.h				\
+			include/framework_math/stuff.noth					\
 			include/framework_math/fk_math.h
 
 
