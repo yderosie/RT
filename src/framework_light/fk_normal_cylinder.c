@@ -14,7 +14,7 @@
 #include "framework_math/fk_math.h"
 
 
-t_vector3		normal_cylinder(t_vector3 inter, t_cylinder *obj)
+t_vector3		normal_cylinder(t_ray ray, t_vector3 inter, t_cylinder *obj)
 {
 	float		radius;
 	t_vector3	ctop;

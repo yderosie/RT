@@ -15,13 +15,11 @@
 #include "framework_math/fk_math.h"
 
 
-t_vector3		normal_cone(t_vector3 inter, t_cone *obj)
+t_vector3		normal_cone(t_ray ray, t_vector3 inter, t_cone *obj)
 {
-	float		len;
-	t_vector3	ctop;
-	t_vector3	qtop;
 	t_vector3	v_normal;
 
+	(void)ray;
 	v_normal.x = inter.x - obj->pos.x;
 	v_normal.y = 0;
 	v_normal.z = inter.z = obj->pos.z;

@@ -13,12 +13,11 @@
 #include "framework_light/fk_normal_sphere.h"
 #include "framework_math/fk_math.h"
 
-t_vector3		normal_sphere(t_vector3 inter, t_sphere *obj)
+t_vector3		normal_sphere(t_ray ray, t_vector3 inter, t_sphere *obj)
 {
 	t_vector3	v_normal;
-	t_vector3	v_ray;
-	float		mod;
 
+	(void)ray;
 	v_normal = vector_substract(obj->pos, inter);
 	return (vector_unit(v_normal));
 }
