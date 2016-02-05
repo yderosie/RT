@@ -25,10 +25,3 @@ void		skip_blanks(char **json)
 	while (**json == ' ' || **json == '\n' || **json == '\t' || **json == '	')
 		(*json)++;
 }
-
-int			if_number(char c)
-{
-	if (c != '+' && c != '-' && (!ft_isdigit(c)) && c != '.' && c != 'e')
-		return (0);
-	return (1);
-}

@@ -79,7 +79,7 @@ static void		fill_arr(t_value val, int idx, t_object *data)
 			json_get(val.data.obj, "radius").data.number
 		}, sizeof(t_cylinder));
 	}
-	/*if (ft_strequ(json_get(val.data.obj, "type").data.s, "CONE"))
+	if (ft_strequ(json_get(val.data.obj, "type").data.s, "CONE"))
 	{
 		ft_memcpy(data + idx, &(t_cone){
 			CONE,
@@ -88,7 +88,7 @@ static void		fill_arr(t_value val, int idx, t_object *data)
 			(t_vector3){json_get(val.data.obj, "normal.x").data.number, json_get(val.data.obj, "normal.y").data.number, json_get(val.data.obj, "normal.z").data.number},
 			json_get(val.data.obj, "radius").data.number
 		}, sizeof(t_cone));
-	}*/
+	}
 		if (ft_strequ(json_get(val.data.obj, "type").data.s, "SPOTLIGHT"))
 	{
 		ft_memcpy(data + idx, &(t_spotlight){

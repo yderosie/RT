@@ -16,8 +16,6 @@
 t_vector3		normal_sphere(t_vector3 inter, t_sphere *obj)
 {
 	t_vector3	v_normal;
-	t_vector3	v_ray;
-	float		mod;
 
 	v_normal = vector_substract(obj->pos, inter);
 	return (vector_unit(v_normal));

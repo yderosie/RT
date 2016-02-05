@@ -19,7 +19,6 @@ t_vector3		normal_cylinder(t_vector3 inter, t_cylinder *obj)
 	float		radius;
 	t_vector3	ctop;
 	t_vector3	qtop;
-	t_vector3	v_normal;
 
 	ctop = vector_substract(inter, obj->pos);
 	radius = vector_dotproduct(ctop, obj->dir);

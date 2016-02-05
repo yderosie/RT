@@ -32,7 +32,7 @@ t_value		json_get(t_json *x, char *str)
 	return (value);
 }
 
-void	json_foreach_obj(t_json *x, void (cb)(t_value, char *s, void*), void *a)
+void	json_foreach_obj(t_json *x, void (cb)(t_value, char *s, t_object*), void *a)
 {
 	while (x != NULL)
 	{
@@ -41,7 +41,7 @@ void	json_foreach_obj(t_json *x, void (cb)(t_value, char *s, void*), void *a)
 	}
 }
 
-void	json_foreach_arr(t_json_arr *x, void (cb)(t_value, int, void*), void *a)
+void	json_foreach_arr(t_json_arr *x, void (cb)(t_value, int, t_object*), void *a)
 {
 	int i;
 
