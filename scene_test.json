@@ -1,0 +1,153 @@
+{
+	"scene":
+	[
+		{
+			"type":"SPHERE",
+			"color": {
+				"red": 255,
+				"green": 139,
+				"blue": 25
+			},
+			"pos":{
+				"x":0,
+				"y":0,
+				"z":2
+			},
+			"reflection_index": 1.0,
+			"radius": 0.20
+		},
+		{
+			"type": "PLANE",
+			"color": {
+				"red":200, 
+				"green":255,
+				"blue":0
+			},
+			"pos": {
+				"x":0,
+				"y":-10,
+				"z":0
+			},
+			"reflection_index": 0.0,
+			"normal": {
+				"x":0,
+				"y":-40,
+				"z":-5
+			}
+		},
+		{
+			"type":"PLANE",
+			"color":{
+				"red":255,
+				"green":100,
+				"blue":0
+			},
+			"pos":{
+				"x":0,
+				"y":10,
+				"z":0
+			},
+			"reflection_index": 0.0,
+			"normal":{
+				"x":0,
+				"y":40,
+				"z":5
+			}
+		},
+		{
+			"type":"PLANE",
+			"color":{
+				"red":200,
+				"green":255,
+				"blue":100
+			},
+			"pos":{
+				"x":-10,
+				"y":0,
+				"z":0
+			},
+			"reflection_index": 0.0,
+			"normal":{
+				"x":-100,
+				"y":0,
+				"z":5
+			}
+		},
+		{
+			"type":"PLANE",
+			"color":{
+				"red":200,
+				"green":255,
+				"blue":100
+			},
+			"pos":{
+				"x":10,
+				"y":0,
+				"z":0
+			},
+			"reflection_index": 0.0,
+			"normal":{
+				"x":100,
+				"y":0,
+				"z":5
+			}
+		},
+		{
+			"type":"SPHERE",
+			"color":{
+				"red":200,
+				"green":255,
+				"blue":200
+			},
+			"pos":{
+				"x":1,
+				"y":0,
+				"z":2
+			},
+			"reflection_index": 0.0,
+			"radius":0.20
+		}
+	],
+	"lights": [
+		{
+			"type": "SPOTLIGHT",
+			"color": {
+				"red": 255,
+				"green": 55,
+				"blue": 255
+			},
+			"pos": {
+				"x": -3,
+				"y": -1.79233,
+				"z": 0
+			},
+			"reflection_index": 0.0,
+			"dir": {
+				"x": 1,
+				"y": 0,
+				"z": 0
+			},
+			"intensity": 1.0
+		},
+		{
+			"type": "SPOTLIGHT",
+			"color": {
+				"red": 255,
+				"green": 255,
+				"blue": 255
+			},
+			"pos": {
+				"x": 3,
+				"y": 2.688572153,
+				"z": 0
+			},
+			"reflection_index": 0.0,
+			"dir": {
+				"x": 1,
+				"y": 2,
+				"z": 0
+			},
+			"intensity": 1.0
+		}
+	]
+}

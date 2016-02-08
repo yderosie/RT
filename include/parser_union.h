@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fk_normal_sphere.c                                 :+:      :+:    :+:   */
+/*   parser_union.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yderosie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/11 18:18:56 by mbarbari          #+#    #+#             */
-/*   Updated: 2016/01/23 16:32:26 by barbare          ###   ########.fr       */
+/*   Created: 2015/12/16 14:15:10 by yderosie          #+#    #+#             */
+/*   Updated: 2015/12/16 14:15:11 by yderosie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "framework_light/fk_normal_sphere.h"
-#include "framework_math/fk_math.h"
+#ifndef PARSER_UNION_H
 
-t_vector3		normal_sphere(t_vector3 inter, t_sphere *obj)
-{
-	t_vector3	v_normal;
+# define PARSER_UNION_H
 
-	v_normal = vector_substract(obj->pos, inter);
-	return (vector_unit(v_normal));
-}
+union			u_data {
+	struct s_json		*obj;
+	struct s_json_arr	*arr;
+	int					boolean;
+	char				*s;
+	double				number; // TODO : atod
+}				data;
+
+#endif

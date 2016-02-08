@@ -34,7 +34,13 @@ int		main(int argc, char **argv)
 
 	(void)argc;
 	(void)argv;
+	if (argc < 2)
+	{
+		ft_printf("Usage: %s scene.json\n", argv[0]);
+		return (0);
+	}
 	env.mlx = mlx_init();
+	env.file = argv[1];
 	env.resolution.width = 1224;
 	env.resolution.height = 780;
 	env.win = mlx_new_window(env.mlx, env.resolution.width, env.resolution.height, "RayTracer");

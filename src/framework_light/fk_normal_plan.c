@@ -15,5 +15,6 @@
 
 t_vector3		normal_plan(t_vector3 inter, t_plan *obj)
 {
+	(void)inter;
 	return (obj->normal);
 }

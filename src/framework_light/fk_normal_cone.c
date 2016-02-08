@@ -17,9 +17,6 @@
 
 t_vector3		normal_cone(t_vector3 inter, t_cone *obj)
 {
-	float		len;
-	t_vector3	ctop;
-	t_vector3	qtop;
 	t_vector3	v_normal;
 
 	v_normal.x = inter.x - obj->pos.x;
