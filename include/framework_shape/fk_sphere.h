@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/29 21:18:55 by mbarbari          #+#    #+#             */
-/*   Updated: 2016/02/03 19:31:36 by barbare          ###   ########.fr       */
+/*   Updated: 2016/02/09 19:04:21 by barbare          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct		s_sphere t_sphere;
 struct				s_sphere
 {
 	t_type			type;
-	t_color3			color;
+	t_color3		color;
 	float			reflection_index;
 	float			diffuse;
 	t_vertex3		pos;

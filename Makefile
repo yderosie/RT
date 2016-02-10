@@ -6,7 +6,7 @@
 #    By: rlambert <rlambert@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/03 11:25:08 by rlambert          #+#    #+#              #
-#    Updated: 2016/02/09 11:21:58 by barbare          ###   ########.fr        #
+#    Updated: 2016/02/10 14:27:16 by barbare          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,6 @@ SRCS += src/framework_math/math/fk_isqrt.c
 
 SRCS += src/framework_math/vector/fk_vcpy.c						\
 		src/framework_math/vector/fk_vdiv.c						\
-<<<<<<< HEAD
 		src/framework_math/vector/fk_vmul.c						\
 		src/framework_math/vector/fk_vsum.c						\
 		src/framework_math/vector/fk_vsub.c						\
@@ -60,7 +59,8 @@ SRCS += src/framework_math/vector/fk_vcpy.c						\
 		src/framework_math/vector/fk_vreverse.c					\
 		src/framework_math/vector/fk_vsubstract.c				\
 		src/framework_math/vector/fk_vtranslation.c				\
-		src/framework_math/vector/fk_vunit.c
+		src/framework_math/vector/fk_vunit.c					\
+		src/framework_math/vector/fk_vcolor.c
 
 SRCS +=	src/framework_shape/fk_intersect_sphere.c				\
 		src/framework_shape/fk_intersect_plan.c					\
