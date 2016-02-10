@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fk_normal_plan.c                                   :+:      :+:    :+:   */
+/*   fk_vcolor.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: barbare <barbare@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/14 17:08:36 by mbarbari          #+#    #+#             */
-/*   Updated: 2016/02/09 11:24:59 by barbare          ###   ########.fr       */
+/*   Created: 2016/02/09 11:33:40 by barbare           #+#    #+#             */
+/*   Updated: 2016/02/09 13:51:28 by barbare          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "framework_light/fk_normal_plan.h"
-#include "framework_math/fk_math.h"
+#include "framework_math/fk_vector.h"
 
-t_vector3		normal_plan(t_ray ray, t_vector3 inter, t_plan *obj)
+t_color3		color_new(float r, float g, float b)
 {
-	(void)ray, (void)inter, (void)obj;
-	return (obj->normal);
+	t_color3	color;
+	color = (t_color3) {.r = (r / 255.), .g = (g / 255.), .b = (b / 255.)};
+	return (color);
 }

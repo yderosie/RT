@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/27 18:32:26 by mbarbari          #+#    #+#             */
-/*   Updated: 2016/02/03 19:36:46 by barbare          ###   ########.fr       */
+/*   Updated: 2016/02/09 19:13:32 by barbare          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ struct				s_spotlight
 	t_type			type;
 	t_color3		color;
 	float			reflection_index;
+	float			diffuse;
 	t_vertex3		pos;
 	t_vector3		dir;
 	float			intensity;

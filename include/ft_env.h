@@ -40,6 +40,7 @@ struct				s_env
 	t_img			img;
 	t_resolution	resolution;
 	int				fov;
+	char			*file;
 	t_vertex3		pos_absolute_camera;
 	t_vector3		dir_camera;
 	t_fctinter		fctinter[DEFAULT];

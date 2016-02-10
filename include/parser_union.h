@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fk_normal_plan.c                                   :+:      :+:    :+:   */
+/*   parser_union.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yderosie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/14 17:08:36 by mbarbari          #+#    #+#             */
-/*   Updated: 2016/02/09 11:24:59 by barbare          ###   ########.fr       */
+/*   Created: 2015/12/16 14:15:10 by yderosie          #+#    #+#             */
+/*   Updated: 2015/12/16 14:15:11 by yderosie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "framework_light/fk_normal_plan.h"
-#include "framework_math/fk_math.h"
+#ifndef PARSER_UNION_H
 
-t_vector3		normal_plan(t_ray ray, t_vector3 inter, t_plan *obj)
-{
-	(void)ray, (void)inter, (void)obj;
-	return (obj->normal);
-}
+# define PARSER_UNION_H
+
+union			u_data {
+	struct s_json		*obj;
+	struct s_json_arr	*arr;
+	int					boolean;
+	char				*s;
+	double				number; // TODO : atod
+}				data;
+
+#endif

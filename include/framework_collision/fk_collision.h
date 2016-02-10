@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/28 12:45:47 by mbarbari          #+#    #+#             */
-/*   Updated: 2016/02/03 19:27:53 by barbare          ###   ########.fr       */
+/*   Updated: 2016/02/09 11:26:58 by barbare          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 ** fk_collision.c
 ** ****************************************************************************
 */
-t_color3		ft_trace_ray(t_env env, t_ray ray, int depth, float *dist_out);
+t_color3		ft_trace_ray(t_object *arr, t_object *light, t_ray ray, int depth, float *dist_out, t_env env);
 void		ft_render(t_env env);
 
 /*

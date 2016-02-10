@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/01 20:34:17 by mbarbari          #+#    #+#             */
-/*   Updated: 2016/02/04 15:03:44 by barbare          ###   ########.fr       */
+/*   Updated: 2016/02/09 19:08:14 by barbare          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include "ft_printf.h"
+#include "parser.h"
 #include "framework_shape/fk_type.h"
 #include "framework_collision/fk_collision.h"
 #include "framework_light/fk_normal_sphere.h"
@@ -21,6 +22,7 @@
 #include "framework_shape/fk_listobj.h"
 #include "framework_light/fk_light.h"
 #include "framework_math/fk_math.h"
+#include "framework_math/fk_vector.h"
 
 #define VECTOR_UP ((t_vector3) { .x = 0, .y = 1, .z = 0 })
 #define COLOR_ZERO ((t_color3) { .r = 0, .g = 0, .b = 0 })
@@ -46,111 +48,76 @@ t_vector3	vertex_to_vector(t_vertex3 vec)
 	return (tmp);
 }
 
-static	void	create_scene(t_object *light, t_object *arr)
+static void		fill_arr(t_value val, int idx, t_object *data)
 {
-	ft_memcpy(	arr + 0,
-				&(t_sphere){	SPHERE,
-								(t_color3) {.r = 255, .g = 139, 24},
-								0.2f,
-								(t_vertex3) {.x = 0, .y = 0, .z = 20},
-								1.00},
-				sizeof(t_sphere));
-
-	ft_memcpy(	arr + 1, //plafond
-				&(t_plan){	PLANE,
-								(t_color3) {.r = 255, .g = 100, .b = 0},
-								0.0f,
-								(t_vertex3) {.x = 0, .y = 10, .z = 0},
-								vector_unit((t_vector3) {.x = 0, .y = 40, .z = 5})},
-				sizeof(t_plan));
-
-	ft_memcpy(	arr + 2,	// sol
-				&(t_plan){	PLANE,
-								(t_color3) {.r = 200, .g = 255, .b = 0},
-								0.0f,
-								(t_vertex3) {.x = 0, .y = -10, .z = 0},
-								vector_unit((t_vector3) {.x = 0, .y = -40, .z = 5})},
-				sizeof(t_plan));
-
-	ft_memcpy(	arr + 3,	//Mur Gauche
-				&(t_plan){	PLANE,
-								(t_color3) {.r = 200, .g = 255, .b = 10},
-								0.0f,
-								(t_vertex3) {.x = -10, .y = 0, .z = 0},
-								vector_unit((t_vector3) {.x = -100, .y = 0, .z = 5})},
-				sizeof(t_plan));
-
-	ft_memcpy(	arr + 4,	// mur droite
-				&(t_plan){	PLANE,
-								(t_color3) {.r = 200, .g = 255, .b = 10},
-								0.0f,
-								(t_vertex3) {.x = 10, .y = 0, .z = 0},
-								vector_unit((t_vector3) {.x = -100, .y = 0, .z = -5})},
-				sizeof(t_plan));
-
-	ft_memcpy(	arr + 5,	// Sphere 2
-				&(t_sphere){	SPHERE,
-								(t_color3) {.r = 200, .g = 255, .b = 20},
-								1.0f,
-								(t_vertex3) {.x = 1, .y = 0, .z = 2},
-								0.20},
-				sizeof(t_sphere));
-
-	ft_memcpy(light + 0,
-				&(t_spotlight){	SPOTLIGHT,
-								(t_color3) {.r = 255, .g = 255, .b = 20},
-								0.0f,
-								(t_vertex3) {.x = -3, .y = -1.79233, .z = 0},
-								(t_vector3) {.x = 1, .y = 0, .z = 0},
-								1.},
-				sizeof(t_spotlight));
-
-	ft_memcpy(	arr + 5,	// mur fond
-				&(t_plan){	PLANE,
-								(t_color3) {.r = 20, .g = 55, .b = 40},
-								0.0f,
-								(t_vertex3) {.x = 0, .y = 0, .z = 30},
-								vector_unit((t_vector3) {.x = 0, .y = 0, .z = 5})},
-				sizeof(t_plan));
-
-	ft_memcpy(	arr + 0,
-				&(t_cone){	CONE,
-								(t_color3) {.r = 200, .g = 155, .b = 85},
-								0.0f,
-								(t_vertex3) {.x = 0, .y = -2.3, .z = 25},
-								vector_unit((t_vector3) {.x = -0, .y = -1, .z = 0}),
-								1., 0},
-				sizeof(t_cone));
-
-	ft_memcpy(	arr + 6,
-				&(t_cylinder){	CYLINDER,
-								(t_color3) {.r = 100,.g = 155, .b = 185},
-								0.0f,
-								(t_vertex3) {.x = 0, .y = 0, .z = 15},
-								vector_unit((t_vector3) {.x = 0, .y = 1, .z = 0}),
-								1},
-				sizeof(t_cylinder));
-
-	ft_memcpy(light + 0,
-				&(t_spotlight){	SPOTLIGHT,
-								(t_color3) {.r = 255,.g = 255, .b = 255},
-								0.0f,
-								(t_vertex3) {.x = 0, .y = 0, .z = 0},
-								vector_unit((t_vector3) {.x = 0, .y = 0, .z = 1}),
-								1.0},
-				sizeof(t_spotlight));
-
-	ft_memcpy(light + 1,
-				&(t_spotlight){	SPOTLIGHT,
-								(t_color3) {.r = 255,.g = 255, .b = 255},
-								0.0f,
-								(t_vertex3) {.x = 3, .y = 2.7, .z = 0},
-								(t_vector3) {.x = 1, .y = 2, .z = 0},
-								0.00},
-				sizeof(t_spotlight));
-	arr[7].type = DEFAULT;
+	if (ft_strequ(json_get(val.data.obj, "type").data.s, "SPHERE"))
+	{
+		ft_memcpy(data + idx, &(t_sphere){
+			SPHERE,
+			color_new(json_get(val.data.obj, "color.red").data.number, json_get(val.data.obj, "color.green").data.number, json_get(val.data.obj, "color.blue").data.number),
+			json_get(val.data.obj, "reflection_index").data.number,
+			json_get(val.data.obj, "diffuse").data.number,
+			vector_new(json_get(val.data.obj, "pos.x").data.number, json_get(val.data.obj, "pos.y").data.number, json_get(val.data.obj, "pos.z").data.number),
+			json_get(val.data.obj, "radius").data.number
+		}, sizeof(t_sphere));
+	}
+	if (ft_strequ(json_get(val.data.obj, "type").data.s, "PLANE"))
+	{
+		ft_memcpy(data + idx, &(t_plan){
+			PLANE,
+			color_new(json_get(val.data.obj, "color.red").data.number, json_get(val.data.obj, "color.green").data.number, json_get(val.data.obj, "color.blue").data.number),
+			json_get(val.data.obj, "reflection_index").data.number,
+			json_get(val.data.obj, "diffuse").data.number,
+			vector_new(json_get(val.data.obj, "pos.x").data.number, json_get(val.data.obj, "pos.y").data.number, json_get(val.data.obj, "pos.z").data.number),
+			vector_new(json_get(val.data.obj, "normal.x").data.number, json_get(val.data.obj, "normal.y").data.number, json_get(val.data.obj, "normal.z").data.number)
+		}, sizeof(t_plan));
+	}
+	if (ft_strequ(json_get(val.data.obj, "type").data.s, "CYLINDER"))
+	{
+		ft_memcpy(data + idx, &(t_cylinder){
+			CYLINDER,
+			color_new(json_get(val.data.obj, "color.red").data.number, json_get(val.data.obj, "color.green").data.number, json_get(val.data.obj, "color.blue").data.number),
+			json_get(val.data.obj, "reflection_index").data.number,
+			json_get(val.data.obj, "diffuse").data.number,
+			vector_new(json_get(val.data.obj, "pos.x").data.number, json_get(val.data.obj, "pos.y").data.number, json_get(val.data.obj, "pos.z").data.number),
+			vector_new(json_get(val.data.obj, "normal.x").data.number, json_get(val.data.obj, "normal.y").data.number, json_get(val.data.obj, "normal.z").data.number),
+			json_get(val.data.obj, "radius").data.number
+		}, sizeof(t_cylinder));
+	}
+	if (ft_strequ(json_get(val.data.obj, "type").data.s, "CONE"))
+	{
+		ft_memcpy(data + idx, &(t_cone){
+			CONE,
+			color_new(json_get(val.data.obj, "color.red").data.number, json_get(val.data.obj, "color.green").data.number, json_get(val.data.obj, "color.blue").data.number),
+			json_get(val.data.obj, "reflection_index").data.number,
+			json_get(val.data.obj, "diffuse").data.number,
+			vector_new(json_get(val.data.obj, "pos.x").data.number, json_get(val.data.obj, "pos.y").data.number, json_get(val.data.obj, "pos.z").data.number),
+			vector_new(json_get(val.data.obj, "normal.x").data.number, json_get(val.data.obj, "normal.y").data.number, json_get(val.data.obj, "normal.z").data.number),
+			json_get(val.data.obj, "radius").data.number,
+			0
+		}, sizeof(t_cone));
+	}
+	if (ft_strequ(json_get(val.data.obj, "type").data.s, "SPOTLIGHT"))
+	{
+		ft_memcpy(data + idx, &(t_spotlight){
+			SPOTLIGHT,
+			color_new(json_get(val.data.obj, "color.red").data.number, json_get(val.data.obj, "color.green").data.number, json_get(val.data.obj, "color.blue").data.number),
+			json_get(val.data.obj, "reflection_index").data.number,
+			json_get(val.data.obj, "diffuse").data.number,
+			vector_new(json_get(val.data.obj, "pos.x").data.number, json_get(val.data.obj, "pos.y").data.number, json_get(val.data.obj, "pos.z").data.number),
+			vector_new(json_get(val.data.obj, "dir.x").data.number, json_get(val.data.obj, "dir.y").data.number, json_get(val.data.obj, "dir.z").data.number),
+			json_get(val.data.obj, "intensity").data.number
+		}, sizeof(t_spotlight));
+	}
 }
 
+static	void	create_scene(t_value val, t_object *arr, t_object *light)
+{
+	json_foreach_arr(json_get(val.data.obj, "scene").data.arr, &fill_arr, arr);
+	arr[json_arr_length(json_get(val.data.obj, "scene").data.arr)].type = DEFAULT;
+	json_foreach_arr(json_get(val.data.obj, "lights").data.arr, &fill_arr, light);
+	light[json_arr_length(json_get(val.data.obj, "lights").data.arr)].type = DEFAULT;
+}
 
 static	t_color3	getfinalcolor(t_object *light, t_intersect inter)
 {
@@ -161,13 +128,9 @@ static	t_color3	getfinalcolor(t_object *light, t_intersect inter)
 	{
 		color = iter_light(inter, (t_spotlight *)&light[0]);
 		color2 = iter_light(inter, (t_spotlight *)&light[1]);
-		return ((t_color3) {
-			.r = (color.r + color2.r) / 2.,
-			.g = (color.g + color2.g) / 2.,
-			.b = (color.b + color2.b) / 2.
-		});
+		return (vector_div(vector_sum(color, color2), 2));
 	}
-	return ((t_color3) { .r = 17, .g = 25, .b = 37 });
+	return (color_new(17, 25, 37));
 }
 
 t_ray	create_reflection(t_ray ray, t_intersect inter)
@@ -182,10 +145,8 @@ t_ray	create_reflection(t_ray ray, t_intersect inter)
 	return (newray);
 }
 
-t_color3	ft_trace_ray(t_env env, t_ray ray, int depth, float *dist_out)
+t_color3	ft_trace_ray(t_object arr[16], t_object light[16], t_ray ray, int depth, float *dist_out, t_env env)
 {
-	t_object		arr[16];
-	t_object		light[16];
 	t_intersect		inter;
 	t_color3		outcolor;
 	t_color3		refl_color;
@@ -196,9 +157,8 @@ t_color3	ft_trace_ray(t_env env, t_ray ray, int depth, float *dist_out)
 	if (dist_out == NULL)
 		dist_out = &_dist_out;
 	*dist_out = INFINITY;
-	outcolor = (t_color3) { .r = 17, .g = 25, .b = 37};
+	outcolor = color_new(17, 25, 37);
 	i = -1;
-	create_scene(light, arr);
 	inter.obj = NULL;
 	while (++i < 16 && arr[i].type != DEFAULT)
 		if (env.fctinter[arr[i].type](ray, arr + i, &dist))
@@ -212,9 +172,8 @@ t_color3	ft_trace_ray(t_env env, t_ray ray, int depth, float *dist_out)
 		inter.pos = create_intersect(ray, *dist_out);
 		inter.v_normal = env.fctnormal[inter.obj->type](ray, inter.pos, inter.obj);
 		outcolor = getfinalcolor(light, inter);
-		if (inter.obj->reflection_index != 0.0 && depth < 3)
-		{
-			refl_color = ft_trace_ray(env, create_reflection(ray, inter), depth + 1, NULL);
+		if (inter.obj->reflection_index != 0.0 && depth < 10) {
+			refl_color = ft_trace_ray(arr, light, create_reflection(ray, inter), depth + 1, NULL, env);
 			outcolor = vector_sum(outcolor, vector_mul(refl_color, inter.obj->reflection_index));
 		}
 	}
@@ -226,9 +185,9 @@ void			ft_put_pixel_to_image(t_img img, int x, int y, t_color3 color)
 	int				addr;
 
 	addr = y * img.sizeline + x * (img.bpp / 8);
-	img.data[addr + 0] = color.b;
-	img.data[addr + 1] = color.g;
-	img.data[addr + 2] = color.r;
+	img.data[addr + 0] = FT_MAX(FT_MIN((color.b * 255), 255), 0);
+	img.data[addr + 1] = FT_MAX(FT_MIN((color.g * 255), 255), 0);
+	img.data[addr + 2] = FT_MAX(FT_MIN((color.r * 255), 255), 0);
 }
 
 void		ft_render2(t_env env)
@@ -237,24 +196,28 @@ void		ft_render2(t_env env)
 	t_ray	ray;
 	float	y;
 	float	x;
+	t_object arr[16];
+	t_object light[16];
 	float invW = 1 / (float)env.resolution.width;
 	float invH = 1 / (float)env.resolution.height;
 	float ratio = env.resolution.width / (float)env.resolution.height;
 	float angle = tanf(M_PI * 0.5f * env.fov / 180.);
 
-	// TODO : Put ray.dir.z = -1 here, it's more fun :D
+	ft_bzero(arr, sizeof(t_object) * 16);
+	ft_bzero(light, sizeof(t_object) * 16);
+	create_scene(parser(env.file), arr, light);
 	y = 0;
 	while (y < env.resolution.height)
 	{
 		x = 0;
 		while (x < env.resolution.width)
 		{
+			ray.pos = env.pos_absolute_camera;
 			ray.dir.x = (2. *(x * invW) - 1.) * angle * ratio;
 			ray.dir.y = (1. - 2. * (y * invH)) * angle;
-			ray.pos = env.pos_absolute_camera;
 			ray.dir.z = 1;
 			ray.dir = vector_unit(ray.dir);
-			rgba = ft_trace_ray(env, ray, 0, NULL);
+			rgba = ft_trace_ray(arr, light, ray, 0, NULL, env);
 			ft_put_pixel_to_image(env.img, x, y, rgba);
 			x++;
 		}
