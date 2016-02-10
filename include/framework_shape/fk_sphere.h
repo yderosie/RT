@@ -26,6 +26,7 @@ struct				s_sphere
 	t_type			type;
 	t_color3			color;
 	float			reflection_index;
+	float			diffuse;
 	t_vertex3		pos;
 	float			radius;
 };

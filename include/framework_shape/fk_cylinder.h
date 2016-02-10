@@ -26,6 +26,7 @@ struct				s_cylinder
 	t_type			type;
 	t_color3			color;
 	float			reflection_index;
+	float			diffuse;
 	t_vertex3		pos;
 	t_vector3		dir;
 	float			radius;
