@@ -6,7 +6,7 @@
 /*   By: rlambert <rlambert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/27 21:03:28 by roblabla          #+#    #+#             */
-/*   Updated: 2016/01/27 18:04:19 by roblabla         ###   ########.fr       */
+/*   Updated: 2016/02/09 13:46:41 by barbare          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int		main(int argc, char **argv)
 	env.dir_camera = (t_vector3) { .x = 0, .y = 0, .z = 1 };
 	ft_setup_inter(env.fctinter);
 	ft_setup_normal(env.fctnormal);
-	rt_expose_hook(&env);
 	mlx_expose_hook(env.win, rt_expose_hook, &env);
 	mlx_loop(env.mlx);
 	return (0);

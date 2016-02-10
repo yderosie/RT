@@ -6,7 +6,7 @@
 /*   By: barbare <barbare@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/28 12:48:34 by mbarbari          #+#    #+#             */
-/*   Updated: 2016/02/04 19:42:25 by barbare          ###   ########.fr       */
+/*   Updated: 2016/02/09 11:49:49 by barbare          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ t_vector3		vector_mul(t_vector3 u, float f);
 ** ****************************************************************************
 */
 t_vector3		vector_substract(t_vector3 u, t_vector3 v);
-t_vector3		vector_sum(t_vector3 u, t_vector3 v);
 t_vector3		vector_product(t_vector3 u, t_vector3 v);
+t_vector3		vector_sum(t_vector3 u, t_vector3 v);
 
 /*
 ** ****************************************************************************

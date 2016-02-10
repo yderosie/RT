@@ -6,7 +6,7 @@
 #    By: rlambert <rlambert@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/03 11:25:08 by rlambert          #+#    #+#              #
-#    Updated: 2016/02/04 15:06:23 by barbare          ###   ########.fr        #
+#    Updated: 2016/02/10 14:21:52 by barbare          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,10 @@ CFLAGS = -g -O0 -Wall -Wextra
 SRCS = src/main.c \
 		src/ft_env.c
 
+SRCS += src/parser.c											\
+		src/parse_function.c									\
+		src/parse_type.c										\
+		src/foreach.c
 SRCS += src/framework_collision/fk_collision.c					\
 		src/framework_collision/fk_intersect.c
 
@@ -53,7 +57,8 @@ SRCS += src/framework_math/vector/fk_vcpy.c						\
 		src/framework_math/vector/fk_vreverse.c					\
 		src/framework_math/vector/fk_vsubstract.c				\
 		src/framework_math/vector/fk_vtranslation.c				\
-		src/framework_math/vector/fk_vunit.c
+		src/framework_math/vector/fk_vunit.c					\
+		src/framework_math/vector/fk_vcolor.c
 
 SRCS +=	src/framework_shape/fk_intersect_sphere.c				\
 		src/framework_shape/fk_intersect_plan.c					\
@@ -61,6 +66,8 @@ SRCS +=	src/framework_shape/fk_intersect_sphere.c				\
 		src/framework_shape/fk_intersect_cone.c
 
 INC_FILES = include/ft_env.h									\
+			include/parser.h									\
+			include/parser_union.h								\
 			include/framework_light/fk_light.h					\
 			include/framework_light/fk_normal_sphere.h			\
 			include/framework_light/fk_normal_plan.h			\
