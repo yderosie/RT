@@ -6,7 +6,7 @@
 /*   By: barbare <barbare@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/28 12:48:34 by mbarbari          #+#    #+#             */
-/*   Updated: 2016/02/10 14:27:01 by barbare          ###   ########.fr       */
+/*   Updated: 2016/02/10 14:52:16 by barbare          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,12 @@ t_vector3		vector_sum(t_vector3 u, t_vector3 v);
 t_vector3		vector_reverse(t_vector3 u);
 float			vector_dotproduct(t_vector3 u, t_vector3 v);
 float			vector_magnitude(t_vector3 u);
+
+/*
+** ****************************************************************************
+** fk_color.c
+** ****************************************************************************
+*/
+t_color3		color_new(float x1, float y1, float z1);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/27 18:30:44 by mbarbari          #+#    #+#             */
-/*   Updated: 2016/02/09 19:15:17 by barbare          ###   ########.fr       */
+/*   Updated: 2016/02/15 16:17:03 by barbare          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static t_color3	lambert_low(t_intersect inter, t_spotlight light, t_color3 ptcol
 	float		angle;
 	t_vector3	v_light;
 
-	v_light = vector_substract(inter.pos, light.pos);
-	angle = vector_dotproduct(vector_unit(vector_mul(v_light, -1)), vector_unit(inter.v_normal));
+	v_light = vector_unit(vector_substract(inter.pos, light.pos));
+	angle = vector_dotproduct(vector_unit(v_light), vector_unit(inter.v_normal));
 	return (vector_div(vector_mul(vector_sum(ptcolor, vector_mul(light.color, angle)), light.intensity), 2));
 }
 
@@ -45,6 +45,6 @@ static t_color3	light_low(t_intersect inter, t_spotlight light, t_color3 ptcolor
 
 t_color3			iter_light(t_intersect inter, t_spotlight *light)
 {
-	return (light_low(inter, *light, ((t_object *)inter.obj)->color));
 	return (lambert_low(inter, *light, ((t_object *)inter.obj)->color));
+	return (vector_div(vector_sum(light_low(inter, *light, ((t_object *)inter.obj)->color), lambert_low(inter, *light, ((t_object *)inter.obj)->color)), 2));
 }

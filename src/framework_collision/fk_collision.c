@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/01 20:34:17 by mbarbari          #+#    #+#             */
-/*   Updated: 2016/02/10 14:21:22 by barbare          ###   ########.fr       */
+/*   Updated: 2016/02/15 16:18:31 by barbare          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,26 +27,8 @@
 #define VECTOR_UP ((t_vector3) { .x = 0, .y = 1, .z = 0 })
 #define COLOR_ZERO ((t_color3) { .r = 0, .g = 0, .b = 0 })
 
+int	g_death;
 
-inline t_vertex3	vector_to_vertex(t_vector3 vec)
-{
-	t_vertex3	tmp;
-
-	tmp.x = vec.x;
-	tmp.y = vec.y;
-	tmp.z = vec.z;
-	return (tmp);
-}
-
-t_vector3	vertex_to_vector(t_vertex3 vec)
-{
-	t_vector3	tmp;
-
-	tmp.x = vec.x;
-	tmp.y = vec.y;
-	tmp.z = vec.z;
-	return (tmp);
-}
 
 static void		fill_arr(t_value val, int idx, t_object *data)
 {
@@ -69,7 +51,7 @@ static void		fill_arr(t_value val, int idx, t_object *data)
 			json_get(val.data.obj, "reflection_index").data.number,
 			json_get(val.data.obj, "diffuse").data.number,
 			vector_new(json_get(val.data.obj, "pos.x").data.number, json_get(val.data.obj, "pos.y").data.number, json_get(val.data.obj, "pos.z").data.number),
-			vector_new(json_get(val.data.obj, "normal.x").data.number, json_get(val.data.obj, "normal.y").data.number, json_get(val.data.obj, "normal.z").data.number)
+			vector_unit(vector_new(json_get(val.data.obj, "normal.x").data.number, json_get(val.data.obj, "normal.y").data.number, json_get(val.data.obj, "normal.z").data.number))
 		}, sizeof(t_plan));
 	}
 	if (ft_strequ(json_get(val.data.obj, "type").data.s, "CYLINDER"))
@@ -80,7 +62,7 @@ static void		fill_arr(t_value val, int idx, t_object *data)
 			json_get(val.data.obj, "reflection_index").data.number,
 			json_get(val.data.obj, "diffuse").data.number,
 			vector_new(json_get(val.data.obj, "pos.x").data.number, json_get(val.data.obj, "pos.y").data.number, json_get(val.data.obj, "pos.z").data.number),
-			vector_new(json_get(val.data.obj, "normal.x").data.number, json_get(val.data.obj, "normal.y").data.number, json_get(val.data.obj, "normal.z").data.number),
+			vector_unit(vector_new(json_get(val.data.obj, "normal.x").data.number, json_get(val.data.obj, "normal.y").data.number, json_get(val.data.obj, "normal.z").data.number)),
 			json_get(val.data.obj, "radius").data.number
 		}, sizeof(t_cylinder));
 	}
@@ -92,7 +74,7 @@ static void		fill_arr(t_value val, int idx, t_object *data)
 			json_get(val.data.obj, "reflection_index").data.number,
 			json_get(val.data.obj, "diffuse").data.number,
 			vector_new(json_get(val.data.obj, "pos.x").data.number, json_get(val.data.obj, "pos.y").data.number, json_get(val.data.obj, "pos.z").data.number),
-			vector_new(json_get(val.data.obj, "normal.x").data.number, json_get(val.data.obj, "normal.y").data.number, json_get(val.data.obj, "normal.z").data.number),
+			vector_unit(vector_new(json_get(val.data.obj, "normal.x").data.number, json_get(val.data.obj, "normal.y").data.number, json_get(val.data.obj, "normal.z").data.number)),
 			json_get(val.data.obj, "radius").data.number,
 			0
 		}, sizeof(t_cone));
@@ -117,18 +99,24 @@ static	void	create_scene(t_value val, t_object *arr, t_object *light)
 	arr[json_arr_length(json_get(val.data.obj, "scene").data.arr)].type = DEFAULT;
 	json_foreach_arr(json_get(val.data.obj, "lights").data.arr, &fill_arr, light);
 	light[json_arr_length(json_get(val.data.obj, "lights").data.arr)].type = DEFAULT;
+	g_death = (int)json_get(val.data.obj, "death").data.number;
 }
 
 static	t_color3	getfinalcolor(t_object *light, t_intersect inter)
 {
 	t_color3			color;
-	t_color3			color2;
+	unsigned int		i;
 
+	color = color_new(0., 0., 0.);
 	if (inter.obj)
 	{
-		color = iter_light(inter, (t_spotlight *)&light[0]);
-		color2 = iter_light(inter, (t_spotlight *)&light[1]);
-		return (vector_div(vector_sum(color, color2), 2));
+		i = 0;
+		while(light[i].type != DEFAULT)
+		{
+			color = vector_sum(iter_light(inter, (t_spotlight *)&light[i]), color);
+			++i;
+		}
+		return (vector_div(color, i));
 	}
 	return (color_new(17, 25, 37));
 }
@@ -162,7 +150,7 @@ t_color3	ft_trace_ray(t_object arr[16], t_object light[16], t_ray ray, int depth
 	inter.obj = NULL;
 	while (++i < 16 && arr[i].type != DEFAULT)
 		if (env.fctinter[arr[i].type](ray, arr + i, &dist))
-			if ((!inter.obj || dist < *dist_out) && dist > 0.1)
+			if ((!inter.obj || dist < *dist_out) && dist > 0.00001)
 			{
 				inter.obj = &arr[i];
 				*dist_out = dist;
@@ -172,7 +160,8 @@ t_color3	ft_trace_ray(t_object arr[16], t_object light[16], t_ray ray, int depth
 		inter.pos = create_intersect(ray, *dist_out);
 		inter.v_normal = env.fctnormal[inter.obj->type](ray, inter.pos, inter.obj);
 		outcolor = getfinalcolor(light, inter);
-		if (inter.obj->reflection_index != 0.0 && depth < 10) {
+		if (inter.obj->reflection_index != 0.0 && depth < g_death)
+		{
 			refl_color = ft_trace_ray(arr, light, create_reflection(ray, inter), depth + 1, NULL, env);
 			outcolor = vector_sum(outcolor, vector_mul(refl_color, inter.obj->reflection_index));
 		}
@@ -185,9 +174,9 @@ void			ft_put_pixel_to_image(t_img img, int x, int y, t_color3 color)
 	int				addr;
 
 	addr = y * img.sizeline + x * (img.bpp / 8);
-	img.data[addr + 0] = FT_MAX(FT_MIN((color.b * 255), 255), 0);
-	img.data[addr + 1] = FT_MAX(FT_MIN((color.g * 255), 255), 0);
-	img.data[addr + 2] = FT_MAX(FT_MIN((color.r * 255), 255), 0);
+	img.data[addr + 0] = FT_MAX(FT_MIN(color.b * 255, 255), 0);
+	img.data[addr + 1] = FT_MAX(FT_MIN(color.g * 255, 255), 0);
+	img.data[addr + 2] = FT_MAX(FT_MIN(color.r * 255, 255), 0);
 }
 
 void		ft_render2(t_env env)
@@ -223,6 +212,7 @@ void		ft_render2(t_env env)
 		}
 		y++;
 	}
+	dprintf(2, "The end\n");
 	mlx_put_image_to_window(env.mlx, env.win, env.img.ptr, 0, 0);
 }
 

@@ -6,7 +6,7 @@
 #    By: rlambert <rlambert@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/03 11:25:08 by rlambert          #+#    #+#              #
-#    Updated: 2016/02/10 14:27:16 by barbare          ###   ########.fr        #
+#    Updated: 2016/02/10 14:50:58 by barbare          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,19 +33,6 @@ SRCS += src/parser.c											\
 		src/parse_type.c										\
 		src/foreach.c
 
-SRCS += src/framework_collision/fk_collision.c					\
-		src/framework_collision/fk_intersect.c
-
-SRCS += src/framework_light/fk_light.c							\
-		src/framework_light/fk_normal_sphere.c					\
-		src/framework_light/fk_normal_cylinder.c				\
-		src/framework_light/fk_normal_cone.c					\
-		src/framework_light/fk_normal_plan.c					\
-		src/framework_light/fk_luminance.c						\
-		src/framework_light/fk_shadow.c
-
-SRCS += src/framework_math/math/fk_isqrt.c
-
 SRCS += src/framework_math/vector/fk_vcpy.c						\
 		src/framework_math/vector/fk_vdiv.c						\
 		src/framework_math/vector/fk_vmul.c						\
@@ -60,7 +47,20 @@ SRCS += src/framework_math/vector/fk_vcpy.c						\
 		src/framework_math/vector/fk_vsubstract.c				\
 		src/framework_math/vector/fk_vtranslation.c				\
 		src/framework_math/vector/fk_vunit.c					\
-		src/framework_math/vector/fk_vcolor.c
+		src/framework_math/vector/fk_cnew.c
+
+SRCS += src/framework_collision/fk_collision.c					\
+		src/framework_collision/fk_intersect.c
+
+SRCS += src/framework_light/fk_light.c							\
+		src/framework_light/fk_normal_sphere.c					\
+		src/framework_light/fk_normal_cylinder.c				\
+		src/framework_light/fk_normal_cone.c					\
+		src/framework_light/fk_normal_plan.c					\
+		src/framework_light/fk_luminance.c						\
+		src/framework_light/fk_shadow.c
+
+SRCS += src/framework_math/math/fk_isqrt.c
 
 SRCS +=	src/framework_shape/fk_intersect_sphere.c				\
 		src/framework_shape/fk_intersect_plan.c					\
