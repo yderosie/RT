@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fk_scale.c                                         :+:      :+:    :+:   */
+/*   fk_new.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/07 18:51:08 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/07 18:51:34 by mbarbari         ###   ########.fr       */
+/*   Created: 2015/12/07 18:48:55 by mbarbari          #+#    #+#             */
+/*   Updated: 2016/02/15 15:41:16 by barbare          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "framework_math/fk_vector.h"
 
-t_vector3		vector_scale(t_vector3 v, float f)
+t_color3		color_new(float x1, float y1, float z1)
 {
-	return (t_vector3) { .x = v.x * f, .y = v.y * f, .z = v.z * f };
+	return ((t_color3) {.r = x1 / 255., .g = y1 / 255., .b = z1 / 255.});
 }

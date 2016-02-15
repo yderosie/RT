@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fk_normal_sphere.h                                 :+:      :+:    :+:   */
+/*   fk_vadd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: barbare <barbare@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/11 21:44:39 by mbarbari          #+#    #+#             */
-/*   Updated: 2016/02/01 11:18:02 by barbare          ###   ########.fr       */
+/*   Created: 2016/02/04 14:42:32 by barbare           #+#    #+#             */
+/*   Updated: 2016/02/04 14:44:22 by barbare          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FK_NORMAL_SPHERE_H
-# define FK_NORMAL_SPHERE_H
+#include "framework_math/fk_vector.h"
 
-# include "framework_math/fk_vector.h"
-# include "framework_shape/fk_sphere.h"
+t_vector3		vector_add(t_vector3 u, float r)
+{
+	return ((t_vector3) { .x = u.x + r, .y = u.y + r, .z = u.z + r });
+}
 
-t_vector3		normal_sphere(t_ray ray, t_vector3 inter, t_sphere *obj);
-
-#endif

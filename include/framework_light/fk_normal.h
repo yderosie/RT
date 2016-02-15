@@ -6,13 +6,13 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 18:52:22 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/14 20:03:02 by mbarbari         ###   ########.fr       */
+/*   Updated: 2016/02/01 11:15:32 by barbare          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FK_NORMAL_H
 # define FK_NORMAL_H
 
-typedef t_vector3 (*t_fctnormal)(t_vector3 pos, void *obj);
+typedef t_vector3 (*t_fctnormal)(t_ray ray, t_vector3 pos, void *obj);
 
 #endif

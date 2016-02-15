@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/27 18:30:44 by mbarbari          #+#    #+#             */
-/*   Updated: 2016/01/27 17:31:26 by barbare          ###   ########.fr       */
+/*   Updated: 2016/02/15 16:17:03 by barbare          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,37 @@
 #include "framework_shape/fk_type.h"
 #include <stdlib.h>
 
-static t_rgba	lambert_low(t_intersect inter, t_spotlight light, t_rgba ptcolor)
+static t_color3	lambert_low(t_intersect inter, t_spotlight light, t_color3 ptcolor)
 {
 	float		angle;
 	t_vector3	v_light;
 
-	v_light = vector_substract(inter.pos, light.pos);
-	v_light = vector_scale(v_light, 1 / vector_dotproduct(v_light, v_light));
-	angle = vector_dotproduct(inter.v_normal, vector_unit(v_light));
-	return (color_product(color_mul(ptcolor, light.intensity),
-				color_mul(light.color, angle)));
+	v_light = vector_unit(vector_substract(inter.pos, light.pos));
+	angle = vector_dotproduct(vector_unit(v_light), vector_unit(inter.v_normal));
+	return (vector_div(vector_mul(vector_sum(ptcolor, vector_mul(light.color, angle)), light.intensity), 2));
 }
 
-t_rgba			iter_light(t_intersect inter, t_spotlight *light)
+static t_color3	light_low(t_intersect inter, t_spotlight light, t_color3 ptcolor)
+{
+	float		angle;
+	float		diff;
+	t_vector3	v_light;
+	t_color3	color;
+
+	v_light = vector_unit(vector_substract(light.pos, inter.pos));
+	angle = vector_dotproduct(inter.v_normal, v_light);
+	if (inter.obj->diffuse > 0)
+		if (angle > 0)
+		{
+			diff = angle * inter.obj->diffuse;
+			color = vector_sum(ptcolor, vector_mul(vector_product(ptcolor, light.color), diff));
+			return color;
+		}
+	return ptcolor;
+}
+
+t_color3			iter_light(t_intersect inter, t_spotlight *light)
 {
 	return (lambert_low(inter, *light, ((t_object *)inter.obj)->color));
+	return (vector_div(vector_sum(light_low(inter, *light, ((t_object *)inter.obj)->color), lambert_low(inter, *light, ((t_object *)inter.obj)->color)), 2));
 }

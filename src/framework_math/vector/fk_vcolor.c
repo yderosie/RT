@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fk_normal_sphere.h                                 :+:      :+:    :+:   */
+/*   fk_vcolor.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: barbare <barbare@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/11 21:44:39 by mbarbari          #+#    #+#             */
-/*   Updated: 2016/02/01 11:18:02 by barbare          ###   ########.fr       */
+/*   Created: 2016/02/09 11:33:40 by barbare           #+#    #+#             */
+/*   Updated: 2016/02/09 13:51:28 by barbare          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FK_NORMAL_SPHERE_H
-# define FK_NORMAL_SPHERE_H
+#include "framework_math/fk_vector.h"
 
-# include "framework_math/fk_vector.h"
-# include "framework_shape/fk_sphere.h"
-
-t_vector3		normal_sphere(t_ray ray, t_vector3 inter, t_sphere *obj);
-
-#endif
+t_color3		color_new(float r, float g, float b)
+{
+	t_color3	color;
+	color = (t_color3) {.r = (r / 255.), .g = (g / 255.), .b = (b / 255.)};
+	return (color);
+}
