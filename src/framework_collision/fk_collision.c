@@ -105,18 +105,34 @@ static	void	create_scene(t_value val, t_object *arr, t_object *light)
 static	t_color3	getfinalcolor(t_object *light, t_intersect inter)
 {
 	t_color3			color;
-	unsigned int		i;
+	t_color3			color_tmp;
 
-	color = color_new(0., 0., 0.);
+	unsigned int		i;
+	unsigned int 		a;
+
+	color_tmp = color_new(0., 0., 0.);
 	if (inter.obj)
 	{
 		i = 0;
+		a = 0;
 		while(light[i].type != DEFAULT)
 		{
-			color = vector_sum(iter_light(inter, (t_spotlight *)&light[i]), color);
+			if (((t_spotlight *)light)[i].intensity <= 0.0f)
+			{
+				++i;
+				continue ;
+			}
+			color = iter_light(inter, (t_spotlight *)&light[i]);
+			if ((color.r == 0 && color.g == 0 && color.b == 0))
+			{
+				++i;
+				continue ;
+			}
+			color_tmp = vector_sum(color, color_tmp);
 			++i;
+			++a;
 		}
-		return (vector_div(color, i));
+		return (vector_div(color_tmp, a));
 	}
 	return (color_new(17, 25, 37));
 }
@@ -159,6 +175,7 @@ t_color3	ft_trace_ray(t_object arr[16], t_object light[16], t_ray ray, int depth
 	{
 		inter.pos = create_intersect(ray, *dist_out);
 		inter.v_normal = env.fctnormal[inter.obj->type](ray, inter.pos, inter.obj);
+		inter.ray = ray;
 		outcolor = getfinalcolor(light, inter);
 		if (inter.obj->reflection_index != 0.0 && depth < g_death)
 		{
