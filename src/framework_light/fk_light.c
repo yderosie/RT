@@ -13,6 +13,7 @@
 #include "framework_light/fk_light.h"
 #include "framework_shape/fk_type.h"
 #include "framework_math/fk_vector.h"
+#include "framework_math/fk_math.h"
 #include <stdlib.h>
 
 static t_color3	lambert_low(t_intersect inter, t_spotlight light, t_color3 ptcolor)
@@ -48,28 +49,33 @@ static t_color3	specular_low(t_intersect inter, t_spotlight light, t_color3 ptco
 {
 	t_vector3	v;
 	t_vector3	r;
+	t_vector3	v_light;
 	t_color3	color;
 	float		angle;
 	float		spec;
 
+	v_light = vector_unit(vector_substract(light.pos, inter.pos));
 	v = inter.ray.dir;
-	r = vector_substract(vector_substract(light.pos, inter.pos), vector_mul(inter.v_normal, (2.0f * vector_dotproduct(vector_substract(light.pos, inter.pos), inter.v_normal))));
+	r = vector_unit(vector_substract(vector_mul(v_light, 1), vector_mul(inter.v_normal, (2.0f * vector_dotproduct(v_light, inter.v_normal)))));
 	angle = vector_dotproduct(v, r);
-	if (angle > 0)
+	if (angle > 0.0f)
 	{
 		//angle = vector_dotproduct(inter.v_normal, r) / compute_len(r.x, r.y, r.x);
-		spec = powf(angle, 20) * 0.8;
+		spec = powf(angle, 15) * inter.obj->diffuse;
+	//	printf("%f\n", spec);
 		color = vector_sum(ptcolor, vector_mul(light.color, spec));
 		//color = vector_sum(ptcolor, vector_mul(vector_product(ptcolor, light.color), spec));
 		return color;
 	}
-	return color_new(0.0,0.0,0.0);
+	return ptcolor;
 }
 
 t_color3			iter_light(t_intersect inter, t_spotlight *light)
 {
-	//return (specular_low(inter, *light, lambert_low(inter, *light, ((t_object *)inter.obj)->color)));
+//	return (lambert_low(inter, *light, specular_low(inter, *light, ((t_object *)inter.obj)->color)));
+	return (specular_low(inter, *light, lambert_low(inter, *light, ((t_object *)inter.obj)->color)));
 	//return (specular_low(inter, *light, ((t_object *)inter.obj)->color));
 	//return (lambert_low(inter, *light, ((t_object *)inter.obj)->color));
-	return (vector_div(vector_sum(specular_low(inter, *light, ((t_object *)inter.obj)->color), lambert_low(inter, *light, ((t_object *)inter.obj)->color)), 2));
+
+	return (vector_sum(lambert_low(inter, *light, ((t_object *)inter.obj)->color), specular_low(inter, *light, ((t_object *)inter.obj)->color)));
 }
