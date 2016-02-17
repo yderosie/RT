@@ -117,17 +117,20 @@ static	t_color3	getfinalcolor(t_object *light, t_intersect inter)
 		a = 0;
 		while(light[i].type != DEFAULT)
 		{
-			if (((t_spotlight *)light)[i].intensity <= 0.0f)
+			if (
+			dprintf(2, "test light while : %i - %f\n", i, ((t_spotlight *)light)[i].intensity), ((t_spotlight *)light)[i].intensity < 0.001f)
 			{
 				++i;
 				continue ;
 			}
+
 			color = iter_light(inter, (t_spotlight *)&light[i]);
 			if ((color.r == 0 && color.g == 0 && color.b == 0))
 			{
 				++i;
 				continue ;
 			}
+			dprintf(2, "sa mere : %i\n", i);
 			color_tmp = vector_sum(color, color_tmp);
 			++i;
 			++a;
