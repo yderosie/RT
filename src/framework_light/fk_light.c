@@ -45,6 +45,21 @@ static t_color3	light_low(t_intersect inter, t_spotlight light, t_color3 ptcolor
 	return ptcolor;
 }
 
+static t_color3	shadows_low(t_intersect inter, t_spotlight light, t_color3 ptcolor)
+{
+	int			i;
+	float		shade;
+	float		dist;
+	t_color3	l;
+	t_ray		newray;
+
+	shade = 1.0f;
+	l = vector_substract(light.pos, inter.v_normal);
+	dist = ;
+	l *= (1.0f / dist);
+	newray = vector_sum(inter.v_normal,)
+}
+
 static t_color3	specular_low(t_intersect inter, t_spotlight light, t_color3 ptcolor)
 {
 	t_vector3	v;
@@ -60,11 +75,8 @@ static t_color3	specular_low(t_intersect inter, t_spotlight light, t_color3 ptco
 	angle = vector_dotproduct(v, r);
 	if (angle > 0.0f)
 	{
-		//angle = vector_dotproduct(inter.v_normal, r) / compute_len(r.x, r.y, r.x);
 		spec = powf(angle, 15) * inter.obj->diffuse;
-	//	printf("%f\n", spec);
 		color = vector_sum(ptcolor, vector_mul(light.color, spec));
-		//color = vector_sum(ptcolor, vector_mul(vector_product(ptcolor, light.color), spec));
 		return color;
 	}
 	return ptcolor;
