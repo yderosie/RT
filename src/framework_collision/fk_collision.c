@@ -88,7 +88,7 @@ static void		fill_arr(t_value val, int idx, t_object *data)
 			json_get(val.data.obj, "diffuse").data.number,
 			vector_new(json_get(val.data.obj, "pos.x").data.number, json_get(val.data.obj, "pos.y").data.number, json_get(val.data.obj, "pos.z").data.number),
 			vector_new(json_get(val.data.obj, "dir.x").data.number, json_get(val.data.obj, "dir.y").data.number, json_get(val.data.obj, "dir.z").data.number),
-			json_get(val.data.obj, "intensity").data.number
+			0.7
 		}, sizeof(t_spotlight));
 	}
 }
@@ -117,8 +117,7 @@ static	t_color3	getfinalcolor(t_object *light, t_intersect inter)
 		a = 0;
 		while(light[i].type != DEFAULT)
 		{
-			if (
-			dprintf(2, "test light while : %i - %f\n", i, ((t_spotlight *)light)[i].intensity), ((t_spotlight *)light)[i].intensity < 0.001f)
+			if (((t_spotlight *)(light + i))->intensity < 0.001f)
 			{
 				++i;
 				continue ;
@@ -130,7 +129,6 @@ static	t_color3	getfinalcolor(t_object *light, t_intersect inter)
 				++i;
 				continue ;
 			}
-			dprintf(2, "sa mere : %i\n", i);
 			color_tmp = vector_sum(color, color_tmp);
 			++i;
 			++a;

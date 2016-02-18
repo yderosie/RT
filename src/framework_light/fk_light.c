@@ -55,13 +55,13 @@ static t_color3	specular_low(t_intersect inter, t_spotlight light, t_color3 ptco
 	float		spec;
 
 	v_light = vector_unit(vector_substract(light.pos, inter.pos));
-	v = vector_mul(inter.ray.dir, 1);
-	r = vector_unit(vector_substract(v_light, vector_mul(inter.v_normal, (2.0f * vector_dotproduct(v_light, inter.v_normal)))));
+	v = inter.ray.dir;
+	r = vector_unit(vector_substract(vector_mul(v_light, 1), vector_mul(inter.v_normal, (2.0f * vector_dotproduct(v_light, inter.v_normal)))));
 	angle = vector_dotproduct(v, r);
 	if (angle > 0.0f)
 	{
 		//angle = vector_dotproduct(inter.v_normal, r) / compute_len(r.x, r.y, r.x);
-		spec = powf(angle, 15) * 0.4;
+		spec = powf(angle, 15) * inter.obj->diffuse;
 	//	printf("%f\n", spec);
 		color = vector_sum(ptcolor, vector_mul(light.color, spec));
 		//color = vector_sum(ptcolor, vector_mul(vector_product(ptcolor, light.color), spec));
@@ -72,6 +72,7 @@ static t_color3	specular_low(t_intersect inter, t_spotlight light, t_color3 ptco
 
 t_color3			iter_light(t_intersect inter, t_spotlight *light)
 {
+//	return (lambert_low(inter, *light, specular_low(inter, *light, ((t_object *)inter.obj)->color)));
 	return (specular_low(inter, *light, lambert_low(inter, *light, ((t_object *)inter.obj)->color)));
 	//return (specular_low(inter, *light, ((t_object *)inter.obj)->color));
 	//return (lambert_low(inter, *light, ((t_object *)inter.obj)->color));
