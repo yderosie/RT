@@ -102,38 +102,86 @@ static	void	create_scene(t_value val, t_object *arr, t_object *light)
 	g_death = (int)json_get(val.data.obj, "death").data.number;
 }
 
-static	t_color3	getfinalcolor(t_object *light, t_intersect inter)
+static	t_color3	getfinalcolor(t_object *arr, t_object *light, t_intersect inter, t_env env)
 {
 	t_color3			color;
 	t_color3			color_tmp;
+	float				diff;
+	float				dot;
+	float				dist[2];
+	t_ray 				newray;
+	float				shade;
+	t_vector3		l;
 
 	unsigned int		i;
+	int k;
 	unsigned int 		a;
 
-	color_tmp = color_new(0., 0., 0.);
+	color_tmp = color_new(0, 0, 0);
+	shade = 1.0;
 	if (inter.obj)
 	{
 		i = 0;
 		a = 0;
 		while(light[i].type != DEFAULT)
 		{
-			if (((t_spotlight *)(light + i))->intensity < 0.001f)
+			if ((((t_spotlight *)(light + i))->intensity < 0.0f))
 			{
+				dprintf(2, "on passe la lumiere bordel\n");
 				++i;
 				continue ;
 			}
-
-			color = iter_light(inter, (t_spotlight *)&light[i]);
-			if ((color.r == 0 && color.g == 0 && color.b == 0))
+			//check shade
+			l = vector_substract(((t_spotlight *)(light + i))->pos, inter.pos);
+			dist[0] = vector_magnitude(l);
+			newray.pos = vector_substract(inter.pos, vector_mul(inter.v_normal, 1e-4f));	//vector_sum(inter.pos, vector_mul(inter.v_normal, 0.00001));
+			newray.dir = vector_unit(l);
+			if (dist[0] < 1000.)
 			{
-				++i;
-				continue ;
+				k = -1;
+				//shade2 = test(arr, newray, dist_out, env, shade, dist, inter);
+				while (++k < 16 && arr[k].type != DEFAULT)
+					if (env.fctinter[arr[k].type](newray, arr + k, &dist[1]))
+						if (dist[1] < dist[0])/* && inter.obj->type != SPOTLIGHT)*/
+						{
+							shade = 0.0;
+							break ;
+						}
 			}
-			color_tmp = vector_sum(color, color_tmp);
+			//check end shade
+			//Create shading
+			/*if (inter.obj->diffuse > 0)
+			{
+				dot = vector_dotproduct(vector_unit(vector_substract(((t_spotlight *)(light + 0))->pos, inter.pos)), inter.v_normal);
+				if (dot > 0)
+				{
+					diff = dot * inter.obj->diffuse * shade;
+					color_tmp = vector_product(((t_spotlight *)(light + 0))->color, inter.obj->color);
+					color_tmp = vector_mul(color_tmp, diff);
+				}
+			}*/
+			//end create shading
+			color_tmp = iter_light(inter, ((t_spotlight *)&light[i]), shade);
 			++i;
 			++a;
 		}
-		return (vector_div(color_tmp, a));
+		
+		if (shade == TRUE)
+		{
+			/*if (inter.obj->diffuse > 0)
+			{
+				dot = vector_dotproduct(vector_unit(vector_substract(((t_spotlight *)(light + 0))->pos, inter.pos)), inter.v_normal);
+				if (dot > 0)
+				{
+					diff = dot * inter.obj->diffuse * shade;
+					color_tmp = vector_product(((t_spotlight *)(light + 0))->color, inter.obj->color);
+					color_tmp = vector_mul(color_tmp, diff);
+				}
+			}*/
+		//	color_tmp = vector_div(vector_sum(color_tmp, color_new(0,0,0)), 2);
+		}
+		return (color_tmp);
+		//return (vector_div(color_tmp, a));
 	}
 	return (color_new(17, 25, 37));
 }
@@ -150,6 +198,24 @@ t_ray	create_reflection(t_ray ray, t_intersect inter)
 	return (newray);
 }
 
+t_bool	test(t_object arr[16], t_ray newray, float *dist_out, t_env env, t_bool shade, float dist, t_intersect inter)
+{
+	int i;
+
+	i = -1;
+	while (++i < 16 && arr[i].type != DEFAULT)
+		if (env.fctinter[arr[i].type](newray, arr + i, &dist))
+		{
+			if (dist < (*dist_out - 1e-4f) && inter.obj->type != SPOTLIGHT)
+			{
+				shade = TRUE;
+				break ;
+			}
+		}
+	return (shade);
+}
+
+#include <stdio.h>
 t_color3	ft_trace_ray(t_object arr[16], t_object light[16], t_ray ray, int depth, float *dist_out, t_env env)
 {
 	t_intersect		inter;
@@ -177,7 +243,17 @@ t_color3	ft_trace_ray(t_object arr[16], t_object light[16], t_ray ray, int depth
 		inter.pos = create_intersect(ray, *dist_out);
 		inter.v_normal = env.fctnormal[inter.obj->type](ray, inter.pos, inter.obj);
 		inter.ray = ray;
-		outcolor = getfinalcolor(light, inter);
+
+		//start shadow is exist
+		/*shade = FALSE;
+		j = -1;
+		while(++j < 16 && ((t_spotlight *)light)[j].type != DEFAULT)
+		{
+			
+		}*/
+		//end shadow is exist
+
+		outcolor = getfinalcolor(arr, light, inter, env);
 		if (inter.obj->reflection_index != 0.0 && depth < g_death)
 		{
 			refl_color = ft_trace_ray(arr, light, create_reflection(ray, inter), depth + 1, NULL, env);
