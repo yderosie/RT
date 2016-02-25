@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 20:42:15 by mbarbari          #+#    #+#             */
-/*   Updated: 2016/02/09 19:04:37 by barbare          ###   ########.fr       */
+/*   Updated: 2016/02/24 16:04:24 by yderosie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ struct				s_plan
 	t_color3		color;
 	float			reflection_index;
 	float			diffuse;
+	t_bool			light;
 	t_vertex3		pos;
+	t_vector3		dir;
 	t_vector3		normal;
 };
 

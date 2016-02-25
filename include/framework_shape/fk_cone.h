@@ -6,7 +6,7 @@
 /*   By: yderosie <yderosie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 14:27:51 by yderosie          #+#    #+#             */
-/*   Updated: 2016/02/09 19:04:53 by barbare          ###   ########.fr       */
+/*   Updated: 2016/02/24 16:04:35 by yderosie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ struct				s_cone
 	t_color3		color;
 	float			reflection_index;
 	float			diffuse;
+	t_bool			light;
 	t_vertex3		pos;
 	t_vector3		dir;
 	float			radius;
