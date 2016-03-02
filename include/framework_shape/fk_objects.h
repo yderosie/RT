@@ -26,6 +26,8 @@ struct				s_object
 	t_color3		color;
 	float			reflection_index;
 	float			diffuse;
+	float			intensity;
+	float			specular;
 	t_bool			light;
 	t_vertex3		pos;
 	char			stuff[128];

@@ -27,6 +27,8 @@ struct				s_sphere
 	t_color3		color;
 	float			reflection_index;
 	float			diffuse;
+	float			intensity;
+	float			specular;
 	t_bool			light;
 	t_vertex3		pos;
 	t_vector3		dir;

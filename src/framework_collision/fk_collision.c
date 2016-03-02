@@ -39,6 +39,8 @@ static void		fill_arr(t_value val, int idx, t_object *data)
 			color_new(json_get(val.data.obj, "color.red").data.number, json_get(val.data.obj, "color.green").data.number, json_get(val.data.obj, "color.blue").data.number),
 			json_get(val.data.obj, "reflection_index").data.number,
 			json_get(val.data.obj, "diffuse").data.number,
+			json_get(val.data.obj, "intensity").data.number,
+			json_get(val.data.obj, "specular").data.boolean,
 			json_get(val.data.obj, "light").data.boolean,
 			vector_new(json_get(val.data.obj, "pos.x").data.number, json_get(val.data.obj, "pos.y").data.number, json_get(val.data.obj, "pos.z").data.number),
 			vector_new(json_get(val.data.obj, "dir.x").data.number, json_get(val.data.obj, "dir.y").data.number, json_get(val.data.obj, "dir.z").data.number),
@@ -52,6 +54,8 @@ static void		fill_arr(t_value val, int idx, t_object *data)
 			color_new(json_get(val.data.obj, "color.red").data.number, json_get(val.data.obj, "color.green").data.number, json_get(val.data.obj, "color.blue").data.number),
 			json_get(val.data.obj, "reflection_index").data.number,
 			json_get(val.data.obj, "diffuse").data.number,
+			json_get(val.data.obj, "intensity").data.number,
+			json_get(val.data.obj, "specular").data.boolean,
 			json_get(val.data.obj, "light").data.boolean,
 			vector_new(json_get(val.data.obj, "pos.x").data.number, json_get(val.data.obj, "pos.y").data.number, json_get(val.data.obj, "pos.z").data.number),
 			vector_new(json_get(val.data.obj, "dir.x").data.number, json_get(val.data.obj, "dir.y").data.number, json_get(val.data.obj, "dir.z").data.number),
@@ -103,6 +107,7 @@ static	void	create_scene(t_value val, t_object *arr/*, t_object *light*/)
 {
 	json_foreach_arr(json_get(val.data.obj, "scene").data.arr, &fill_arr, arr);
 	arr[json_arr_length(json_get(val.data.obj, "scene").data.arr)].type = DEFAULT;
+	arr[json_arr_length(json_get(val.data.obj, "scene").data.arr) + 1].type = DEFAULT;
 	/*json_foreach_arr(json_get(val.data.obj, "lights").data.arr, &fill_arr, light);
 	light[json_arr_length(json_get(val.data.obj, "lights").data.arr)].type = DEFAULT;
 	light[json_arr_length(json_get(val.data.obj, "lights").data.arr) + 1].type = DEFAULT;*/
@@ -120,7 +125,7 @@ static	t_color3	getfinalcolor(t_object *arr, t_intersect inter, t_env env)
 
 	int					i;
 	int 				k;
-	unsigned int 		a;
+	int 				a;
 
 	color_tmp = color_new(0, 0, 0);
 	shade = 1.0;
@@ -128,7 +133,7 @@ static	t_color3	getfinalcolor(t_object *arr, t_intersect inter, t_env env)
 	if (inter.obj)
 	{
 		i = -1;
-		while(++i < 16 && arr[i].type != DEFAULT)
+		while(arr[i].type != DEFAULT)
 		{
 			if (arr[i].light == TRUE)
 			{
@@ -143,12 +148,14 @@ static	t_color3	getfinalcolor(t_object *arr, t_intersect inter, t_env env)
 				k = -1;
 				while (++k < 16 && arr[k].type != DEFAULT)
 					if (env.fctinter[arr[k].type](newray, arr + k, &dist[1]))
-						if (arr[k].light != TRUE && dist[1] <= dist[0] && inter.obj->light != TRUE)
-							shade = 0.0;
+					{
+						if (arr[k].light != TRUE && dist[1] <= dist[0] && inter.obj->light != TRUE && inter.obj->type != SPHERE)
+							shade -= 0.5;
+					}
+				color_tmp = vector_sum(iter_light(inter, &arr[2], shade), iter_light(inter, &arr[3], shade));
+				++a;
 			}
-			color = iter_light(inter, &arr[i], shade);
-			color_tmp = vector_sum(color, color_tmp);
-			++a;
+			++i;
 		}
 		//return(color_tmp);
 		return (vector_div(color_tmp, a));
