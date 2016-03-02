@@ -77,9 +77,9 @@ static t_color3	specular_low(t_intersect inter, t_object light, t_color3 ptcolor
 t_color3			iter_light(t_intersect inter, t_object *light, float shade)
 {
 //	return (lambert_low(inter, *light, specular_low(inter, *light, ((t_object *)inter.obj)->color)));
-	return (lambert_low(inter, *light, color_new(0,0,0), shade));
-	//return (specular_low(inter, *light, lambert_low(inter, *light, ((t_object *)inter.obj)->color, shade), shade));
-	return (specular_low(inter, *light, light_low(inter, *light, color_new(0,0,0), shade), shade));
+//	return (lambert_low(inter, *light, color_new(0,0,0), shade));
+	return (specular_low(inter, *light, lambert_low(inter, *light, ((t_object *)inter.obj)->color, shade), shade));
+	//return (specular_low(inter, *light, lambert_low(inter, *light, color_new(0,0,0), shade), shade));
 	//return (specular_low(inter, *light, ((t_object *)inter.obj)->color));
 	//return (lambert_low(inter, *light, ((t_object *)inter.obj)->color));
 

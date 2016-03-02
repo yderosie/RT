@@ -132,9 +132,9 @@ static	t_color3	getfinalcolor(t_object *arr, t_intersect inter, t_env env)
 		{
 			if (arr[i].light == TRUE)
 			{
-				dprintf(2, "obj = %s - nb light = %f, %f, %f \n", 
+				/*dprintf(2, "obj = %s - nb light = %f, %f, %f \n", 
 					arr[i].type == SPHERE ? "SPHERE" : "PLANE",
-					arr[i].pos.x, arr[i].pos.y, arr[i].pos.z);
+					arr[i].pos.x, arr[i].pos.y, arr[i].pos.z);*/
 				//check shade
 				l = vector_substract(arr[i].pos, inter.pos);
 				dist[0] = vector_magnitude(l);
