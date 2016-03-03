@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/01 20:34:17 by mbarbari          #+#    #+#             */
-/*   Updated: 2016/02/24 16:07:37 by yderosie         ###   ########.fr       */
+/*   Updated: 2016/03/03 15:44:19 by yderosie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void		fill_arr(t_value val, int idx, t_object *data)
 			json_get(val.data.obj, "reflection_index").data.number,
 			json_get(val.data.obj, "diffuse").data.number,
 			json_get(val.data.obj, "intensity").data.number,
-			json_get(val.data.obj, "specular").data.boolean,
+			json_get(val.data.obj, "specular").data.number,
 			json_get(val.data.obj, "light").data.boolean,
 			vector_new(json_get(val.data.obj, "pos.x").data.number, json_get(val.data.obj, "pos.y").data.number, json_get(val.data.obj, "pos.z").data.number),
 			vector_new(json_get(val.data.obj, "dir.x").data.number, json_get(val.data.obj, "dir.y").data.number, json_get(val.data.obj, "dir.z").data.number),
@@ -55,7 +55,7 @@ static void		fill_arr(t_value val, int idx, t_object *data)
 			json_get(val.data.obj, "reflection_index").data.number,
 			json_get(val.data.obj, "diffuse").data.number,
 			json_get(val.data.obj, "intensity").data.number,
-			json_get(val.data.obj, "specular").data.boolean,
+			json_get(val.data.obj, "specular").data.number,
 			json_get(val.data.obj, "light").data.boolean,
 			vector_new(json_get(val.data.obj, "pos.x").data.number, json_get(val.data.obj, "pos.y").data.number, json_get(val.data.obj, "pos.z").data.number),
 			vector_new(json_get(val.data.obj, "dir.x").data.number, json_get(val.data.obj, "dir.y").data.number, json_get(val.data.obj, "dir.z").data.number),
@@ -128,19 +128,15 @@ static	t_color3	getfinalcolor(t_object *arr, t_intersect inter, t_env env)
 	int 				a;
 
 	color_tmp = color_new(0, 0, 0);
-	shade = 1.0;
 	a = 0;
 	if (inter.obj)
 	{
 		i = -1;
 		while(arr[i].type != DEFAULT)
 		{
+			shade = 1.0;
 			if (arr[i].light == TRUE)
 			{
-				/*dprintf(2, "obj = %s - nb light = %f, %f, %f \n", 
-					arr[i].type == SPHERE ? "SPHERE" : "PLANE",
-					arr[i].pos.x, arr[i].pos.y, arr[i].pos.z);*/
-				//check shade
 				l = vector_substract(arr[i].pos, inter.pos);
 				dist[0] = vector_magnitude(l);
 				newray.pos = vector_substract(inter.pos, vector_mul(inter.v_normal, 1e-4f));
@@ -149,15 +145,14 @@ static	t_color3	getfinalcolor(t_object *arr, t_intersect inter, t_env env)
 				while (++k < 16 && arr[k].type != DEFAULT)
 					if (env.fctinter[arr[k].type](newray, arr + k, &dist[1]))
 					{
-						if (arr[k].light != TRUE && dist[1] <= dist[0] && inter.obj->light != TRUE && inter.obj->type != SPHERE)
-							shade -= 0.5;
+						if (arr[k].light != TRUE && dist[1] <= dist[0])
+							shade -= 0.3;
 					}
-				color_tmp = vector_sum(iter_light(inter, &arr[2], shade), iter_light(inter, &arr[3], shade));
+				color_tmp = vector_sum(color_tmp, iter_light(inter, &arr[i], shade));
 				++a;
 			}
 			++i;
 		}
-		//return(color_tmp);
 		return (vector_div(color_tmp, a));
 	}
 	return (color_new(17, 25, 37));
@@ -175,24 +170,6 @@ t_ray	create_reflection(t_ray ray, t_intersect inter)
 	return (newray);
 }
 
-/*t_bool	test(t_object arr[16], t_ray newray, float *dist_out, t_env env, t_bool shade, float dist, t_intersect inter)
-{
-	int i;
-
-	i = -1;
-	while (++i < 16 && arr[i].type != DEFAULT)
-		if (env.fctinter[arr[i].type](newray, arr + i, &dist))
-		{
-			if (dist < (*dist_out - 1e-4f) && inter.obj->type != SPOTLIGHT)
-			{
-				shade = TRUE;
-				break ;
-			}
-		}
-	return (shade);
-}*/
-
-#include <stdio.h>
 t_color3	ft_trace_ray(t_object arr[16],/* t_object light[16],*/ t_ray ray, int depth, float *dist_out, t_env env)
 {
 	t_intersect		inter;

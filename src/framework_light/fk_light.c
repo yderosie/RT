@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/27 18:30:44 by mbarbari          #+#    #+#             */
-/*   Updated: 2016/02/24 14:40:50 by yderosie         ###   ########.fr       */
+/*   Updated: 2016/03/03 15:45:33 by yderosie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static t_color3	lambert_low(t_intersect inter, t_object light, t_color3 ptcolor,
 	float		angle;
 	t_vector3	v_light;
 
-	if (inter.obj->light == TRUE)
-		return (ptcolor);
+	/*if (inter.obj->light == TRUE)
+		return (ptcolor);*/
 	v_light = vector_unit(vector_substract(inter.pos, light.pos));
 	angle = vector_dotproduct(vector_unit(v_light), vector_unit(inter.v_normal)) * shade;
 	return (vector_div(vector_mul(vector_sum(ptcolor, vector_mul(light.color, angle)), light.intensity), 2));
@@ -41,7 +41,7 @@ static t_color3	light_low(t_intersect inter, t_object light, t_color3 ptcolor, f
 	{
 		if (angle > 0)
 		{
-			diff = angle * 0.7 * shade;
+			diff = angle * inter.obj->specular * shade;
 			color = vector_sum(ptcolor, vector_product(inter.obj->color, vector_mul(ptcolor, diff)));
 			return color;
 		}
@@ -64,9 +64,9 @@ static t_color3	specular_low(t_intersect inter, t_object light, t_color3 ptcolor
 	v = inter.ray.dir;
 	r = vector_unit(vector_substract(vector_mul(v_light, 1), vector_mul(inter.v_normal, (2.0f * vector_dotproduct(v_light, inter.v_normal)))));
 	angle = vector_dotproduct(v, r);
-	if (angle > 0.0f && inter.obj->type != PLANE)
+	if (angle > 0.0f)
 	{
-		spec = powf(angle, 15) * 0.7 * shade;
+		spec = powf(angle, 20) * inter.obj->specular * shade;
 		color = vector_sum(ptcolor, vector_mul(light.color, spec));
 		return color;
 	}
@@ -75,14 +75,5 @@ static t_color3	specular_low(t_intersect inter, t_object light, t_color3 ptcolor
 
 t_color3			iter_light(t_intersect inter, t_object *light, float shade)
 {
-	//return (specular_low(inter, *light, ((t_object *)inter.obj)->color, shade));
-	//return (lambert_low(inter, *light, ((t_object *)inter.obj)->color, shade));
-//	return (lambert_low(inter, *light, specular_low(inter, *light, ((t_object *)inter.obj)->color)));
-//	return (lambert_low(inter, *light, color_new(0,0,0), shade));
 	return (specular_low(inter, *light, lambert_low(inter, *light, ((t_object *)inter.obj)->color, shade), shade));
-	return (specular_low(inter, *light, lambert_low(inter, *light, color_new(0,0,0), shade), shade));
-	//
-	//
-
-	//return (vector_sum(lambert_low(inter, *light, ((t_object *)inter.obj)->color), specular_low(inter, *light, ((t_object *)inter.obj)->color)));
 }
