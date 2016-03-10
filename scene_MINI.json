@@ -23,8 +23,55 @@
       "diffuse": 0.0,
       "intensity":0.0,
       "specular":0.5,
+      "material":1,
       "light": false,
-      "radius": 1.00
+      "radius": 2.50
+    },
+    {
+      "type":"CONE",
+      "color": {
+        "red": 255,
+        "green": 139,
+        "blue": 24
+      },
+      "pos":{
+        "x":6,
+        "y":3,
+        "z":34
+      },
+      "normal": {
+        "x": 1,
+        "y": -1,
+        "z": 0
+      },
+      "reflection_index": 0.0,
+      "diffuse": 0.0,
+      "specular":1.0,
+      "light": false,
+      "radius": 0.50
+    },
+    {
+      "type":"CYLINDER",
+      "color": {
+        "red": 255,
+        "green": 139,
+        "blue": 24
+      },
+      "pos":{
+        "x":-4,
+        "y":3,
+        "z":30
+      },
+      "normal": {
+        "x": 0,
+        "y": 1,
+        "z": 0
+      },
+      "reflection_index": 0.0,
+      "diffuse": 0.0,
+      "specular":1.0,
+      "light": false,
+      "radius": 0.50
     },
     {
       "comment":"sol",
@@ -71,6 +118,7 @@
       "diffuse": 0.8,
       "specular":0.5,
       "light": true,
+      "material":0,
       "dir": {
         "x": 0,
         "y": 0,
@@ -93,6 +141,7 @@
       },
       "reflection_index": 0.0,
       "diffuse": 0.8,
+      "material":0,
       "specular":0.5,
       "light": true,
       "dir": {

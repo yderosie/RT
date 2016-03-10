@@ -28,6 +28,7 @@ struct				s_cone
 	t_color3		color;
 	float			reflection_index;
 	float			diffuse;
+	float			specular;
 	t_bool			light;
 	t_vertex3		pos;
 	t_vector3		dir;

@@ -21,7 +21,7 @@ t_vector3		normal_cone(t_ray ray, t_vector3 inter, t_cone *obj)
 
 	(void)ray;
 	v_normal.x = inter.x - obj->pos.x;
-	v_normal.y = 0;
+	v_normal.y = inter.y - obj->pos.y;
 	v_normal.z = inter.z = obj->pos.z;
 	v_normal = vector_unit(v_normal);
 	return (vector_div(v_normal, obj->radius));

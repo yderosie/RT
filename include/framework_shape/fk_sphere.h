@@ -30,6 +30,7 @@ struct				s_sphere
 	float			intensity;
 	float			specular;
 	t_bool			light;
+	//int 			material;
 	t_vertex3		pos;
 	t_vector3		dir;
 	float			radius;

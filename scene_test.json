@@ -14,9 +14,18 @@
         "y":0,
         "z":30
       },
+      "dir": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
       "reflection_index": 0.0,
-      "diffuse": 1.0,
-      "radius": 1.00
+      "diffuse": 0.0,
+      "intensity":0.0,
+      "specular":0.5,
+      "material":1,
+      "light": false,
+      "radius": 1.0
     },
     {
       "comment":"sol",
@@ -31,12 +40,21 @@
         "y":-10,
         "z":0
       },
+      "dir": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
       "reflection_index": 0.0,
-      "diffuse": 0.0,
+      "diffuse": 0.5,
+      "intensity":0.5,
+      "specular":0.5,
+      "material":1,
+      "light": false,
       "normal": {
         "x":0,
         "y":-40,
-        "z":5
+        "z":0
       }
     },
     {
@@ -52,12 +70,21 @@
         "y":10,
         "z":0
       },
+      "dir": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
       "reflection_index": 0.0,
-      "diffuse": 0.0,
+      "diffuse": 0.5,
+      "intensity":0.5,
+      "specular":0.5,
+      "material":1,
+      "light": false,
       "normal":{
         "x":0,
         "y":40,
-        "z":5
+        "z":0
       }
     },
     {
@@ -73,12 +100,21 @@
         "y":0,
         "z":0
       },
+      "dir": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
       "reflection_index": 0.0,
-      "diffuse": 0.1,
+      "diffuse": 0.5,
+      "intensity":0.5,
+      "specular":0.5,
+      "material":1,
+      "light": false,
       "normal":{
         "x":-100,
         "y":0,
-        "z":5
+        "z":0
       }
     },
     {
@@ -94,12 +130,21 @@
         "y":0,
         "z":0
       },
+      "dir": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
       "reflection_index": 0.0,
-      "diffuse": 0.8,
+      "diffuse": 0.5,
+      "intensity":0.5,
+      "specular":0.5,
+      "material":1,
+      "light": false,
       "normal":{
         "x":100,
         "y":0,
-        "z":5
+        "z":0
       }
     },
     {
@@ -112,16 +157,23 @@
       "pos":{
         "x":1,
         "y":0,
-        "z":2
+        "z":10
+      },
+      "dir": {
+        "x": 0,
+        "y": 0,
+        "z": 0
       },
       "reflection_index": 0.0,
-      "diffuse": 1.0,
-      "radius":0.20
-    }
-  ],
-  "lights": [
+      "diffuse": 0.5,
+      "intensity":0.5,
+      "specular":0.5,
+      "material":1,
+      "light": false,
+      "radius":1.35
+    },
     {
-      "type": "SPOTLIGHT",
+      "type": "SPHERE",
       "color": {
         "red": 255,
         "green": 255,
@@ -132,17 +184,21 @@
         "y": 0,
         "z": 3
       },
-      "reflection_index": 0.6,
-      "diffuse": 0.0,
+      "reflection_index": 0.0,
+      "diffuse": 0.5,
+      "intensity":0.8,
+      "specular":0.5,
+      "material":1,
+      "light": true,
+      "radius":0.0,
       "dir": {
         "x": 0,
         "y": 0,
         "z": 0
-      },
-      "intensity":0.8
-    }
+      }
+    },
     {
-      "type": "SPOTLIGHT",
+      "type": "SPHERE",
       "color": {
         "red":255,
         "green":255,
@@ -153,14 +209,18 @@
         "y":0,
         "z":0
       },
-      "reflection_index":0.1,
-      "diffuse":0.2,
+      "reflection_index": 0.0,
+      "diffuse": 0.5,
+      "intensity":0.5,
+      "specular":0.5,
+      "material":1,
+      "light": true,
+      "radius":0.0,
       "dir": {
         "x":1,
         "y":2,
         "z":0
-      },
-      "intensity":1.0
+      }
     }
   ]
 }

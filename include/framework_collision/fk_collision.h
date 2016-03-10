@@ -15,6 +15,7 @@
 
 # include "framework_math/fk_vector.h"
 # include "framework_shape/fk_ray.h"
+# include "framework_collision/texture.h"
 
 #include "ft_env.h"
 /*

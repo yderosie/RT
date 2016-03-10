@@ -50,6 +50,7 @@ SRCS += src/framework_math/vector/fk_vcpy.c						\
 		src/framework_math/vector/fk_cnew.c
 
 SRCS += src/framework_collision/fk_collision.c					\
+		src/framework_collision/texture.c						\
 		src/framework_collision/fk_intersect.c
 
 SRCS += src/framework_light/fk_light.c							\

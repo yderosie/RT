@@ -42,6 +42,7 @@ static void		fill_arr(t_value val, int idx, t_object *data)
 			json_get(val.data.obj, "intensity").data.number,
 			json_get(val.data.obj, "specular").data.number,
 			json_get(val.data.obj, "light").data.boolean,
+			//json_get(val.data.obj, "material").data.number,
 			vector_new(json_get(val.data.obj, "pos.x").data.number, json_get(val.data.obj, "pos.y").data.number, json_get(val.data.obj, "pos.z").data.number),
 			vector_new(json_get(val.data.obj, "dir.x").data.number, json_get(val.data.obj, "dir.y").data.number, json_get(val.data.obj, "dir.z").data.number),
 			json_get(val.data.obj, "radius").data.number
@@ -69,6 +70,7 @@ static void		fill_arr(t_value val, int idx, t_object *data)
 			color_new(json_get(val.data.obj, "color.red").data.number, json_get(val.data.obj, "color.green").data.number, json_get(val.data.obj, "color.blue").data.number),
 			json_get(val.data.obj, "reflection_index").data.number,
 			json_get(val.data.obj, "diffuse").data.number,
+			json_get(val.data.obj, "specular").data.number,
 			json_get(val.data.obj, "light").data.boolean,
 			vector_new(json_get(val.data.obj, "pos.x").data.number, json_get(val.data.obj, "pos.y").data.number, json_get(val.data.obj, "pos.z").data.number),
 			vector_unit(vector_new(json_get(val.data.obj, "normal.x").data.number, json_get(val.data.obj, "normal.y").data.number, json_get(val.data.obj, "normal.z").data.number)),
@@ -82,6 +84,7 @@ static void		fill_arr(t_value val, int idx, t_object *data)
 			color_new(json_get(val.data.obj, "color.red").data.number, json_get(val.data.obj, "color.green").data.number, json_get(val.data.obj, "color.blue").data.number),
 			json_get(val.data.obj, "reflection_index").data.number,
 			json_get(val.data.obj, "diffuse").data.number,
+			json_get(val.data.obj, "specular").data.number,
 			json_get(val.data.obj, "light").data.boolean,
 			vector_new(json_get(val.data.obj, "pos.x").data.number, json_get(val.data.obj, "pos.y").data.number, json_get(val.data.obj, "pos.z").data.number),
 			vector_unit(vector_new(json_get(val.data.obj, "normal.x").data.number, json_get(val.data.obj, "normal.y").data.number, json_get(val.data.obj, "normal.z").data.number)),
@@ -145,7 +148,7 @@ static	t_color3	getfinalcolor(t_object *arr, t_intersect inter, t_env env)
 				while (++k < 16 && arr[k].type != DEFAULT)
 					if (env.fctinter[arr[k].type](newray, arr + k, &dist[1]))
 					{
-						if (arr[k].light != TRUE && dist[1] <= dist[0])
+						if (&arr[k] != inter.obj && arr[k].light != TRUE && dist[1] > 0.0001 && dist[1] <= dist[0])
 							shade -= 0.3;
 					}
 				color_tmp = vector_sum(color_tmp, iter_light(inter, &arr[i], shade));
@@ -170,6 +173,21 @@ t_ray	create_reflection(t_ray ray, t_intersect inter)
 	return (newray);
 }
 
+/*float	turbulence(t_vertex3 pos, float pixel_size)
+{
+  int x=0;
+  float scale = 1.;
+  while(scale>pixel_size)
+  {
+  	//dprintf(2, "toto : %f - %f \n", scale, pixel_size);
+      pos = vector_div(pos, scale);
+      x +=  fabs(perlin_noise(pos.x, pos.y, pos.z)) * scale;
+      scale = scale / 2.;
+	}
+	//exit(0);
+	return x;
+}*/
+
 t_color3	ft_trace_ray(t_object arr[16],/* t_object light[16],*/ t_ray ray, int depth, float *dist_out, t_env env)
 {
 	t_intersect		inter;
@@ -178,6 +196,10 @@ t_color3	ft_trace_ray(t_object arr[16],/* t_object light[16],*/ t_ray ray, int d
 	int				i;
 	float			dist;
 	float			_dist_out;
+	float			perlin;
+	float			v1;
+	float			v2;
+	float			v3;
 
 	if (dist_out == NULL)
 		dist_out = &_dist_out;
@@ -192,17 +214,57 @@ t_color3	ft_trace_ray(t_object arr[16],/* t_object light[16],*/ t_ray ray, int d
 				inter.obj = &arr[i];
 				*dist_out = dist;
 			}
+	if ((inter.pos.x < -10000 || inter.pos.y < -10000) || (inter.pos.x > 10000|| inter.pos.y > 10000))
+		return (outcolor);
 	if (inter.obj)
 	{
 		inter.pos = create_intersect(ray, *dist_out);
 		inter.v_normal = env.fctnormal[inter.obj->type](ray, inter.pos, inter.obj);
 		inter.ray = ray;
 		outcolor = getfinalcolor(arr, inter, env);
+		/*if (inter.obj->type == SPHERE)
+		{
+			v1 = -0.2000001;
+			v2 = 0.1;
+			v3 = 0.9;
+			double noisecoef;
+			noisecoef = 0;
+			for (int level = 1; level < 10; level ++)
+		    {
+		        //noisecoef += (1.0f / level) * fabs((perlin_noise(level * 0.05 * inter.pos.x, level * 0.05 * inter.pos.y, level * 0.05 * inter.pos.z)));
+		    };
+		    //noisecoef = (0.5f * sinf((inter.pos.x + inter.pos.y) * 0.05f + noisecoef) + 0.5f);
+			//perlin = fabs(perlin_noise(inter.pos.x, inter.pos.y, inter.pos.z));
+			perlin = fabs(PerlinNoise3D(inter.pos.x, inter.pos.y, inter.pos.z, 1, 5, 2));
+			//perlin = tanf(inter.pos.x + perlin_noise(inter.pos.x / 0.0001, inter.pos.y/ 0.0001, inter.pos.z/ 0.0001));
+			//printf("%f\n", perlin);
+			//return(vector_sum(vector_mul(color_new(143,12,233), perlin), vector_mul(color_new(255,228,20), (1.0f - perlin))));
+			t_color3 color;
+			//perlin = sin((inter.pos.y + 3.0 * turbulence(inter.pos, 0.0125)) * PI);
+			//perlin = sqrt(perlin + 1) * .7071;
+			//printf("%f\n", perlin);
+			color = color_new(76,76,153);
+			color.g = FT_MIN(color.g + 0.8 * perlin, 1);
+			perlin = sqrt(perlin);
+			color.r = FT_MIN(color.r + 0.6 * perlin, 1);
+			color.b = FT_MIN(color.b + 0.4 * perlin, 1);
+			return (color);
+			if (perlin < v1)
+				return (color_new(0,0,255));
+			else if (perlin > v1 && perlin < v2)
+				return(vector_sum(vector_mul(color_new(0,0,255), (perlin - v1) / (v2 - v1)), vector_mul(color_new(255,0,0), (v2 - perlin) / (v2 - v1))));
+			else if (perlin > v2 && perlin < v3)
+				return(vector_sum(vector_mul(color_new(255,0,0), (perlin - v2) / (v3 - v2)), vector_mul(color_new(0,255,0), (v3 - perlin) / (v3 - v2))));
+			else
+				return(color_new(0,255,0));
+			return(checkerboard(inter.pos));
+		}*/
 		if (inter.obj->reflection_index != 0.0 && depth < g_death)
 		{
 			refl_color = ft_trace_ray(arr, create_reflection(ray, inter), depth + 1, NULL, env);
 			outcolor = vector_sum(outcolor, vector_mul(refl_color, inter.obj->reflection_index));
 		}
+		
 	}
 	return outcolor;
 }

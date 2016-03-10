@@ -23,7 +23,11 @@ t_vector3		normal_cylinder(t_ray ray, t_vector3 inter, t_cylinder *obj)
 	len = vector_magnitude(vector_substract(inter, ray.pos));
 	m = vector_dotproduct(ray.dir, obj->dir) * len;
 	m += vector_dotproduct(vector_substract(ray.pos, obj->pos), obj->dir);
-	tmp = vector_substract(inter, obj->pos);
+	tmp = vector_substract(obj->pos, inter);
 	tmp = vector_unit(vector_substract(tmp, vector_mul(obj->dir, m)));
-	return (tmp);
+	/*if (vector_dotproduct(ray.dir, tmp) >= 0)
+	{*/
+		return(vector_mul(tmp, -1));
+	/*}
+	return (tmp);*/
 }

@@ -27,7 +27,7 @@ t_value		json_get(t_json *x, char *str)
 			return json_get(x->value.data.obj, split + 1);
 		x = x->next;
 	}
-	ft_printf("error in the json scene\n");
+	ft_printf("error in the json scene: %s\n", str);
 	exit(0);
 	return (value);
 }

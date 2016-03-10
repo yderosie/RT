@@ -29,6 +29,7 @@ struct				s_object
 	float			intensity;
 	float			specular;
 	t_bool			light;
+	//int 			material;
 	t_vertex3		pos;
 	char			stuff[128];
 };
