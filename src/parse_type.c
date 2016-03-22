@@ -49,7 +49,7 @@ void		def_value(char **json, t_value *value)
 	else if (ft_strncmp(*json, "true", 4) == 0 || ft_strncmp(*json, "false", 5)
 		== 0)
 		value->type = TYPE_BOOL;
-	else if (ft_isdigit(**json) || (**json == '-' ) || (**json == '+'))
+	else if (ft_isdigit(**json) || (**json == '-') || (**json == '+'))
 		value->type = TYPE_NUMBER;
 }
 
@@ -75,6 +75,6 @@ void		parser_value(char **json, t_value *value)
 	else if (ft_strncmp(*json, "true", 4) == 0 || ft_strncmp(*json, "false", 5)
 		== 0)
 		value->data.boolean = parse_boolean(json);
-	else if (ft_isdigit(**json) || (**json == '-' ) || (**json == '+'))
+	else if (ft_isdigit(**json) || (**json == '-') || (**json == '+'))
 		value->data.number = parse_number(json);
 }

@@ -17,7 +17,7 @@
 # include "framework_collision/fk_intersect.h"
 # include "framework_light/fk_normal.h"
 
-typedef struct		s_env t_env;
+typedef struct s_env	t_env;
 typedef struct		s_resolution
 {
 	int				height;
@@ -47,6 +47,6 @@ struct				s_env
 	t_fctnormal		fctnormal[DEFAULT];
 };
 
-void		ft_setup_inter(t_fctinter inter[DEFAULT]);
-void		ft_setup_normal(t_fctnormal normal[DEFAULT]);
+void				ft_setup_inter(t_fctinter inter[DEFAULT]);
+void				ft_setup_normal(t_fctnormal normal[DEFAULT]);
 #endif

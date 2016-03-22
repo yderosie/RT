@@ -17,18 +17,16 @@
 # include "framework_shape/fk_objects.h"
 # include "framework_shape/fk_ray.h"
 
-typedef struct		s_intersect t_intersect;
-
-struct				s_intersect
+typedef struct			s_intersect
 {
 	t_vertex3		pos;
 	t_vector3		v_normal;
 	t_object		*obj;
 	t_ray			ray;
-};
+}						t_intersect;
 
-typedef float		*(*t_fctinter)(t_ray ray, void *obj, float *t);
+typedef unsigned int	(*t_fctinter)(t_ray ray, void *obj, float *t);
 
-t_vector3			create_intersect(t_ray ray, float dist);
+t_vector3				create_intersect(t_ray ray, float dist);
 
 #endif

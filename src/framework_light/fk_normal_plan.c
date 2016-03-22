@@ -13,8 +13,8 @@
 #include "framework_light/fk_normal_plan.h"
 #include "framework_math/fk_math.h"
 
-t_vector3		normal_plan(t_ray ray, t_vector3 inter, t_plan *obj)
+void		normal_plan(t_intersect *inter, t_plan *obj)
 {
-	(void)ray, (void)inter, (void)obj;
-	return (obj->normal);
+	(void)obj;
+	inter->v_normal = obj->normal;
 }

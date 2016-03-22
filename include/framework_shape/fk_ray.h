@@ -13,9 +13,9 @@
 #ifndef FK_RAY_H
 # define FK_RAY_H
 
-#include "framework_math/fk_vector.h"
+# include "framework_math/fk_vector.h"
 
-typedef struct		s_ray t_ray;
+typedef struct s_ray	t_ray;
 
 struct				s_ray
 {

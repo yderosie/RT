@@ -13,21 +13,20 @@
 #include "framework_light/fk_normal_cylinder.h"
 #include "framework_math/fk_math.h"
 
-
-t_vector3		normal_cylinder(t_ray ray, t_vector3 inter, t_cylinder *obj)
+void		normal_cylinder(t_intersect *inter, t_cylinder *obj)
 {
 	float		m;
-	float		len;
 	t_vector3	tmp;
 
-	len = vector_magnitude(vector_substract(inter, ray.pos));
-	m = vector_dotproduct(ray.dir, obj->dir) * len;
-	m += vector_dotproduct(vector_substract(ray.pos, obj->pos), obj->dir);
-	tmp = vector_substract(obj->pos, inter);
+	m = vector_dotproduct(inter->ray.dir, obj->dir);
+	m += vector_dotproduct(vector_unit(vector_substract(inter->ray.pos,
+		obj->pos)), obj->dir);
+	if (m < 0)
+		m = 0;
+	tmp = vector_sum(vector_substract(inter->ray.pos, obj->pos),
+		inter->ray.dir);
 	tmp = vector_unit(vector_substract(tmp, vector_mul(obj->dir, m)));
-	/*if (vector_dotproduct(ray.dir, tmp) >= 0)
-	{*/
-		return(vector_mul(tmp, -1));
-	/*}
-	return (tmp);*/
+	if (vector_dotproduct(inter->ray.dir, vector_unit(tmp)) < 0)
+		inter->v_normal = vector_mul(vector_unit(tmp), -1);
+	inter->v_normal = tmp;
 }

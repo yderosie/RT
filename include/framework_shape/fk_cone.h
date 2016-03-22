@@ -10,9 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#ifndef FT_CONE_H
-# define FT_CONE_H
+#ifndef FK_CONE_H
+# define FK_CONE_H
 
 # include "libft.h"
 # include "framework_shape/fk_type.h"
@@ -20,8 +19,7 @@
 # include "framework_collision/fk_intersect.h"
 # include "framework_math/fk_vector.h"
 
-
-typedef struct		s_cone t_cone;
+typedef struct s_cone	t_cone;
 struct				s_cone
 {
 	t_type			type;
@@ -36,6 +34,6 @@ struct				s_cone
 	float			height;
 };
 
-t_bool			intersect_cone(t_ray ray, t_cone* obj, float *dist);
+t_bool				intersect_cone(t_ray ray, t_cone *obj, float *dist);
 
 #endif

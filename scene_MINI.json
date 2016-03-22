@@ -25,7 +25,7 @@
       "specular":0.5,
       "material":1,
       "light": false,
-      "radius": 2.50
+      "radius": 1.50
     },
     {
       "type":"CONE",
@@ -48,7 +48,8 @@
       "diffuse": 0.0,
       "specular":1.0,
       "light": false,
-      "radius": 0.50
+      "radius": 0.50,
+      "height": 1.5
     },
     {
       "type":"CYLINDER",
@@ -60,7 +61,7 @@
       "pos":{
         "x":-4,
         "y":3,
-        "z":30
+        "z":10
       },
       "normal": {
         "x": 0,
@@ -110,8 +111,8 @@
         "blue": 255
       },
       "pos": {
-        "x": 1.2,
-        "y": 2.5,
+        "x": 20.2,
+        "y": 9.5,
         "z": 30
       },
       "reflection_index": 0.0,
@@ -126,7 +127,7 @@
       },
       "radius":0.50,
       "intensity":0.8
-    },
+    }
     {
       "type": "SPHERE",
       "color": {
@@ -135,9 +136,9 @@
         "blue": 255
       },
       "pos": {
-        "x": -1.2,
-        "y": 2.5,
-        "z": 30
+        "x": -3.2,
+        "y": 0,
+        "z": 10
       },
       "reflection_index": 0.0,
       "diffuse": 0.8,
@@ -149,7 +150,7 @@
         "y": 0,
         "z": 0
       },
-      "radius":0.50,
+      "radius":0.00,
       "intensity":0.8
     }
   ]

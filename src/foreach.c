@@ -15,16 +15,16 @@
 
 t_value		json_get(t_json *x, char *str)
 {
-	t_value value;
-	char *split;
-	
+	t_value	value;
+	char	*split;
+
 	while (x != NULL)
 	{
-		split = ft_strchr(str,'.');
+		split = ft_strchr(str, '.');
 		if (split == NULL && ft_strcmp(str, x->key) == 0)
 			return (x->value);
 		else if (split != NULL && ft_strncmp(str, x->key, split - str) == 0)
-			return json_get(x->value.data.obj, split + 1);
+			return (json_get(x->value.data.obj, split + 1));
 		x = x->next;
 	}
 	ft_printf("error in the json scene: %s\n", str);
@@ -32,7 +32,8 @@ t_value		json_get(t_json *x, char *str)
 	return (value);
 }
 
-void	json_foreach_obj(t_json *x, void (cb)(t_value, char *s, t_object*), void *a)
+void		json_foreach_obj(t_json *x, void (cb)(t_value, char *s, t_object*),
+	void *a)
 {
 	while (x != NULL)
 	{
@@ -41,7 +42,8 @@ void	json_foreach_obj(t_json *x, void (cb)(t_value, char *s, t_object*), void *a
 	}
 }
 
-void	json_foreach_arr(t_json_arr *x, void (cb)(t_value, int, t_object*), void *a)
+void		json_foreach_arr(t_json_arr *x, void (cb)(t_value, int, t_object*),
+	void *a)
 {
 	int i;
 
@@ -54,7 +56,7 @@ void	json_foreach_arr(t_json_arr *x, void (cb)(t_value, int, t_object*), void *a
 	}
 }
 
-int		json_arr_length(t_json_arr *x)
+int			json_arr_length(t_json_arr *x)
 {
 	int i;
 

@@ -10,16 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PLAN_H
-# define FT_PLAN_H
+#ifndef FK_PLAN_H
+# define FK_PLAN_H
 
 # include "libft.h"
 # include "framework_shape/fk_type.h"
 # include "framework_math/fk_vector.h"
 # include "framework_shape/fk_ray.h"
 
-
-typedef struct		s_plan t_plan;
+typedef struct s_plan	t_plan;
 struct				s_plan
 {
 	t_type			type;
@@ -34,6 +33,6 @@ struct				s_plan
 	t_vector3		normal;
 };
 
-t_bool			intersect_plan(t_ray ray, t_plan* obj, float *t);
+t_bool				intersect_plan(t_ray ray, t_plan *obj, float *t);
 
 #endif

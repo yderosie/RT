@@ -13,7 +13,7 @@
 #include <mlx.h>
 #include <math.h>
 #include <stdlib.h>
-#include "ft_printf.h"
+#include "printf.h"
 #include "parser.h"
 #include "framework_shape/fk_type.h"
 #include "framework_collision/fk_collision.h"
@@ -89,7 +89,7 @@ static void		fill_arr(t_value val, int idx, t_object *data)
 			vector_new(json_get(val.data.obj, "pos.x").data.number, json_get(val.data.obj, "pos.y").data.number, json_get(val.data.obj, "pos.z").data.number),
 			vector_unit(vector_new(json_get(val.data.obj, "normal.x").data.number, json_get(val.data.obj, "normal.y").data.number, json_get(val.data.obj, "normal.z").data.number)),
 			json_get(val.data.obj, "radius").data.number,
-			0
+			json_get(val.data.obj, "height").data.number
 		}, sizeof(t_cone));
 	}
 	/*if (ft_strequ(json_get(val.data.obj, "type").data.s, "SPOTLIGHT"))
@@ -156,6 +156,7 @@ static	t_color3	getfinalcolor(t_object *arr, t_intersect inter, t_env env)
 			}
 			++i;
 		}
+		return (color_tmp);
 		return (vector_div(color_tmp, a));
 	}
 	return (color_new(17, 25, 37));
@@ -219,7 +220,7 @@ t_color3	ft_trace_ray(t_object arr[16],/* t_object light[16],*/ t_ray ray, int d
 	if (inter.obj)
 	{
 		inter.pos = create_intersect(ray, *dist_out);
-		inter.v_normal = env.fctnormal[inter.obj->type](ray, inter.pos, inter.obj);
+		env.fctnormal[inter.obj->type](&inter, inter.obj);
 		inter.ray = ray;
 		outcolor = getfinalcolor(arr, inter, env);
 		/*if (inter.obj->type == SPHERE)
@@ -302,11 +303,11 @@ void		ft_render2(t_env env)
 		while (x < env.resolution.width)
 		{
 			ray.pos = env.pos_absolute_camera;
-			ray.dir.x = (2. *(x * invW) - 1.) * angle * ratio;
-			ray.dir.y = (1. - 2. * (y * invH)) * angle;
+			ray.dir.x = (2. * (x + 0.5) / env.resolution.width - 1) * angle * ratio;
+			ray.dir.y = (1. - 2. * (y + 0.5) / env.resolution.height) * angle;
 			ray.dir.z = 1;
 			ray.dir = vector_unit(ray.dir);
-			rgba = ft_trace_ray(arr, /*light,*/ ray, 0, NULL, env);
+			rgba = ft_trace_ray(arr,  ray, 0, NULL, env);
 			ft_put_pixel_to_image(env.img, x, y, rgba);
 			x++;
 		}

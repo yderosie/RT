@@ -16,7 +16,7 @@
 
 # include "stream.h"
 # include "parser_union.h"
-#include "framework_shape/fk_objects.h"
+# include "framework_shape/fk_objects.h"
 # include "libft.h"
 # include <fcntl.h>
 # include <stdlib.h>
@@ -65,8 +65,10 @@ int				parse_boolean(char **json);
 void			def_value(char **json, t_value *value);
 void			parser_value(char **json, t_value *value);
 t_value			json_get(t_json *x, char *str);
-void			json_foreach_obj(t_json *x, void (cb)(t_value, char *s, t_object*), void *a);
-void			json_foreach_arr(t_json_arr *x, void (cb)(t_value, int, t_object*), void *a);
+void			json_foreach_obj(t_json *x, void (cb)(t_value, char *s,
+				t_object*), void *a);
+void			json_foreach_arr(t_json_arr *x, void (cb)(t_value, int,
+				t_object*), void *a);
 int				json_arr_length(t_json_arr *x);
 
 #endif

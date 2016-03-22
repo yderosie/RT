@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_CYLINDER_H
-# define FT_CYLINDER_H
+#ifndef FK_CYLINDER_H
+# define FK_CYLINDER_H
 
 # include "libft.h"
 # include "framework_shape/fk_type.h"
@@ -19,8 +19,7 @@
 # include "framework_collision/fk_intersect.h"
 # include "framework_math/fk_vector.h"
 
-
-typedef struct		s_cylinder t_cylinder;
+typedef struct s_cylinder	t_cylinder;
 struct				s_cylinder
 {
 	t_type			type;
@@ -34,6 +33,6 @@ struct				s_cylinder
 	float			radius;
 };
 
-t_bool			intersect_cylinder(t_ray ray, t_cylinder* obj, float *dist);
+t_bool				intersect_cylinder(t_ray ray, t_cylinder *obj, float *dist);
 
 #endif

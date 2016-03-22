@@ -1,0 +1,31 @@
+{
+  "death":4,
+  "scene":
+  [
+    {
+      "type":"SPHERE",
+      "color": {
+        "red": 255,
+        "green": 139,
+        "blue": 24
+      },
+      "pos":{
+        "x":0,
+        "y":0,
+        "z":-30
+      },
+      "dir": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "reflection_index": 0.0,
+      "diffuse": 0.0,
+      "intensity":0.9,
+      "specular":0.5,
+      "material":1,
+      "light": false,
+      "radius": 20.50
+    }
+  ]
+}

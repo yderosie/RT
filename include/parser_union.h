@@ -19,7 +19,7 @@ union			u_data {
 	struct s_json_arr	*arr;
 	int					boolean;
 	char				*s;
-	double				number; // TODO : atod
+	double				number;
 }				data;
 
 #endif

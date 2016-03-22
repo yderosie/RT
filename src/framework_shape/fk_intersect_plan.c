@@ -15,27 +15,10 @@
 
 #define EPSILON 0.00001
 
-//t_bool			intersect_plan(t_ray ray, t_plan *plan, float *t)
-//{
-//	float	m;
-//	t_vector3	pos;
-//
-//	m = vector_dotproduct(ray.dir, plan->normal);
-//	dprintf(2, "on rentre au debut de l'intersection plan : %f\n", m);
-//	if (m < EPSILON)
-//		return (FALSE);
-//	pos = vector_substract(ray.pos, plan->pos);
-//	*t = vector_dotproduct(plan->normal, pos);
-//	if ((*t = (float)(-*t / m)) > 0.)
-//		return (TRUE);
-//	dprintf(2, "test suite au calcul de intersect_plan : %f", *t);
-//	return (FALSE);
-//}
-
 t_bool			intersect_plan(t_ray ray, t_plan *plan, float *t)
 {
-	float	m;
-	float	d;
+	float		m;
+	float		d;
 	t_vector3	pos;
 
 	pos = vector_substract(ray.pos, plan->pos);
@@ -46,4 +29,3 @@ t_bool			intersect_plan(t_ray ray, t_plan *plan, float *t)
 		return (FALSE);
 	return (TRUE);
 }
-

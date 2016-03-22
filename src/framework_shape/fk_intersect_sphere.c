@@ -13,7 +13,7 @@
 #include "framework_shape/fk_sphere.h"
 #include "framework_math/fk_math.h"
 
-t_bool			intersect_sphere(t_ray ray, t_sphere* obj, float *t)
+t_bool			intersect_sphere(t_ray ray, t_sphere *obj, float *t)
 {
 	t_vector3		etoc;
 	float			radius;
@@ -29,4 +29,3 @@ t_bool			intersect_sphere(t_ray ray, t_sphere* obj, float *t)
 	*t = FT_MIN((vector_radius - *t), (vector_radius + *t));
 	return (TRUE);
 }
-

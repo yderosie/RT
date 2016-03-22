@@ -26,8 +26,6 @@ static int			check_pair(float point)
 	return (x % 2);
 }
 
-#define round(x) ((x) < LONG_MIN-0.5 || (x) > LONG_MAX+0.5)
-
 t_color3			checkerboard(t_vertex3 pos)
 {
 	int			result[3];
@@ -39,54 +37,20 @@ t_color3			checkerboard(t_vertex3 pos)
 	result[0] = check_pair((pos.x));
 	result[1] = check_pair((pos.y));
 	result[2] = check_pair((pos.z));
-
-//test
-/*	float          l;
-    int         x1;
-    int         x2;
-    int         x3;
-
-    l = .80;
-    x1 = round(fabs(pos.x) / l);
-    x2 = round(fabs(pos.y) / l);
-    x3 = round(pos.z / fabs(l));
-    if (x3 % 2 == 0)
-    {
-        if ((x2 % 2 == 1 && x1 % 2 == 1) || (x2 %2 == 0 && x1 % 2 == 0))
-            return(color);
-        else
-            return(color2);
-    }
-    else    
-    {
-        if ((x2 % 2 == 1 && x1 % 2 == 1) || (x2 %2 == 0 && x1 % 2 == 0))
-            return(color2);
-        else
-            return(color);
-    }
-*/
-//Fin test
-
-
-
 	if (result[2] == 0)
 	{
 		if ((!result[0] && !result[1]) || (result[0] && result[1]))
 			return (color);
 		else
-		{
 			return (color2);
-		}
 	}
 	if ((!result[0] && !result[1]) || (result[0] && result[1]))
-	{
 		return (color2);
-	}
 	else
 		return (color);
 }
 
-/*static int			g_p[] = {151, 160, 137, 91, 90, 15,
+static int			g_p[] = {151, 160, 137, 91, 90, 15,
 	131, 13, 201, 95, 96, 53, 194, 233, 7, 225, 140, 36, 103, 30, 69, 142, 8,
 	99, 37, 240, 21, 10, 23, 190, 6, 148, 247, 120, 234, 75, 0, 26, 197, 62,
 	94, 252, 219, 203, 117, 35, 11, 32, 57, 177, 33, 88, 237, 149, 56, 87, 174,
@@ -102,9 +66,8 @@ t_color3			checkerboard(t_vertex3 pos)
 	238, 210, 144, 12, 191, 179, 162, 241, 81, 51, 145, 235, 249, 14, 239, 107,
 	49, 192, 214, 31, 181, 199, 106, 157, 184, 84, 204, 176, 115, 121, 50, 45,
 	127, 4, 150, 254, 138, 236, 205, 93, 222, 114, 67, 29, 24, 72, 243, 141,
-	128, 195, 78, 66, 215, 61, 156, 180,
-	151, 160, 137, 91, 90, 15,
-	131, 13, 201, 95, 96, 53, 194, 233, 7, 225, 140, 36, 103, 30, 69, 142, 8,
+	128, 195, 78, 66, 215, 61, 156, 180, 151, 160, 137, 91, 90, 15, 131, 13,
+	201, 95, 96, 53, 194, 233, 7, 225, 140, 36, 103, 30, 69, 142, 8,
 	99, 37, 240, 21, 10, 23, 190, 6, 148, 247, 120, 234, 75, 0, 26, 197, 62,
 	94, 252, 219, 203, 117, 35, 11, 32, 57, 177, 33, 88, 237, 149, 56, 87, 174,
 	20, 125, 136, 171, 168, 68, 175, 74, 165, 71, 134, 139, 48, 27, 166, 77,
@@ -172,149 +135,3 @@ double				perlin_noise(double x, double y, double z)
 								lerp(p.u, grad(g_p[p.ab + 1], x, y - 1, z - 1),
 								grad(g_p[p.bb + 1], x - 1, y - 1, z - 1)))));
 }
-*/
-#include <stdlib.h>
-#include <stdio.h>
-#include <math.h>
-
-static int p[B + B + 2];
-static double g3[B + B + 2][3];
-static double g2[B + B + 2][2];
-static double g1[B + B + 2];
-static int start = 1;
-
-double noise3(double vec[3])
-{
-   t_noise n;
-
-   if (start) {
-      start = 0;
-      init();
-   }
-
-   setup(0, n.bx0, n.bx1, n.rx0, n.rx1);
-   setup(1, n.by0, n.by1, n.ry0, n.ry1);
-   setup(2, n.bz0, n.bz1, n.rz0, n.rz1);
-
-   n.i = p[n.bx0];
-   n.j = p[n.bx1];
-
-   n.b00 = p[n.i + n.by0];
-   n.b10 = p[n.j + n.by0];
-   n.b01 = p[n.i + n.by1];
-   n.b11 = p[n.j + n.by1];
-
-   n.t  = s_curve(n.rx0);
-   n.sy = s_curve(n.ry0);
-   n.sz = s_curve(n.rz0);
-
-   n.q = g3[n.b00 + n.bz0];
-   n.u = at3(n.rx0, n.ry0, n.rz0);
-   n.q = g3[n.b10 + n.bz0];
-   n.v = at3(n.rx1, n.ry0, n.rz0);
-   n.a = lerp(n.t, n.u, n.v);
-
-   n.q = g3[n.b01 + n.bz0];
-   n.u = at3(n.rx0, n.ry1, n.rz0);
-   n.q = g3[n.b11 + n.bz0];
-   n.v = at3(n.rx1, n.ry1, n.rz0);
-   n.b = lerp(n.t, n.u, n.v);
-
-   n.c = lerp(n.sy, n.a, n.b);
-
-   n.q = g3[n.b00 + n.bz1];
-   n.u = at3(n.rx0, n.ry0, n.rz1);
-   n.q = g3[n.b10 + n.bz1];
-   n.v = at3(n.rx1, n.ry0, n.rz1);
-   n.a = lerp(n.t, n.u, n.v);
-
-   n.q = g3[n.b01 + n.bz1];
-   n.u = at3(n.rx0, n.ry1, n.rz1);
-   n.q = g3[n.b11 + n.bz1];
-   n.v = at3(n.rx1, n.ry1, n.rz1);
-   n.b = lerp(n.t, n.u, n.v);
-
-   n.d = lerp(n.sy, n.a, n.b);
-
-   return lerp(n.sz, n.c, n.d);
-}
-
-void normalize2(double v[2])
-{
-   double s;
-
-   s = sqrt(v[0] * v[0] + v[1] * v[1]);
-   v[0] = v[0] / s;
-   v[1] = v[1] / s;
-}
-
-void normalize3(double v[3])
-{
-   double s;
-
-   s = sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
-   v[0] = v[0] / s;
-   v[1] = v[1] / s;
-   v[2] = v[2] / s;
-}
-
-void init(void)
-{
-   int i;
-   int j;
-   int k;
-
-   i = -1;
-   while (++i < B)
-   {
-      p[i] = i;
-      g1[i] = (double)((random() % (B + B)) - B) / B;
-      j = -1;
-      while (++j < 2)
-         g2[i][j] = (double)((random() % (B + B)) - B) / B;
-      normalize2(g2[i]);
-      j = -1;
-      while (++j < 3)
-         g3[i][j] = (double)((random() % (B + B)) - B) / B;
-      normalize3(g3[i]);
-   }
-   while (--i) {
-      k = p[i];
-      p[i] = p[j = random() % B];
-      p[j] = k;
-   }
-   i = -1;
-   while (++i < B + 2) {
-      p[B + i] = p[i];
-      g1[B + i] = g1[i];
-      j = -1;
-      while (++j < 2)
-         g2[B + i][j] = g2[i][j];
-      j = -1;
-      while (++j < 3)
-         g3[B + i][j] = g3[i][j];
-   }
-}
-
-
-double PerlinNoise3D(double x,double y,double z,double alpha,double beta,int n)
-{
-   int i;
-   double val,sum = 0;
-   double p[3],scale = 1;
-
-   p[0] = x;
-   p[1] = y;
-   p[2] = z;
-   i = -1;
-   while (++i < n) {
-      val = noise3(p);
-      sum += val / scale;
-      scale *= alpha;
-      p[0] *= beta;
-      p[1] *= beta;
-      p[2] *= beta;
-   }
-   return(sum);
-}
-

@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SPHERE_H
-# define FT_SPHERE_H
+#ifndef FK_SPHERE_H
+# define FK_SPHERE_H
 
 # include "libft.h"
 # include "framework_shape/fk_type.h"
@@ -19,8 +19,7 @@
 # include "framework_collision/fk_intersect.h"
 # include "framework_math/fk_vector.h"
 
-
-typedef struct		s_sphere t_sphere;
+typedef struct s_sphere	t_sphere;
 struct				s_sphere
 {
 	t_type			type;
@@ -30,12 +29,11 @@ struct				s_sphere
 	float			intensity;
 	float			specular;
 	t_bool			light;
-	//int 			material;
 	t_vertex3		pos;
 	t_vector3		dir;
 	float			radius;
 };
 
-t_bool			intersect_sphere(t_ray ray, t_sphere* obj, float *dist);
+t_bool				intersect_sphere(t_ray ray, t_sphere *obj, float *dist);
 
 #endif

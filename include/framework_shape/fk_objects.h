@@ -13,12 +13,12 @@
 #ifndef FK_OBJECTS_H
 # define FK_OBJECTS_H
 
-#include "libft.h"
-#include "framework_shape/fk_type.h"
-#include "framework_math/fk_vector.h"
+# include "libft.h"
+# include "framework_shape/fk_type.h"
+# include "framework_math/fk_vector.h"
 
-typedef struct		s_object t_object;
-typedef struct		s_material t_material;
+typedef struct s_object	t_object;
+typedef struct s_material	t_material;
 
 struct				s_object
 {
@@ -29,10 +29,8 @@ struct				s_object
 	float			intensity;
 	float			specular;
 	t_bool			light;
-	//int 			material;
 	t_vertex3		pos;
 	char			stuff[128];
 };
-
 
 #endif

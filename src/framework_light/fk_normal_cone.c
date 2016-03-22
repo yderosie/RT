@@ -10,19 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "framework_light/fk_normal_cone.h"
 #include "framework_math/fk_math.h"
 
-
-t_vector3		normal_cone(t_ray ray, t_vector3 inter, t_cone *obj)
+void		normal_cone(t_intersect *inter, t_cone *obj)
 {
-	t_vector3	v_normal;
+	t_vector3	tmp;
+	t_vector3	v;
+	float		m;
 
-	(void)ray;
-	v_normal.x = inter.x - obj->pos.x;
-	v_normal.y = inter.y - obj->pos.y;
-	v_normal.z = inter.z = obj->pos.z;
-	v_normal = vector_unit(v_normal);
-	return (vector_div(v_normal, obj->radius));
+	v.x = inter->pos.x - obj->pos.x;
+	v.y = 0;
+	v.z = inter->pos.z - obj->pos.z;
+	m = sqrtf(SQUARE(v.x) + SQUARE(v.z));
+	v.x /= m;
+	v.y /= m;
+	v.z /= m;
+	tmp.x = v.x * obj->height / obj->radius;
+	tmp.y = v.y * obj->height / obj->radius;
+	tmp.z = v.z * obj->height / obj->radius;
+	inter->v_normal = vector_unit(vector_mul(tmp, -1));
 }
