@@ -57,6 +57,8 @@ SRCS += src/framework_light/fk_light.c							\
 		src/framework_light/fk_normal_sphere.c					\
 		src/framework_light/fk_normal_cylinder.c				\
 		src/framework_light/fk_normal_cone.c					\
+		src/framework_light/fk_normal_paraboloid.c				\
+		src/framework_light/fk_normal_triangle.c				\
 		src/framework_light/fk_normal_plan.c					\
 		src/framework_light/fk_luminance.c						\
 		src/framework_light/fk_shadow.c
@@ -66,6 +68,8 @@ SRCS += src/framework_math/math/fk_isqrt.c
 SRCS +=	src/framework_shape/fk_intersect_sphere.c				\
 		src/framework_shape/fk_intersect_plan.c					\
 		src/framework_shape/fk_intersect_cylinder.c				\
+		src/framework_shape/fk_intersect_paraboloid.c			\
+		src/framework_shape/fk_intersect_triangle.c				\
 		src/framework_shape/fk_intersect_cone.c
 
 INC_FILES = include/ft_env.h									\
@@ -73,6 +77,8 @@ INC_FILES = include/ft_env.h									\
 			include/parser_union.h								\
 			include/framework_light/fk_light.h					\
 			include/framework_light/fk_normal_sphere.h			\
+			include/framework_light/fk_normal_paraboloid.h		\
+			include/framework_light/fk_normal_triangle.h		\
 			include/framework_light/fk_normal_plan.h			\
 			include/framework_light/fk_normal.h					\
 			include/framework_collision/fk_collision.h			\
@@ -80,6 +86,8 @@ INC_FILES = include/ft_env.h									\
 			include/framework_shape/fk_listobj.h				\
 			include/framework_shape/fk_objects.h				\
 			include/framework_shape/fk_sphere.h					\
+			include/framework_shape/fk_triangle.h				\
+			include/framework_shape/fk_paraboloid.h				\
 			include/framework_shape/fk_plan.h					\
 			include/framework_shape/fk_cylinder.h				\
 			include/framework_shape/fk_cone.h					\

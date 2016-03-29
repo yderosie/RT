@@ -92,6 +92,54 @@ static void		fill_arr(t_value val, int idx, t_object *data)
 			json_get(val.data.obj, "height").data.number
 		}, sizeof(t_cone));
 	}
+	if (ft_strequ(json_get(val.data.obj, "type").data.s, "ELLIPSOID"))
+	{
+		ft_memcpy(data + idx, &(t_paraboloid){
+			PARABOLOID,
+			color_new(json_get(val.data.obj, "color.red").data.number, json_get(val.data.obj, "color.green").data.number, json_get(val.data.obj, "color.blue").data.number),
+			json_get(val.data.obj, "reflection_index").data.number,
+			json_get(val.data.obj, "diffuse").data.number,
+			json_get(val.data.obj, "specular").data.number,
+			json_get(val.data.obj, "light").data.boolean,
+			vector_new(json_get(val.data.obj, "pos.x").data.number, json_get(val.data.obj, "pos.y").data.number, json_get(val.data.obj, "pos.z").data.number),
+			vector_unit(vector_new(json_get(val.data.obj, "normal.x").data.number, json_get(val.data.obj, "normal.y").data.number, json_get(val.data.obj, "normal.z").data.number)),
+			json_get(val.data.obj, "radius").data.number,
+			json_get(val.data.obj, "height").data.number
+		}, sizeof(t_paraboloid));
+	}
+	if (ft_strequ(json_get(val.data.obj, "type").data.s, "TRIANGLE"))
+	{
+		ft_memcpy(data + idx, &(t_triangle){
+			TRIANGLE,
+			color_new(json_get(val.data.obj, "color.red").data.number, json_get(val.data.obj, "color.green").data.number, json_get(val.data.obj, "color.blue").data.number),
+			json_get(val.data.obj, "reflection_index").data.number,
+			json_get(val.data.obj, "diffuse").data.number,
+			json_get(val.data.obj, "specular").data.number,
+			json_get(val.data.obj, "light").data.boolean,
+			vector_new(json_get(val.data.obj, "pos.x").data.number, json_get(val.data.obj, "pos.y").data.number, json_get(val.data.obj, "pos.z").data.number),
+			vector_unit(vector_new(json_get(val.data.obj, "normal.x").data.number, json_get(val.data.obj, "normal.y").data.number, json_get(val.data.obj, "normal.z").data.number)),
+			vector_new(json_get(val.data.obj, "pos2.x").data.number, json_get(val.data.obj, "pos2.y").data.number, json_get(val.data.obj, "pos2.z").data.number),
+			vector_new(json_get(val.data.obj, "pos3.x").data.number, json_get(val.data.obj, "pos3.y").data.number, json_get(val.data.obj, "pos3.z").data.number)
+		}, sizeof(t_triangle));
+	}
+	if (ft_strequ(json_get(val.data.obj, "type").data.s, "FPLANE"))
+	{
+		ft_memcpy(data + idx, &(t_fplan){
+			FINISHED_PLANE,
+			color_new(json_get(val.data.obj, "color.red").data.number, json_get(val.data.obj, "color.green").data.number, json_get(val.data.obj, "color.blue").data.number),
+			json_get(val.data.obj, "reflection_index").data.number,
+			json_get(val.data.obj, "diffuse").data.number,
+			json_get(val.data.obj, "intensity").data.number,
+			json_get(val.data.obj, "specular").data.number,
+			json_get(val.data.obj, "light").data.boolean,
+			vector_new(json_get(val.data.obj, "pos.x").data.number, json_get(val.data.obj, "pos.y").data.number, json_get(val.data.obj, "pos.z").data.number),
+			vector_new(json_get(val.data.obj, "dir.x").data.number, json_get(val.data.obj, "dir.y").data.number, json_get(val.data.obj, "dir.z").data.number),
+			vector_unit(vector_new(json_get(val.data.obj, "normal.x").data.number, json_get(val.data.obj, "normal.y").data.number, json_get(val.data.obj, "normal.z").data.number)),
+			vector_new(json_get(val.data.obj, "pos2.x").data.number, json_get(val.data.obj, "pos2.y").data.number, json_get(val.data.obj, "pos2.z").data.number),
+			vector_new(json_get(val.data.obj, "pos3.x").data.number, json_get(val.data.obj, "pos3.y").data.number, json_get(val.data.obj, "pos3.z").data.number),
+			vector_new(json_get(val.data.obj, "pos4.x").data.number, json_get(val.data.obj, "pos4.y").data.number, json_get(val.data.obj, "pos4.z").data.number)
+		}, sizeof(t_fplan));
+	}
 	/*if (ft_strequ(json_get(val.data.obj, "type").data.s, "SPOTLIGHT"))
 	{
 		ft_memcpy(data + idx, &(t_spotlight){
@@ -134,7 +182,7 @@ static	t_color3	getfinalcolor(t_object *arr, t_intersect inter, t_env env)
 	a = 0;
 	if (inter.obj)
 	{
-		i = -1;
+		i = 0;
 		while(arr[i].type != DEFAULT)
 		{
 			shade = 1.0;
@@ -148,15 +196,14 @@ static	t_color3	getfinalcolor(t_object *arr, t_intersect inter, t_env env)
 				while (++k < 16 && arr[k].type != DEFAULT)
 					if (env.fctinter[arr[k].type](newray, arr + k, &dist[1]))
 					{
-						if (&arr[k] != inter.obj && arr[k].light != TRUE && dist[1] > 0.0001 && dist[1] <= dist[0])
-							shade -= 0.3;
+						if (&arr[k] != inter.obj && arr[k].light != TRUE && dist[1] > 0.0001 && dist[1] < dist[0])
+							shade = 0.5;
 					}
 				color_tmp = vector_sum(color_tmp, iter_light(inter, &arr[i], shade));
 				++a;
 			}
 			++i;
 		}
-		return (color_tmp);
 		return (vector_div(color_tmp, a));
 	}
 	return (color_new(17, 25, 37));

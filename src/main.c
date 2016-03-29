@@ -48,7 +48,7 @@ int			main(int argc, char **argv)
 		env.img.data = mlx_get_data_addr(env.img.ptr, &env.img.bpp,
 			&env.img.sizeline, &env.img.endianness);
 		env.fov = 45;
-		env.pos_absolute_camera = (t_vertex3) { .x = 0, .y = 0, .z = 0 };
+		env.pos_absolute_camera = (t_vertex3) { .x = 0, .y = 0, .z = -20 };
 		env.dir_camera = (t_vector3) { .x = 0, .y = 0, .z = 1 };
 		ft_setup_inter(env.fctinter);
 		ft_setup_normal(env.fctnormal);

@@ -25,8 +25,6 @@ static t_color3	lambert(t_intersect inter, t_object light, t_color3 ptcolor,
 	v_light = vector_unit(vector_substract(inter.pos, light.pos));
 	angle = vector_dotproduct(vector_unit(v_light), vector_unit(inter.v_normal))
 	* shade;
-	if (angle <= 0)
-		angle = 0.0f;
 	return (vector_div(vector_mul(vector_sum(ptcolor, vector_mul(light.color,
 		angle)), light.intensity), 2));
 }
@@ -42,14 +40,13 @@ static t_color3	specular(t_intersect inter, t_object light,
 
 	if (inter.obj->light == TRUE)
 		return (ptcolor);
-	v_light = vector_unit(vector_substract(light.pos, vector_sum(inter.pos,
-		inter.ray.pos)));
+	v_light = vector_unit(vector_substract(light.pos, inter.pos));
 	r = vector_unit(vector_substract(v_light, vector_mul(inter.v_normal, (2.0f *
 		vector_dotproduct(v_light, inter.v_normal)))));
 	angle = vector_dotproduct(inter.ray.dir, r);
 	if (angle > 0.0f)
 	{
-		spec = powf(angle, 20) * inter.obj->specular * shade;
+		spec = powf(angle, 20) * /*inter.obj->specular*/ 0.7 * shade;
 		color = vector_sum(ptcolor, vector_mul(light.color, spec));
 		return (color);
 	}

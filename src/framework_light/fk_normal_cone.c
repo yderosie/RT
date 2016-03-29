@@ -15,19 +15,13 @@
 
 void		normal_cone(t_intersect *inter, t_cone *obj)
 {
-	t_vector3	tmp;
-	t_vector3	v;
-	float		m;
-
-	v.x = inter->pos.x - obj->pos.x;
-	v.y = 0;
-	v.z = inter->pos.z - obj->pos.z;
-	m = sqrtf(SQUARE(v.x) + SQUARE(v.z));
-	v.x /= m;
-	v.y /= m;
-	v.z /= m;
-	tmp.x = v.x * obj->height / obj->radius;
-	tmp.y = v.y * obj->height / obj->radius;
-	tmp.z = v.z * obj->height / obj->radius;
-	inter->v_normal = vector_unit(vector_mul(tmp, -1));
+	float		radius;
+	t_vector3	ctop;
+	t_vector3	qtop;
+	t_vector3	v_normal;		
+	  		  
+	ctop = vector_substract(inter->pos, obj->pos);
+	radius = vector_dotproduct(ctop, obj->dir);
+	qtop = vector_substract(ctop, vector_mul(obj->dir, radius));
+	inter->v_normal = vector_unit(vector_div(qtop, -obj->radius));
 }

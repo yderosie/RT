@@ -18,3 +18,9 @@ void		normal_plan(t_intersect *inter, t_plan *obj)
 	(void)obj;
 	inter->v_normal = obj->normal;
 }
+
+void		normal_finished_plan(t_intersect *inter, t_fplan *obj)
+{
+	(void)obj;
+	inter->v_normal = obj->normal;
+}

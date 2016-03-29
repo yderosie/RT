@@ -17,8 +17,11 @@ typedef enum		e_type
 {
 	SPHERE,
 	PLANE,
+	FINISHED_PLANE,
 	CYLINDER,
 	CONE,
+	PARABOLOID,
+	TRIANGLE,
 	DEFAULT
 }					t_type;
 

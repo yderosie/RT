@@ -33,6 +33,25 @@ struct				s_plan
 	t_vector3		normal;
 };
 
+typedef struct s_fplan	t_fplan;
+struct				s_fplan
+{
+	t_type			type;
+	t_color3		color;
+	float			reflection_index;
+	float			diffuse;
+	float			intensity;
+	float			specular;
+	t_bool			light;
+	t_vertex3		pos;
+	t_vector3		dir;
+	t_vector3		normal;
+	t_vertex3		pos2;
+	t_vertex3		pos3;
+	t_vertex3		pos4;
+};
+
 t_bool				intersect_plan(t_ray ray, t_plan *obj, float *t);
+t_bool				intersect_finished_plan(t_ray ray, t_fplan *obj, float *t);
 
 #endif
