@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/29 21:18:55 by mbarbari          #+#    #+#             */
-/*   Updated: 2016/03/22 09:40:46 by root             ###   ########.fr       */
+/*   Updated: 2016/03/31 12:13:01 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FK_SPHERE_H
 
 # include "libft.h"
-# include "parser.h"
+# include "parser/parser.h"
 # include "framework_shape/fk_type.h"
 # include "framework_shape/fk_ray.h"
 # include "framework_collision/fk_intersect.h"

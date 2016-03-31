@@ -1,13 +1,18 @@
 {
   "depth":4,
   "sampling":4,
+  "pos_camera": {
+        "x": 0,
+        "y": 0,
+        "z": -1
+      },
   "scene":
   [
     {
       "type":"SPHERE",
       "color1": {
         "red": 255,
-        "green": 139,
+        "green": "djfshdjks",
         "blue": 24
       },
       "color2": {
@@ -30,9 +35,9 @@
         "y": 0,
         "z": 0
       },
-      "reflection_index": 0.0,
+      "reflection_index": 0.1,
       "refraction_index": 0.0,
-      "ambient": 0.8,
+      "ambient": 0.5,
       "diffuse": 0.5,
       "intensity":0.0,
       "specular":0.5,
@@ -49,9 +54,9 @@
       "comment":"Mur Gauche",
       "type":"PLANE",
       "color1":{
-        "red":30,
-        "green":30,
-        "blue":30
+        "red":201,
+        "green":201,
+        "blue":201
         },
       "color2": {
         "red":30,
@@ -73,9 +78,9 @@
         "y":0,
         "z":0
       },
-      "reflection_index": 0.5,
+      "reflection_index": 0.3,
       "refraction_index": 0.0,
-      "ambient": 0.8,
+      "ambient": 0.2,
       "light": false,
       "diffuse": 0.5,
       "specular":0.5,
@@ -116,9 +121,9 @@
       },
       "reflection_index": 0.0,
       "refraction_index": 0.0,
-      "ambient": 0.8,
+      "ambient": 0.5,
       "light": false,
-      "diffuse": 0,
+      "diffuse": 0.4,
       "specular":0.5,
       "texture": "none",
       "datatexture": {
@@ -152,7 +157,7 @@
       },
       "reflection_index": 0.0,
       "refraction_index": 0.0,
-      "ambient": 0.8,
+      "ambient": 0.5,
       "light": false,
       "diffuse": 0.4,
       "intensity":0.3,
@@ -193,7 +198,7 @@
       },
       "reflection_index": 0.0,
       "refraction_index": 0.0,
-      "ambient": 0.8,
+      "ambient": 0.5,
       "diffuse": 0.8,
       "specular":0.5,
       "light": true,

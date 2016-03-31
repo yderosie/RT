@@ -6,7 +6,7 @@
 #    By: rlambert <rlambert@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/03 11:25:08 by rlambert          #+#    #+#              #
-#    Updated: 2016/03/29 12:23:27 by root             ###   ########.fr        #
+#    Updated: 2016/03/31 12:19:52 by mbarbari         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,16 +22,15 @@ else
 	MLX_PATH ?= mlx_mac/
 endif
 
-CFLAGS += -Wall -Wextra -Werror
-CFLAGS = -O3 -Wall -Wextra -D_REENTRANT
+CFLAGS = -O3 -Wall -Wextra -Werror -D_REENTRANT
 
 SRCS =	src/main.c 												\
 		src/ft_env.c
 
-SRCS += src/parser.c											\
-		src/parse_function.c									\
-		src/parse_type.c										\
-		src/foreach.c
+SRCS += src/parser/parser.c											\
+		src/parser/parse_function.c									\
+		src/parser/parse_type.c										\
+		src/parser/foreach.c
 
 SRCS += src/framework_math/vector/fk_vcpy.c						\
 		src/framework_math/vector/fk_vmemcheck.c				\
@@ -68,11 +67,11 @@ SRCS += src/framework_light/fk_light.c							\
 		src/framework_light/fk_normal_cone.c					\
 		src/framework_light/fk_normal_paraboloid.c				\
 		src/framework_light/fk_normal_triangle.c				\
-		src/framework_light/fk_normal_plan.c					\
-		src/framework_light/fk_luminance.c						\
-		src/framework_light/fk_shadow.c
+		src/framework_light/fk_normal_plan.c
 
 SRCS += src/framework_math/math/fk_isqrt.c
+
+SRCS += src/framework_event/fk_event.c
 
 SRCS +=	src/framework_shape/fk_intersect_sphere.c				\
 		src/framework_shape/fk_intersect_plan.c					\
@@ -89,8 +88,9 @@ SRCS +=	src/framework_shape/fk_intersect_sphere.c				\
 		src/framework_shape/fk_new_sphere.c
 
 INC_FILES = include/ft_env.h									\
-			include/parser.h									\
-			include/parser_union.h								\
+			include/framework_event/fk_event.h					\
+			include/parser/parser.h									\
+			include/parser/parser_union.h								\
 			include/framework_light/fk_light.h					\
 			include/framework_light/fk_normal_sphere.h			\
 			include/framework_light/fk_normal_plan.h			\

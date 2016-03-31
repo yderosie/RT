@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 12:49:55 by root              #+#    #+#             */
-/*   Updated: 2016/03/29 07:56:28 by root             ###   ########.fr       */
+/*   Updated: 2016/03/31 12:48:25 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_color3		fk_finalcolor(t_object *arr, t_intersect in, t_env env)
 		if (arr[i[0]].light == TRUE && (shade = 1.0) && (++i[2]))
 		{
 			d[0] = vector_magnitude(vector_substract(arr[i[0]].pos, in.pos));
-			ray.pos = vector_substract(in.pos, vector_mul(in.v_normal, E));
+			ray.pos = vector_substract(in.pos, vector_mul(in.v_normal, 1e-4f));
 			ray.dir = vector_unit(vector_substract(arr[i[0]].pos, in.pos));
 			while (arr[(++i[1])].type != DEFAULT)
 				if (env.fctinter[arr[i[1]].type](ray, arr + i[1], &d[1]))

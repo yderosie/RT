@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 16:14:38 by root              #+#    #+#             */
-/*   Updated: 2016/03/30 17:39:02 by root             ###   ########.fr       */
+/*   Updated: 2016/03/31 13:19:47 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ t_color3		sampling(t_env env, int i)
 	delta += delta_e(tmp[0], tmp[2]);
 	delta += delta_e(tmp[0], tmp[3]);
 	delta += delta_e(tmp[0], tmp[4]);
-	if (delta < 1)
+	if (delta <= 1)
 		return (env.matrice[i]);
 	env.xy[0] = (i % WIDTH);
 	env.xy[1] = floor(i / WIDTH);

@@ -6,7 +6,7 @@
 /*   By: yderosie <yderosie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 14:22:25 by yderosie          #+#    #+#             */
-/*   Updated: 2016/01/27 16:30:39 by yderosie         ###   ########.fr       */
+/*   Updated: 2016/03/31 12:21:54 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void		normal_cone(t_intersect *inter, t_cone *obj)
 	float		radius;
 	t_vector3	ctop;
 	t_vector3	qtop;
-	t_vector3	v_normal;
 
 	ctop = vector_substract(inter->pos, obj->pos);
 	radius = vector_dotproduct(ctop, obj->dir);

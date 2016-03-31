@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 20:19:03 by mbarbari          #+#    #+#             */
-/*   Updated: 2016/02/09 11:24:40 by barbare          ###   ########.fr       */
+/*   Updated: 2016/03/31 12:21:36 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void		normal_cylinder(t_intersect *inter, t_cylinder *obj)
 	float		radius;
 	t_vector3	ctop;
 	t_vector3	qtop;
-	t_vector3	v_normal;
 
 	ctop = vector_substract(inter->pos, obj->pos);
 	radius = vector_dotproduct(ctop, obj->dir);

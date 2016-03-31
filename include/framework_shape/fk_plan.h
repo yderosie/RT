@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 20:42:15 by mbarbari          #+#    #+#             */
-/*   Updated: 2016/03/22 09:41:34 by root             ###   ########.fr       */
+/*   Updated: 2016/03/31 12:11:50 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FK_PLAN_H
 
 # include "libft.h"
-# include "parser.h"
+# include "parser/parser.h"
 # include "framework_shape/fk_type.h"
 # include "framework_math/fk_vector.h"
 # include "framework_shape/fk_ray.h"

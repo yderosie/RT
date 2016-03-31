@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/01 16:09:24 by mbarbari          #+#    #+#             */
-/*   Updated: 2016/03/31 02:31:26 by yderosie         ###   ########.fr       */
+/*   Updated: 2016/03/31 12:45:57 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ struct				s_env
 	float			angley;
 	t_object		arr[NB_OBJ];
 	pthread_t		th[16];
+	int				load;
 	float			angle;
 	t_vertex3		pos_absolute_camera;
 	t_fctinter		fctinter[DEFAULT];

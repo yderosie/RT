@@ -6,7 +6,7 @@
 /*   By: yderosie <yderosie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 00:26:55 by yderosie          #+#    #+#             */
-/*   Updated: 2016/03/31 00:26:56 by yderosie         ###   ########.fr       */
+/*   Updated: 2016/03/31 12:38:03 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,24 @@ void		new_triangle(t_value val, t_object *data)
 {
 	ft_memcpy(data, &(t_triangle){
 		TRIANGLE,
-		new_material(val, data),
+		new_material(val),
 		json_get(val.data.obj, "reflection_index").data.number,
 		json_get(val.data.obj, "refraction_index").data.number,
 		json_get(val.data.obj, "ambient").data.number,
 		json_get(val.data.obj, "diffuse").data.number,
 		json_get(val.data.obj, "specular").data.number,
 		json_get(val.data.obj, "light").data.boolean,
-		new_position(val, data),
-		new_direction(val, data),
+		new_position(val),
+		new_direction(val),
 		(t_vertex3){
-			json_get(val.data.obj, "pos2.x").data.number,
-			json_get(val.data.obj, "pos2.y").data.number,
-			json_get(val.data.obj, "pos2.z").data.number
+			.x = json_get(val.data.obj, "pos2.x").data.number,
+			.y = json_get(val.data.obj, "pos2.y").data.number,
+			.z = json_get(val.data.obj, "pos2.z").data.number
 		},
 		(t_vertex3){
-			json_get(val.data.obj, "pos3.x").data.number,
-			json_get(val.data.obj, "pos3.y").data.number,
-			json_get(val.data.obj, "pos3.z").data.number
+			.x = json_get(val.data.obj, "pos3.x").data.number,
+			.y = json_get(val.data.obj, "pos3.y").data.number,
+			.z = json_get(val.data.obj, "pos3.z").data.number
 		}
 	}, sizeof(t_triangle));
 }

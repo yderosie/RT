@@ -1,6 +1,11 @@
 {
   "depth":4,
   "sampling":4,
+  "pos_camera": {
+        "x": 0,
+        "y": 0,
+        "z": -1
+      },
   "scene":
   [
     {

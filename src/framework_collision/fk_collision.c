@@ -6,14 +6,14 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/01 20:34:17 by mbarbari          #+#    #+#             */
-/*   Updated: 2016/03/31 02:45:48 by yderosie         ###   ########.fr       */
+/*   Updated: 2016/03/31 13:00:25 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
 #include <unistd.h>
 #include <pthread.h>
-#include "parser.h"
+#include "parser/parser.h"
 #include "framework_collision/fk_collision.h"
 #include "framework_shape/fk_objects.h"
 #include "framework_shape/fk_listobj.h"
@@ -110,5 +110,4 @@ void		ft_render(t_env env)
 	while (--thread > -1)
 		pthread_join(th[thread], NULL);
 	ft_apply_scene(tmp);
-	ft_putendl("End loading\n");
 }

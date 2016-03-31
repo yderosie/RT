@@ -6,7 +6,7 @@
 /*   By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/29 21:18:55 by mbarbari          #+#    #+#             */
-/*   Updated: 2015/12/23 17:51:03 by mbarbari         ###   ########.fr       */
+/*   Updated: 2016/03/31 11:52:19 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@
 # define DPI (PI - (PI / 2))
 # define RAD_TO_DEGREES(X) (((X) * 180) / PI)
 # define ABS(X) (X) < 0 ? -(X) : (X)
-# define E 1e-4f
 
 float	fk_isqrt(float nbr);
 

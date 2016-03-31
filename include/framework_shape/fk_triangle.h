@@ -6,7 +6,7 @@
 /*   By: yderosie <yderosie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 00:12:29 by yderosie          #+#    #+#             */
-/*   Updated: 2016/03/31 00:12:29 by yderosie         ###   ########.fr       */
+/*   Updated: 2016/03/31 12:12:20 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FK_TRIANGLE_H
 
 # include "libft.h"
-# include "parser.h"
+# include "parser/parser.h"
 # include "framework_shape/fk_type.h"
 # include "framework_shape/fk_ray.h"
 # include "framework_collision/fk_intersect.h"
