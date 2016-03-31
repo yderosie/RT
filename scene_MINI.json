@@ -38,7 +38,7 @@
       "reflection_index": 0.0,
       "refraction_index": 0.0,
       "ambient": 0.5,
-      "diffuse": 1,
+      "diffuse": 0.5,
       "specular":0.5,
       "light": false,
       "radius": 0.60,
@@ -76,7 +76,7 @@
       "refraction_index": 0.0,
       "ambient": 0.5,
       "light": false,
-      "diffuse": 1,
+      "diffuse": 0.5,
       "specular":0.5,
       "dir": {
         "x":0,
@@ -115,7 +115,7 @@
       "reflection_index": 0.0,
       "refraction_index": 0.0,
       "ambient": 0.5,
-      "diffuse": 1,
+      "diffuse": 0.5,
       "specular":0.5,
       "light": true,
       "dir": {
@@ -156,7 +156,7 @@
       "reflection_index": 0.0,
       "refraction_index": 0.0,
       "ambient": 0.4,
-      "diffuse": 1,
+      "diffuse": 0.5,
       "specular":0.5,
       "light": true,
       "dir": {
@@ -197,7 +197,7 @@
       "reflection_index": 0.0,
       "refraction_index": 0.0,
       "ambient": 0.4,
-      "diffuse": 1,
+      "diffuse": 0.5,
       "specular":0.5,
       "light": true,
       "dir": {
