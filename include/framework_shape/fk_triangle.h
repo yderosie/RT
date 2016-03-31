@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yderosie <yderosie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/29 15:08:28 by yderosie          #+#    #+#             */
-/*   Updated: 2016/03/29 15:08:30 by yderosie         ###   ########.fr       */
+/*   Created: 2016/03/31 00:12:29 by yderosie          #+#    #+#             */
+/*   Updated: 2016/03/31 00:12:29 by yderosie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FK_TRIANGLE_H
 
 # include "libft.h"
+# include "parser.h"
 # include "framework_shape/fk_type.h"
 # include "framework_shape/fk_ray.h"
 # include "framework_collision/fk_intersect.h"
@@ -23,8 +24,10 @@ typedef struct s_triangle	t_triangle;
 struct				s_triangle
 {
 	t_type			type;
-	t_color3		color;
+	t_material		mat;
 	float			reflection_index;
+	float			refraction_index;
+	float			ambient;
 	float			diffuse;
 	float			specular;
 	t_bool			light;
@@ -34,7 +37,20 @@ struct				s_triangle
 	t_vertex3		pos3;
 };
 
+typedef struct s_tri	t_tri;
+struct				s_tri
+{
+	t_vector3		e1;
+	t_vector3		e2;
+	t_vector3		p;
+	t_vector3		t;
+	t_vector3		q;
+	float			u;
+	float			det;
+	float			v;
+};
+
 t_bool				intersect_triangle(t_ray ray, t_triangle *obj, float *dist);
+void				new_triangle(t_value val, t_object *obj);
 
 #endif
-

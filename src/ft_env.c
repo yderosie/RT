@@ -24,7 +24,6 @@ void		ft_setup_inter(t_fctinter inter[DEFAULT])
 {
 	inter[SPHERE] = (t_fctinter)&intersect_sphere;
 	inter[PLANE] = (t_fctinter)&intersect_plan;
-	inter[FINISHED_PLANE] = (t_fctinter)&intersect_finished_plan;
 	inter[CYLINDER] = (t_fctinter)&intersect_cylinder;
 	inter[CONE] = (t_fctinter)&intersect_cone;
 	inter[PARABOLOID] = (t_fctinter)&intersect_paraboloid;
@@ -36,7 +35,6 @@ void		ft_setup_normal(t_fctnormal normal[DEFAULT])
 {
 	normal[SPHERE] = (t_fctnormal)&normal_sphere;
 	normal[PLANE] = (t_fctnormal)&normal_plan;
-	normal[FINISHED_PLANE] = (t_fctnormal)&normal_finished_plan;
 	normal[CYLINDER] = (t_fctnormal)&normal_cylinder;
 	normal[CONE] = (t_fctnormal)&normal_cone;
 	normal[PARABOLOID] = (t_fctnormal)&normal_paraboloid;

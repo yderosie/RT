@@ -19,19 +19,16 @@
 # include "framework_collision/fk_collision.h"
 
 typedef struct s_spotlight		t_spotlight;
-
-struct							s_spotlight
+struct				s_spotlight
 {
-	t_type						type;
-	t_color3					color;
-	float						reflection_index;
-	float						diffuse;
-	t_vertex3					pos;
-	t_vector3					dir;
-	float						intensity;
-	float						radius;
+	t_type			type;
+	t_color3		color;
+	float			reflection_index;
+	float			diffuse;
+	t_vertex3		pos;
+	t_vector3		dir;
+	float			intensity;
+	float			radius;
 };
-t_color3						iter_light(t_intersect inter, t_object *light,
-	float shade);
-
+t_color3			iter_light(t_intersect inter, t_object *light, float shade);
 #endif

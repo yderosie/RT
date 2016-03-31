@@ -18,8 +18,8 @@ void		normal_cone(t_intersect *inter, t_cone *obj)
 	float		radius;
 	t_vector3	ctop;
 	t_vector3	qtop;
-	t_vector3	v_normal;		
-	  		  
+	t_vector3	v_normal;
+
 	ctop = vector_substract(inter->pos, obj->pos);
 	radius = vector_dotproduct(ctop, obj->dir);
 	qtop = vector_substract(ctop, vector_mul(obj->dir, radius));

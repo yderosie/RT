@@ -29,10 +29,6 @@
 # define TYPE_NUMBER	3
 # define TYPE_STRING	4
 
-/*
-** -1 => error, 0 => object, 1 => array, 2 => bool, 3 => number, 4 => string
-*/
-
 struct t_json;
 struct t_json_arr;
 
@@ -65,10 +61,10 @@ int				parse_boolean(char **json);
 void			def_value(char **json, t_value *value);
 void			parser_value(char **json, t_value *value);
 t_value			json_get(t_json *x, char *str);
-void			json_foreach_obj(t_json *x, void (cb)(t_value, char *s,
-				t_object*), void *a);
-void			json_foreach_arr(t_json_arr *x, void (cb)(t_value, int,
-				t_object*), void *a);
+void			json_foreach_obj(t_json *x,
+	void (cb)(t_value, char *s, t_object*), void *a);
+void			json_foreach_arr(t_json_arr *x,
+	void (cb)(t_value, int, t_object*), void *a);
 int				json_arr_length(t_json_arr *x);
 
 #endif

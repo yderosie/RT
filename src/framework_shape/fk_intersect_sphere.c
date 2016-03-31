@@ -19,6 +19,8 @@ t_bool			intersect_sphere(t_ray ray, t_sphere *obj, float *t)
 	float			radius;
 	float			vector_radius;
 
+	if (obj->radius == 0.0f)
+		return (FALSE);
 	etoc = vector_substract(obj->pos, ray.pos);
 	if ((vector_radius = vector_dotproduct(etoc, ray.dir)) < 0.)
 		return (FALSE);

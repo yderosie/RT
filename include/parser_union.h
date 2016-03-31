@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #ifndef PARSER_UNION_H
-
 # define PARSER_UNION_H
 
 union			u_data {

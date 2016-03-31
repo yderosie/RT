@@ -13,9 +13,6 @@
 #ifndef FK_NORMAL_H
 # define FK_NORMAL_H
 
-# include "framework_math/fk_vector.h"
-# include "framework_collision/fk_intersect.h"
-
 typedef void	(*t_fctnormal)(t_intersect *inter, void *obj);
 
 #endif

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fk_paraboloid.h                                     :+:      :+:    :+:   */
+/*   fk_paraboloid.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yderosie <yderosie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -14,6 +14,7 @@
 # define FK_PARABOLOID_H
 
 # include "libft.h"
+# include "parser.h"
 # include "framework_shape/fk_type.h"
 # include "framework_shape/fk_ray.h"
 # include "framework_collision/fk_intersect.h"
@@ -23,8 +24,10 @@ typedef struct s_paraboloid	t_paraboloid;
 struct				s_paraboloid
 {
 	t_type			type;
-	t_color3		color;
+	t_material		mat;
 	float			reflection_index;
+	float			refraction_index;
+	float			ambient;
 	float			diffuse;
 	float			specular;
 	t_bool			light;
@@ -34,6 +37,8 @@ struct				s_paraboloid
 	float			height;
 };
 
-t_bool				intersect_paraboloid(t_ray ray, t_paraboloid *obj, float *dist);
+t_bool				intersect_paraboloid(t_ray ray, t_paraboloid *obj,
+	float *dist);
+void				new_paraboloid(t_value val, t_object *obj);
 
 #endif

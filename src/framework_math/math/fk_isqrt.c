@@ -14,9 +14,9 @@
 
 float	fk_isqrt(float nbr)
 {
-	long	i;
-	float	x1;
-	float	y;
+	long				i;
+	float				x1;
+	float				y;
 
 	x1 = nbr * 0.5F;
 	y = nbr;

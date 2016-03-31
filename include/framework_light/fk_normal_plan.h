@@ -18,6 +18,5 @@
 # include "framework_collision/fk_intersect.h"
 
 void		normal_plan(t_intersect *inter, t_plan *obj);
-void		normal_finished_plan(t_intersect *inter, t_fplan *obj);
 
 #endif

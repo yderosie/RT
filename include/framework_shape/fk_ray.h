@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   fk_ray.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roblabla <robinlambertz+dev@gmail.c>       +#+  +:+       +#+        */
+/*   By: roblabla <rlambert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/03 13:20:23 by roblabla          #+#    #+#             */
 /*   Updated: 2015/12/17 17:48:41 by mbarbari         ###   ########.fr       */
