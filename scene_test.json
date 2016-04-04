@@ -1,0 +1,232 @@
+{
+  "depth":4,
+  "sampling":4,
+  "pos_camera": {
+        "x": 0,
+        "y": 0,
+        "z": -1
+      },
+  "scene":
+  [
+    {
+      "type":"SPHERE",
+      "color": {
+        "red": 255,
+        "green": 139,
+        "blue": 24
+      },
+      "pos":{
+        "x":2,
+        "y":0,
+        "z":30
+      },
+      "dir": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "reflection_index": 0.0,
+      "diffuse": 0.0,
+      "intensity":0.0,
+      "specular":0.5,
+      "material":1,
+      "light": false,
+      "radius": 1.0
+    },
+    {
+      "comment":"sol",
+      "type": "PLANE",
+      "color": {
+        "red":200, 
+        "green":255,
+        "blue":0
+      },
+      "pos": {
+        "x":0,
+        "y":-10,
+        "z":0
+      },
+      "dir": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "reflection_index": 0.0,
+      "diffuse": 0.5,
+      "intensity":0.5,
+      "specular":0.5,
+      "material":1,
+      "light": false,
+      "normal": {
+        "x":0,
+        "y":-40,
+        "z":0
+      }
+    },
+    {
+      "comment":"plafond",
+      "type":"PLANE",
+      "color":{
+        "red":255,
+        "green":100,
+        "blue":0
+      },
+      "pos":{
+        "x":0,
+        "y":10,
+        "z":0
+      },
+      "dir": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "reflection_index": 0.0,
+      "diffuse": 0.5,
+      "intensity":0.5,
+      "specular":0.5,
+      "material":1,
+      "light": false,
+      "normal":{
+        "x":0,
+        "y":40,
+        "z":0
+      }
+    },
+    {
+      "comment":"Mur Gauche",
+      "type":"PLANE",
+      "color":{
+        "red":200,
+        "green":155,
+        "blue":100
+      },
+      "pos":{
+        "x":-10,
+        "y":0,
+        "z":0
+      },
+      "dir": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "reflection_index": 0.0,
+      "diffuse": 0.5,
+      "intensity":0.5,
+      "specular":0.5,
+      "material":1,
+      "light": false,
+      "normal":{
+        "x":-100,
+        "y":0,
+        "z":0
+      }
+    },
+    {
+      "comment":"Mur droite",
+      "type":"PLANE",
+      "color":{
+        "red":200,
+        "green":255,
+        "blue":100
+      },
+      "pos":{
+        "x":10,
+        "y":0,
+        "z":0
+      },
+      "dir": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "reflection_index": 0.0,
+      "diffuse": 0.5,
+      "intensity":0.5,
+      "specular":0.5,
+      "material":1,
+      "light": false,
+      "normal":{
+        "x":100,
+        "y":0,
+        "z":0
+      }
+    },
+    {
+      "type":"SPHERE",
+      "color":{
+        "red":200,
+        "green":55,
+        "blue":20
+      },
+      "pos":{
+        "x":1,
+        "y":0,
+        "z":10
+      },
+      "dir": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "reflection_index": 0.0,
+      "diffuse": 0.5,
+      "intensity":0.5,
+      "specular":0.5,
+      "material":1,
+      "light": false,
+      "radius":1.35
+    },
+    {
+      "type": "SPHERE",
+      "color": {
+        "red": 255,
+        "green": 255,
+        "blue": 255
+      },
+      "pos": {
+        "x": -0.3,
+        "y": 0,
+        "z": 3
+      },
+      "reflection_index": 0.0,
+      "diffuse": 0.5,
+      "intensity":0.8,
+      "specular":0.5,
+      "material":1,
+      "light": true,
+      "radius":0.0,
+      "dir": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "type": "SPHERE",
+      "color": {
+        "red":255,
+        "green":255,
+        "blue":255
+      },
+      "pos": {
+        "x":0,
+        "y":0,
+        "z":0
+      },
+      "reflection_index": 0.0,
+      "diffuse": 0.5,
+      "intensity":0.5,
+      "specular":0.5,
+      "material":1,
+      "light": true,
+      "radius":0.0,
+      "dir": {
+        "x":1,
+        "y":2,
+        "z":0
+      }
+    }
+  ]
+}
